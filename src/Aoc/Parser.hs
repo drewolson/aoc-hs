@@ -21,4 +21,4 @@ parse ::
   Parsec e s a ->
   s ->
   Either Text a
-parse p s = first (T.pack . M.errorBundlePretty) $ M.parse p "" s
+parse p = first (T.pack . M.errorBundlePretty) . M.parse p ""
