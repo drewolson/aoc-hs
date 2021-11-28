@@ -18,7 +18,7 @@ parseArgs =
       auto
       ( long "day"
           <> short 'd'
-          <> help "solution day to run"
+          <> help "day to run (1 - 25)"
       )
     <*> option
       auto
