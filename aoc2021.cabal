@@ -25,6 +25,7 @@ source-repository head
 library
   exposed-modules:
       Aoc.Parser
+      Aoc.Prelude
       Aoc.Solution.Day01
   other-modules:
       Paths_aoc2021
@@ -105,6 +106,7 @@ test-suite aoc-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      Aoc.PreludeSpec
       Aoc.Solution.Day01Spec
       Paths_aoc2021
   hs-source-dirs:
