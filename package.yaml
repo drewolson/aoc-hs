@@ -45,10 +45,14 @@ default-extensions:
 
 dependencies:
 - base >= 4.7 && < 5
+- containers
 - megaparsec
+- mtl
 - optparse-applicative
 - parser-combinators
 - text
+- unliftio
+- vector
 
 library:
   source-dirs: src
