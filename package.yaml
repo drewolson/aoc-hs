@@ -1,0 +1,77 @@
+name:                aoc2021
+version:             0.1.0.0
+github:              "drewolson/aoc2021"
+license:             MIT
+author:              "Drew Olson"
+maintainer:          "drew@drewolson.org"
+copyright:           "2021 Drew Olson"
+
+extra-source-files:
+- README.md
+
+description: Advent of Code 2021
+
+ghc-options:
+- -Werror
+- -Wall
+- -Wcompat
+- -Wincomplete-record-updates
+- -Wincomplete-uni-patterns
+- -Wredundant-constraints
+
+default-extensions:
+- BlockArguments
+- DataKinds
+- DeriveAnyClass
+- DeriveGeneric
+- DerivingStrategies
+- FlexibleContexts
+- FlexibleInstances
+- GeneralizedNewtypeDeriving
+- ImportQualifiedPost
+- InstanceSigs
+- LambdaCase
+- MultiParamTypeClasses
+- NamedFieldPuns
+- NoMonomorphismRestriction
+- OverloadedStrings
+- PatternSynonyms
+- QuasiQuotes
+- ScopedTypeVariables
+- TypeApplications
+- TypeFamilies
+- TypeOperators
+- ViewPatterns
+
+dependencies:
+- base >= 4.7 && < 5
+- optparse-applicative
+- text
+
+library:
+  source-dirs: src
+
+executables:
+  aoc-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - aoc2021
+
+tests:
+  aoc-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - aoc2021
+    - hspec
+    - hspec-discover
+    - QuickCheck
