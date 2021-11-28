@@ -47,7 +47,7 @@ readInput Args {day} =
 runSolution :: Text -> Args -> IO Text
 runSolution input = \case
   Args {day = 1, part = 1} -> Day01.part1 input
-  _ -> pure "unknown day and part"
+  _ -> fail "unknown day and part"
 
 main :: IO ()
 main = do
