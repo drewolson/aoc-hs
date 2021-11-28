@@ -1,5 +1,7 @@
 # Advent of Code 2021
 
+![test](https://github.com/drewolson/aoc2021/actions/workflows/test.yml/badge.svg)
+
 ## Build
 
 ```
