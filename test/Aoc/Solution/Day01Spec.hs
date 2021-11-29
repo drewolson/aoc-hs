@@ -10,6 +10,6 @@ spec :: Spec
 spec = do
   describe "part1" do
     it "returns the same text" do
-      result <- Day01.part1 "Hello, world"
+      let result = Day01.part1 "Hello, world"
 
       result `shouldBe` "Hello, world"
