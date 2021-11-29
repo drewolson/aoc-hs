@@ -46,7 +46,7 @@ readInput Args {day} =
 
 runSolution :: Text -> Args -> IO Text
 runSolution input = \case
-  Args {day = 1, part = 1} -> Day01.part1 input
+  Args {day = 1, part = 1} -> pure $ Day01.part1 input
   _ -> fail "unknown day and part"
 
 main :: IO ()
@@ -55,4 +55,4 @@ main = do
   input <- readInput args
   result <- runSolution input args
 
-  Text.IO.putStrLn result
+  Text.IO.putStr result

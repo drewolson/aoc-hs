@@ -5,5 +5,5 @@ where
 
 import Data.Text (Text)
 
-part1 :: Text -> IO Text
-part1 = pure
+part1 :: Text -> Text
+part1 = id
