@@ -4,7 +4,11 @@ module Aoc.Solution.Day01
   )
 where
 
-import Aoc.Prelude
+import Data.Maybe (mapMaybe)
+import Text.Read (readMaybe)
+
+readAll :: String -> [Int]
+readAll = mapMaybe readMaybe . lines
 
 part1 :: String -> String
 part1 input =

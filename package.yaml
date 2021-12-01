@@ -79,7 +79,8 @@ tests:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
+    - QuickCheck
     - aoc2021
     - hspec
     - hspec-discover
-    - QuickCheck
+    - raw-strings-qq

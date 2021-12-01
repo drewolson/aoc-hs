@@ -1,6 +1,5 @@
 module Main where
 
-import Aoc.Prelude
 import Aoc.Solution.Day01 qualified as Day01
 import Control.Applicative ((<**>))
 import Data.Text qualified as T
@@ -39,7 +38,7 @@ parseInfoArgs =
 
 readInput :: Args -> IO String
 readInput Args {day} =
-  let dayText = T.justifyRight 2 '0' $ tshow day
+  let dayText = T.justifyRight 2 '0' $ T.pack $ show day
    in readFile $ "./data/day" <> T.unpack dayText <> ".txt"
 
 runSolution :: String -> Args -> IO String
@@ -54,4 +53,4 @@ main = do
   input <- readInput args
   result <- runSolution input args
 
-  putStr result
+  putStrLn result
