@@ -52,6 +52,7 @@ dependencies:
 - mtl
 - optparse-applicative
 - parser-combinators
+- split
 - text
 - unliftio
 - vector

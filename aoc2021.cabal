@@ -62,6 +62,7 @@ library
     , mtl
     , optparse-applicative
     , parser-combinators
+    , split
     , text
     , unliftio
     , vector
@@ -107,6 +108,7 @@ executable aoc-exe
     , mtl
     , optparse-applicative
     , parser-combinators
+    , split
     , text
     , unliftio
     , vector
@@ -158,6 +160,7 @@ test-suite aoc-test
     , optparse-applicative
     , parser-combinators
     , raw-strings-qq
+    , split
     , text
     , unliftio
     , vector
