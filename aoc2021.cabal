@@ -58,6 +58,8 @@ library
   build-depends:
       base >=4.7 && <5
     , containers
+    , generic-lens
+    , lens
     , megaparsec
     , mtl
     , optparse-applicative
@@ -101,6 +103,8 @@ executable aoc-exe
       aoc2021
     , base >=4.7 && <5
     , containers
+    , generic-lens
+    , lens
     , megaparsec
     , mtl
     , optparse-applicative
@@ -148,8 +152,10 @@ test-suite aoc-test
     , aoc2021
     , base >=4.7 && <5
     , containers
+    , generic-lens
     , hspec
     , hspec-discover
+    , lens
     , megaparsec
     , mtl
     , optparse-applicative
