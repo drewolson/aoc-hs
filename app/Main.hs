@@ -3,9 +3,7 @@ module Main where
 import Aoc.Prelude
 import Aoc.Solution.Day01 qualified as Day01
 import Control.Applicative ((<**>))
-import Data.Text (Text)
 import Data.Text qualified as T
-import Data.Text.IO qualified as Text.IO
 import Options.Applicative (Parser, ParserInfo)
 import Options.Applicative qualified as A
 
@@ -39,14 +37,15 @@ parseInfoArgs =
         <> A.header "aoc-exe - run aoc solution"
     )
 
-readInput :: Args -> IO Text
+readInput :: Args -> IO String
 readInput Args {day} =
   let dayText = T.justifyRight 2 '0' $ tshow day
-   in Text.IO.readFile $ "./data/day" <> T.unpack dayText <> ".txt"
+   in readFile $ "./data/day" <> T.unpack dayText <> ".txt"
 
-runSolution :: Text -> Args -> IO Text
+runSolution :: String -> Args -> IO String
 runSolution input = \case
   Args {day = 1, part = 1} -> pure $ Day01.part1 input
+  Args {day = 1, part = 2} -> pure $ Day01.part2 input
   _ -> fail "unknown day and part"
 
 main :: IO ()
@@ -55,4 +54,4 @@ main = do
   input <- readInput args
   result <- runSolution input args
 
-  Text.IO.putStr result
+  putStr result

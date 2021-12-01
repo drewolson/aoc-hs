@@ -5,13 +5,11 @@ module Aoc.Parser
 where
 
 import Data.Bifunctor (first)
-import Data.Text (Text)
-import Data.Text qualified as T
 import Data.Void (Void)
 import Text.Megaparsec (Parsec)
 import Text.Megaparsec qualified as M
 
-type Parser = Parsec Void Text
+type Parser = Parsec Void String
 
-parse :: Parser a -> Text -> Either Text a
-parse p = first (T.pack . M.errorBundlePretty) . M.parse p ""
+parse :: Parser a -> String -> Either String a
+parse p = first M.errorBundlePretty . M.parse p ""
