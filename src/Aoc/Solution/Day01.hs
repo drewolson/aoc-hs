@@ -14,12 +14,10 @@ readAll = mapMaybe readMaybe . lines
 part1 :: String -> String
 part1 input =
   let ints = readAll input
-      diffs = uncurry (-) <$> zip ints (drop 1 ints)
-   in show $ length $ filter (< 0) diffs
+   in show $ length $ filter (uncurry (<)) $ zip ints (drop 1 ints)
 
 part2 :: String -> String
 part2 input =
   let ints = readAll input
       sums = sum <$> divvy 3 1 ints
-      diffs = uncurry (-) <$> zip sums (drop 1 sums)
-   in show $ length $ filter (< 0) diffs
+   in show $ length $ filter (uncurry (<)) $ zip sums (drop 1 sums)
