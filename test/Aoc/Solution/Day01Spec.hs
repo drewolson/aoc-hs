@@ -26,10 +26,10 @@ spec = do
     it "returns the expected result" do
       let result = Day01.part1 input
 
-      result `shouldBe` "7"
+      result `shouldBe` 7
 
   describe "part2" do
     it "returns the expected result" do
       let result = Day01.part2 input
 
-      result `shouldBe` "5"
+      result `shouldBe` 5

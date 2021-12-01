@@ -11,12 +11,12 @@ import Text.Read (readMaybe)
 readAll :: String -> [Int]
 readAll = mapMaybe readMaybe . lines
 
-part1 :: String -> String
+part1 :: String -> Int
 part1 input =
   let ints = readAll input
-   in show $ length $ filter (uncurry (<)) $ zip ints (drop 1 ints)
+   in length $ filter (uncurry (<)) $ zip ints (tail ints)
 
-part2 :: String -> String
+part2 :: String -> Int
 part2 input =
   let sums = fmap sum $ divvy 3 1 $ readAll input
-   in show $ length $ filter (uncurry (<)) $ zip sums (drop 1 sums)
+   in length $ filter (uncurry (<)) $ zip sums (tail sums)

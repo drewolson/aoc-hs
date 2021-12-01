@@ -43,8 +43,8 @@ readInput Args {day} =
 
 runSolution :: String -> Args -> IO String
 runSolution input = \case
-  Args {day = 1, part = 1} -> pure $ Day01.part1 input
-  Args {day = 1, part = 2} -> pure $ Day01.part2 input
+  Args {day = 1, part = 1} -> pure $ show $ Day01.part1 input
+  Args {day = 1, part = 2} -> pure $ show $ Day01.part2 input
   _ -> fail "unknown day and part"
 
 main :: IO ()
