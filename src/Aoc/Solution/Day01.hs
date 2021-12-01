@@ -18,6 +18,5 @@ part1 input =
 
 part2 :: String -> String
 part2 input =
-  let ints = readAll input
-      sums = sum <$> divvy 3 1 ints
+  let sums = fmap sum $ divvy 3 1 $ readAll input
    in show $ length $ filter (uncurry (<)) $ zip sums (drop 1 sums)
