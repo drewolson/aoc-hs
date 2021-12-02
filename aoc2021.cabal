@@ -25,6 +25,7 @@ source-repository head
 library
   exposed-modules:
       Aoc.Solution.Day01
+      Aoc.Solution.Day02
   other-modules:
       Paths_aoc2021
   hs-source-dirs:
@@ -119,6 +120,7 @@ test-suite aoc-test
   main-is: Spec.hs
   other-modules:
       Aoc.Solution.Day01Spec
+      Aoc.Solution.Day02Spec
       Paths_aoc2021
   hs-source-dirs:
       test

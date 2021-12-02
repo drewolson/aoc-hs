@@ -1,6 +1,7 @@
 module Main where
 
 import Aoc.Solution.Day01 qualified as Day01
+import Aoc.Solution.Day02 qualified as Day02
 import Control.Applicative ((<**>))
 import Data.Text qualified as T
 import Options.Applicative (Parser, ParserInfo)
@@ -45,6 +46,8 @@ runSolution :: String -> Args -> IO String
 runSolution input = \case
   Args {day = 1, part = 1} -> pure $ show $ Day01.part1 input
   Args {day = 1, part = 2} -> pure $ show $ Day01.part2 input
+  Args {day = 2, part = 1} -> pure $ show $ Day02.part1 input
+  Args {day = 2, part = 2} -> pure $ show $ Day02.part2 input
   _ -> fail "unknown day and part"
 
 main :: IO ()
