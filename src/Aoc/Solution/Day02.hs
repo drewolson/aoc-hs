@@ -52,7 +52,7 @@ part1 = fmap (uncurry (*) . foldl' move1 (0, 0)) . parseInput
 move2 :: (Int, Int, Int) -> Move -> (Int, Int, Int)
 move2 (x, y, aim) Move {dir, dist} =
   case dir of
-    Forward -> (x + dist, y + (dist * aim), aim)
+    Forward -> (x + dist, y + dist * aim, aim)
     Up -> (x, y, aim - dist)
     Down -> (x, y, aim + dist)
 

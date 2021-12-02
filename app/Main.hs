@@ -42,18 +42,17 @@ readInput Args {day} =
   let dayText = T.justifyRight 2 '0' $ T.pack $ show day
    in readFile $ "./data/day" <> T.unpack dayText <> ".txt"
 
-runSolution :: String -> Args -> IO String
+runSolution :: String -> Args -> IO ()
 runSolution input = \case
-  Args {day = 1, part = 1} -> pure $ show $ Day01.part1 input
-  Args {day = 1, part = 2} -> pure $ show $ Day01.part2 input
-  Args {day = 2, part = 1} -> pure $ show $ Day02.part1 input
-  Args {day = 2, part = 2} -> pure $ show $ Day02.part2 input
+  Args {day = 1, part = 1} -> print $ Day01.part1 input
+  Args {day = 1, part = 2} -> print $ Day01.part2 input
+  Args {day = 2, part = 1} -> print $ Day02.part1 input
+  Args {day = 2, part = 2} -> print $ Day02.part2 input
   _ -> fail "unknown day and part"
 
 main :: IO ()
 main = do
   args <- A.execParser parseInfoArgs
   input <- readInput args
-  result <- runSolution input args
 
-  putStrLn result
+  runSolution input args
