@@ -6,16 +6,14 @@ where
 
 import Data.Char (digitToInt)
 import Data.Foldable (foldl', maximumBy)
-import Data.Function (on)
 import Data.List (group, sort, transpose)
+import Data.Ord (comparing)
 
 binToInt :: String -> Int
 binToInt = foldl' (\acc x -> acc * 2 + digitToInt x) 0
 
 mostCommon :: String -> Char
-mostCommon l =
-  let cs = maximumBy (compare `on` length) $ group $ sort l
-   in if length cs * 2 == length l then '1' else head cs
+mostCommon = head . maximumBy (comparing length) . group . sort
 
 flipBit :: Char -> Char
 flipBit '1' = '0'
