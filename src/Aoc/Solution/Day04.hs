@@ -70,9 +70,9 @@ part1 input = do
 
   pure $ solve1 Set.empty guesses boards
 
-solve2 :: Set Int -> [Int] -> [Board] -> Maybe Int -> Int
-solve2 _ [] _ Nothing = 1000
-solve2 _ [] _ (Just n) = n
+solve2 :: Set Int -> [Int] -> [Board] -> Maybe Int -> Either String Int
+solve2 _ [] _ Nothing = Left "no solution found"
+solve2 _ [] _ (Just n) = pure n
 solve2 called (h : t) boards prevScore =
   let called' = Set.insert h called
    in case findSolved called' boards of
@@ -86,4 +86,4 @@ part2 :: String -> Either String Int
 part2 input = do
   Bingo {guesses, boards} <- parseInput input
 
-  pure $ solve2 Set.empty guesses boards Nothing
+  solve2 Set.empty guesses boards Nothing
