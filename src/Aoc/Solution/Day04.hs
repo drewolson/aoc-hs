@@ -6,7 +6,7 @@ where
 
 import Control.Monad (join)
 import Data.Bifunctor (first)
-import Data.List (transpose, (\\))
+import Data.List (mapAccumL, transpose, (\\))
 import Data.Set (Set)
 import Data.Set qualified as Set
 import Data.Void (Void)
@@ -44,25 +44,27 @@ parseBingo = Bingo <$> parseGuesses <*> (space1 *> parseBoards)
 parseInput :: String -> Either String Bingo
 parseInput = first errorBundlePretty . parse parseBingo ""
 
-solved :: Set Int -> Board -> Bool
-solved called board =
+isSolved :: Set Int -> Board -> Bool
+isSolved called board =
   any (all (`elem` called)) board
     || any (all (`elem` called)) (transpose board)
 
 findSolved :: Set Int -> [Board] -> [Board]
-findSolved called = filter (solved called)
+findSolved called = filter (isSolved called)
 
 score :: Set Int -> Int -> Board -> Int
 score called mul = (* mul) . sum . filter (`notElem` called) . join
 
 solve :: Set Int -> [Board] -> [Int] -> [Int]
-solve _ _ [] = []
-solve called boards (h : t) =
-  let called' = Set.insert h called
-      justSolved = findSolved called' boards
-      scores = score called' h <$> justSolved
-      boards' = boards \\ justSolved
-   in scores ++ solve called' boards' t
+solve c b = join . snd . mapAccumL solveNext (c, b)
+  where
+    solveNext :: (Set Int, [Board]) -> Int -> ((Set Int, [Board]), [Int])
+    solveNext (called, boards) guess =
+      let called' = Set.insert guess called
+          solved = findSolved called' boards
+          scores = score called' guess <$> solved
+          boards' = boards \\ solved
+       in ((called', boards'), scores)
 
 part1 :: String -> Either String Int
 part1 input = do
