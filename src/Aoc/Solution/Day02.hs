@@ -4,13 +4,10 @@ module Aoc.Solution.Day02
   )
 where
 
-import Data.Bifunctor (first)
+import Aoc.Parser (Parser, parseInt, runParser)
 import Data.Foldable (foldl')
-import Data.Void (Void)
-import Text.Megaparsec (Parsec, choice, errorBundlePretty, parse, sepEndBy1, some)
-import Text.Megaparsec.Char (digitChar, newline, space, string)
-
-type Parser = Parsec Void String
+import Text.Megaparsec (choice, sepEndBy1)
+import Text.Megaparsec.Char (newline, space, string)
 
 data Dir = Forward | Up | Down
 
@@ -27,17 +24,14 @@ parseDir =
       Down <$ string "down"
     ]
 
-parseDist :: Parser Int
-parseDist = read <$> some digitChar
-
 parseMove :: Parser Move
-parseMove = Move <$> parseDir <*> (space *> parseDist)
+parseMove = Move <$> parseDir <*> (space *> parseInt)
 
 parseMoves :: Parser [Move]
 parseMoves = sepEndBy1 parseMove newline
 
 parseInput :: String -> Either String [Move]
-parseInput = first errorBundlePretty . parse parseMoves ""
+parseInput = runParser parseMoves
 
 move1 :: (Int, Int) -> Move -> (Int, Int)
 move1 (x, y) Move {dir, dist} =

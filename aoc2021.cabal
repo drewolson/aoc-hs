@@ -24,6 +24,7 @@ source-repository head
 
 library
   exposed-modules:
+      Aoc.Parser
       Aoc.Solution.Day01
       Aoc.Solution.Day02
       Aoc.Solution.Day03

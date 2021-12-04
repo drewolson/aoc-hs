@@ -4,16 +4,13 @@ module Aoc.Solution.Day04
   )
 where
 
+import Aoc.Parser (Parser, parseInt, runParser)
 import Control.Monad (join)
-import Data.Bifunctor (first)
 import Data.List (mapAccumL, transpose, (\\))
 import Data.Set (Set)
 import Data.Set qualified as Set
-import Data.Void (Void)
-import Text.Megaparsec (Parsec, count, errorBundlePretty, parse, sepBy1, some)
-import Text.Megaparsec.Char (char, digitChar, hspace, newline, space1)
-
-type Parser = Parsec Void String
+import Text.Megaparsec (count, sepBy1)
+import Text.Megaparsec.Char (char, hspace, newline, space1)
 
 type Board = [[Int]]
 
@@ -21,9 +18,6 @@ data Bingo = Bingo
   { guesses :: [Int],
     boards :: [Board]
   }
-
-parseInt :: Parser Int
-parseInt = read <$> some digitChar
 
 parseGuesses :: Parser [Int]
 parseGuesses = sepBy1 parseInt (char ',')
@@ -41,7 +35,7 @@ parseBingo :: Parser Bingo
 parseBingo = Bingo <$> parseGuesses <*> (space1 *> parseBoards)
 
 parseInput :: String -> Either String Bingo
-parseInput = first errorBundlePretty . parse parseBingo ""
+parseInput = runParser parseBingo
 
 isSolved :: Set Int -> Board -> Bool
 isSolved called board =
