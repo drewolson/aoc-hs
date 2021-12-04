@@ -6,8 +6,7 @@ where
 
 import Control.Monad (join)
 import Data.Bifunctor (first)
-import Data.Foldable (find)
-import Data.List (transpose)
+import Data.List (transpose, (\\))
 import Data.Set (Set)
 import Data.Set qualified as Set
 import Data.Void (Void)
@@ -50,40 +49,29 @@ solved called board =
   any (all (`elem` called)) board
     || any (all (`elem` called)) (transpose board)
 
-findSolved :: Set Int -> [Board] -> Maybe Board
-findSolved called = find (solved called)
+findSolved :: Set Int -> [Board] -> [Board]
+findSolved called = filter (solved called)
 
-score :: Set Int -> Board -> Int
-score called = sum . filter (`notElem` called) . join
+score :: Set Int -> Int -> Board -> Int
+score called mul = (* mul) . sum . filter (`notElem` called) . join
 
-solve1 :: Set Int -> [Int] -> [Board] -> Int
-solve1 _ [] _ = 0
-solve1 called (h : t) boards =
+solve :: Set Int -> [Board] -> [Int] -> [Int]
+solve _ _ [] = []
+solve called boards (h : t) =
   let called' = Set.insert h called
-   in case findSolved called' boards of
-        Nothing -> solve1 called' t boards
-        Just board -> score called' board * h
+      justSolved = findSolved called' boards
+      scores = score called' h <$> justSolved
+      boards' = boards \\ justSolved
+   in scores ++ solve called' boards' t
 
 part1 :: String -> Either String Int
 part1 input = do
   Bingo {guesses, boards} <- parseInput input
 
-  pure $ solve1 Set.empty guesses boards
-
-solve2 :: Set Int -> [Int] -> [Board] -> Maybe Int -> Either String Int
-solve2 _ [] _ Nothing = Left "no solution found"
-solve2 _ [] _ (Just n) = pure n
-solve2 called (h : t) boards prevScore =
-  let called' = Set.insert h called
-   in case findSolved called' boards of
-        Nothing -> solve2 called' t boards prevScore
-        Just board ->
-          let boards' = filter (/= board) boards
-              prevScore' = Just (score called' board * h)
-           in solve2 called' (h : t) boards' prevScore'
+  pure $ head $ solve Set.empty boards guesses
 
 part2 :: String -> Either String Int
 part2 input = do
   Bingo {guesses, boards} <- parseInput input
 
-  solve2 Set.empty guesses boards Nothing
+  pure $ last $ solve Set.empty boards guesses
