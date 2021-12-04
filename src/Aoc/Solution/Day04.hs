@@ -21,7 +21,6 @@ data Bingo = Bingo
   { guesses :: [Int],
     boards :: [Board]
   }
-  deriving (Show)
 
 parseInt :: Parser Int
 parseInt = read <$> some digitChar
