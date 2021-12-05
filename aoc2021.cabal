@@ -29,6 +29,7 @@ library
       Aoc.Solution.Day02
       Aoc.Solution.Day03
       Aoc.Solution.Day04
+      Aoc.Solution.Day05
   other-modules:
       Paths_aoc2021
   hs-source-dirs:
@@ -64,6 +65,7 @@ library
     , lens
     , megaparsec
     , mtl
+    , multiset
     , optparse-applicative
     , parser-combinators
     , split
@@ -110,6 +112,7 @@ executable aoc-exe
     , lens
     , megaparsec
     , mtl
+    , multiset
     , optparse-applicative
     , parser-combinators
     , split
@@ -126,6 +129,7 @@ test-suite aoc-test
       Aoc.Solution.Day02Spec
       Aoc.Solution.Day03Spec
       Aoc.Solution.Day04Spec
+      Aoc.Solution.Day05Spec
       Paths_aoc2021
   hs-source-dirs:
       test
@@ -164,6 +168,7 @@ test-suite aoc-test
     , lens
     , megaparsec
     , mtl
+    , multiset
     , optparse-applicative
     , parser-combinators
     , raw-strings-qq

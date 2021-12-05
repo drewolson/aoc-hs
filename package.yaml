@@ -50,6 +50,7 @@ dependencies:
 - lens
 - megaparsec
 - mtl
+- multiset
 - optparse-applicative
 - parser-combinators
 - split
