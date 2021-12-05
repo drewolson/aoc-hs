@@ -23,13 +23,13 @@ input =
 spec :: Spec
 spec = do
   describe "part1" do
-    it "returns the expected result" do
+    it "day 1 part 1 works" do
       let result = Day01.part1 input
 
       result `shouldBe` 7
 
   describe "part2" do
-    it "returns the expected result" do
+    it "day 1 part 2 works" do
       let result = Day01.part2 input
 
       result `shouldBe` 5
