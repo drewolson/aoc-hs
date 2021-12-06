@@ -12,14 +12,11 @@ parseInput :: String -> [Int]
 parseInput = fmap read . splitOn "," . head . lines
 
 simulate :: MultiSet Int -> MultiSet Int
-simulate fish =
-  let numZero = MS.occur 0 fish
-      newFish = MS.fromOccurList [(8, numZero)]
-   in MS.map decrease fish <> newFish
+simulate = MS.concatMap decrease
   where
-    decrease :: Int -> Int
-    decrease 0 = 6
-    decrease n = n - 1
+    decrease :: Int -> [Int]
+    decrease 0 = [6, 8]
+    decrease n = [n - 1]
 
 part1 :: String -> Int
 part1 = sum . MS.toMap . (!! 80) . iterate simulate . MS.fromList . parseInput
