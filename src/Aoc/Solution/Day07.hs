@@ -13,7 +13,7 @@ diffs :: [Int] -> [Int]
 diffs ints = diff <$> ints
   where
     diff :: Int -> Int
-    diff int = sum $ fmap (abs . (int -)) ints
+    diff int = sum $ abs . (int -) <$> ints
 
 part1 :: String -> Int
 part1 = minimum . diffs . parseInput
@@ -22,7 +22,7 @@ diffs' :: [Int] -> [Int]
 diffs' ints = diff <$> [minimum ints .. maximum ints]
   where
     diff :: Int -> Int
-    diff int = sum $ fmap (triangle . abs . (int -)) ints
+    diff int = sum $ triangle . abs . (int -) <$> ints
 
     triangle :: Int -> Int
     triangle n = n * (n + 1) `div` 2
