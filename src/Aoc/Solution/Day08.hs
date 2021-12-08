@@ -84,10 +84,10 @@ solveReading (inputs, outputs) = read $ mconcat $ mapMaybe (`Map.lookup` mapping
     isInOneAndFour d = isInOne d && isInFour d
 
     isInFour :: Digit -> Bool
-    isInFour = (/= Set.empty) . (four \\)
+    isInFour = (not . Set.null) . (four \\)
 
     isInOne :: Digit -> Bool
-    isInOne = (/= Set.empty) . (one \\)
+    isInOne = (not . Set.null) . (one \\)
 
 part2 :: String -> Int
 part2 = sum . fmap solveReading . parseInput
