@@ -30,9 +30,7 @@ parseInput = fmap parseReading . lines
        in (toDigits $ head parts, toDigits $ last parts)
 
 part1 :: String -> Int
-part1 input =
-  let outputs = snd =<< parseInput input
-   in length $ filter ((`elem` [2, 3, 4, 7]) . length) outputs
+part1 = length . filter ((`elem` [2, 3, 4, 7]) . length) . foldMap snd . parseInput
 
 solveReading :: Reading -> Int
 solveReading (inputs, outputs) = read $ mconcat $ mapMaybe (`Map.lookup` mapping) outputs
@@ -92,6 +90,4 @@ solveReading (inputs, outputs) = read $ mconcat $ mapMaybe (`Map.lookup` mapping
     isInOne = (/= Set.empty) . (one \\)
 
 part2 :: String -> Int
-part2 input =
-  let readings = parseInput input
-   in sum $ solveReading <$> readings
+part2 = sum . fmap solveReading . parseInput
