@@ -48,12 +48,12 @@ part1 = sum . fmap ((+ 1) . snd) . lowPoints . makeGrid . parseInput
 basinSize :: Grid -> (Coord, Int) -> Int
 basinSize grid = basinSize' Set.empty 0 . pure
   where
-    validNeighbor :: Set Coord -> Int -> (Coord, Int) -> Bool
-    validNeighbor seen val (c, v) = c `notElem` seen && v < 9 && v > val
+    validNeighbor :: Int -> (Coord, Int) -> Bool
+    validNeighbor val (_, v) = v < 9 && v > val
 
-    validNeighbors :: Set Coord -> Int -> Coord -> [(Coord, Int)]
-    validNeighbors seen val =
-      filter (validNeighbor seen val) . findNeighbors grid
+    validNeighbors :: Int -> Coord -> [(Coord, Int)]
+    validNeighbors val =
+      filter (validNeighbor val) . findNeighbors grid
 
     basinSize' :: Set Coord -> Int -> [(Coord, Int)] -> Int
     basinSize' _ acc [] = acc
@@ -61,8 +61,8 @@ basinSize grid = basinSize' Set.empty 0 . pure
       | coord `elem` seen = basinSize' seen acc r
       | otherwise =
         let seen' = Set.insert coord seen
-            n = validNeighbors seen' val coord
-         in basinSize' seen' (acc + 1) (n <> r)
+            new = validNeighbors val coord
+         in basinSize' seen' (acc + 1) (new <> r)
 
 part2 :: String -> Int
 part2 input =
