@@ -38,6 +38,7 @@ default-extensions:
 - PatternSynonyms
 - QuasiQuotes
 - ScopedTypeVariables
+- TupleSections
 - TypeApplications
 - TypeFamilies
 - TypeOperators

@@ -33,6 +33,7 @@ library
       Aoc.Solution.Day06
       Aoc.Solution.Day07
       Aoc.Solution.Day08
+      Aoc.Solution.Day09
   other-modules:
       Paths_aoc2021
   hs-source-dirs:
@@ -56,6 +57,7 @@ library
       PatternSynonyms
       QuasiQuotes
       ScopedTypeVariables
+      TupleSections
       TypeApplications
       TypeFamilies
       TypeOperators
@@ -102,6 +104,7 @@ executable aoc-exe
       PatternSynonyms
       QuasiQuotes
       ScopedTypeVariables
+      TupleSections
       TypeApplications
       TypeFamilies
       TypeOperators
@@ -136,6 +139,7 @@ test-suite aoc-test
       Aoc.Solution.Day06Spec
       Aoc.Solution.Day07Spec
       Aoc.Solution.Day08Spec
+      Aoc.Solution.Day09Spec
       Paths_aoc2021
   hs-source-dirs:
       test
@@ -158,6 +162,7 @@ test-suite aoc-test
       PatternSynonyms
       QuasiQuotes
       ScopedTypeVariables
+      TupleSections
       TypeApplications
       TypeFamilies
       TypeOperators
