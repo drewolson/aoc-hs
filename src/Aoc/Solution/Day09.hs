@@ -4,10 +4,11 @@ module Aoc.Solution.Day09
   )
 where
 
-import Data.List (sort)
+import Data.List (sortOn)
 import Data.Map (Map)
 import Data.Map qualified as Map
 import Data.Maybe (mapMaybe)
+import Data.Ord (Down (..))
 import Data.Set (Set)
 import Data.Set qualified as Set
 
@@ -33,7 +34,7 @@ neighbors (x, y) =
   ]
 
 findNeighbors :: Grid -> Coord -> [(Coord, Int)]
-findNeighbors grid coord = mapMaybe (\c -> (c,) <$> Map.lookup c grid) $ neighbors coord
+findNeighbors grid = mapMaybe (\c -> (c,) <$> Map.lookup c grid) . neighbors
 
 isLowPoint :: Grid -> Coord -> Int -> Bool
 isLowPoint grid coord n = all (> n) $ snd <$> findNeighbors grid coord
@@ -43,12 +44,11 @@ part1 input =
   let grid = makeGrid $ parseInput input
    in sum $ (+ 1) <$> Map.filterWithKey (isLowPoint grid) grid
 
-basinSize :: Grid -> Coord -> Int -> Int
-basinSize grid c v = basinSize' Set.empty 0 [(c, v)]
+basinSize :: Grid -> (Coord, Int) -> Int
+basinSize grid = basinSize' Set.empty 0 . pure
   where
     validNeighbor :: Set Coord -> Int -> (Coord, Int) -> Bool
-    validNeighbor seen val (c', n) =
-      c' `notElem` seen && n < 9 && n > val
+    validNeighbor seen val (c, v) = c `notElem` seen && v < 9 && v > val
 
     validNeighbors :: Set Coord -> Int -> Coord -> [(Coord, Int)]
     validNeighbors seen val =
@@ -66,5 +66,5 @@ basinSize grid c v = basinSize' Set.empty 0 [(c, v)]
 part2 :: String -> Int
 part2 input =
   let grid = makeGrid $ parseInput input
-      lowPoints = Map.filterWithKey (isLowPoint grid) grid
-   in product $ take 3 $ reverse $ sort $ Map.elems $ Map.mapWithKey (basinSize grid) lowPoints
+      lowPoints = Map.toList $ Map.filterWithKey (isLowPoint grid) grid
+   in product $ take 3 $ sortOn Down $ basinSize grid <$> lowPoints
