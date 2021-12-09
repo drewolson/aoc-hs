@@ -24,6 +24,7 @@ spec = do
 
       result `shouldBe` 15
 
+  describe "part2" do
     it "day 9 part 2 works" do
       let result = Day09.part2 input
 

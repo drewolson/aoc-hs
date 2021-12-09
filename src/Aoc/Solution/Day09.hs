@@ -43,9 +43,7 @@ lowPoints :: Grid -> [(Coord, Int)]
 lowPoints grid = Map.toList $ Map.filterWithKey (isLowPoint grid) grid
 
 part1 :: String -> Int
-part1 input =
-  let grid = makeGrid $ parseInput input
-   in sum $ (+ 1) . snd <$> lowPoints grid
+part1 = sum . fmap ((+ 1) . snd) . lowPoints . makeGrid . parseInput
 
 basinSize :: Grid -> (Coord, Int) -> Int
 basinSize grid = basinSize' Set.empty 0 . pure
