@@ -52,8 +52,7 @@ basinSize grid = basinSize' Set.empty 0 . pure
     validNeighbor val (_, v) = v < 9 && v > val
 
     validNeighbors :: Int -> Coord -> [(Coord, Int)]
-    validNeighbors val =
-      filter (validNeighbor val) . findNeighbors grid
+    validNeighbors val = filter (validNeighbor val) . findNeighbors grid
 
     basinSize' :: Set Coord -> Int -> [(Coord, Int)] -> Int
     basinSize' _ acc [] = acc
