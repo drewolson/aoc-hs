@@ -39,13 +39,13 @@ findNeighbors grid = mapMaybe (\c -> (c,) <$> Map.lookup c grid) . neighbors
 isLowPoint :: Grid -> Coord -> Int -> Bool
 isLowPoint grid coord n = all (> n) $ snd <$> findNeighbors grid coord
 
-lowPoints :: Grid -> Grid
-lowPoints grid = Map.filterWithKey (isLowPoint grid) grid
+lowPoints :: Grid -> [(Coord, Int)]
+lowPoints grid = Map.toList $ Map.filterWithKey (isLowPoint grid) grid
 
 part1 :: String -> Int
 part1 input =
   let grid = makeGrid $ parseInput input
-   in sum $ (+ 1) <$> lowPoints grid
+   in sum $ (+ 1) . snd <$> lowPoints grid
 
 basinSize :: Grid -> (Coord, Int) -> Int
 basinSize grid = basinSize' Set.empty 0 . pure
@@ -69,5 +69,4 @@ basinSize grid = basinSize' Set.empty 0 . pure
 part2 :: String -> Int
 part2 input =
   let grid = makeGrid $ parseInput input
-      points = Map.toList $ lowPoints grid
-   in product $ take 3 $ sortOn Down $ basinSize grid <$> points
+   in product $ take 3 $ sortOn Down $ basinSize grid <$> lowPoints grid
