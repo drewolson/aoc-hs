@@ -32,11 +32,6 @@ neighbors (x, y) =
     (x, y - 1)
   ]
 
--- findNeighbors :: Grid -> Coord -> [(Coord, Int)]
--- findNeighbors grid coord =
---   let n = neighbors coord
---    in Map.toList $ Map.filterWithKey (const . (`elem` n)) grid
-
 findNeighbors :: Grid -> Coord -> [(Coord, Int)]
 findNeighbors grid coord = mapMaybe (\c -> (c,) <$> Map.lookup c grid) $ neighbors coord
 
