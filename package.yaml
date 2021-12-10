@@ -22,7 +22,6 @@ ghc-options:
 default-extensions:
 - BlockArguments
 - ImportQualifiedPost
-- InstanceSigs
 - LambdaCase
 - NamedFieldPuns
 - QuasiQuotes

@@ -42,7 +42,6 @@ library
   default-extensions:
       BlockArguments
       ImportQualifiedPost
-      InstanceSigs
       LambdaCase
       NamedFieldPuns
       QuasiQuotes
@@ -67,7 +66,6 @@ executable aoc-exe
   default-extensions:
       BlockArguments
       ImportQualifiedPost
-      InstanceSigs
       LambdaCase
       NamedFieldPuns
       QuasiQuotes
@@ -104,7 +102,6 @@ test-suite aoc-test
   default-extensions:
       BlockArguments
       ImportQualifiedPost
-      InstanceSigs
       LambdaCase
       NamedFieldPuns
       QuasiQuotes
