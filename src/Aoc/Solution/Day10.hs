@@ -5,6 +5,7 @@ module Aoc.Solution.Day10
 where
 
 import Data.Either (lefts, rights)
+import Data.Foldable (foldl')
 import Data.List (sort)
 
 isOpen :: Char -> Bool
@@ -18,7 +19,7 @@ toClose = \case
   _ -> '>'
 
 completionScore :: String -> Int
-completionScore = foldl (\acc c -> acc * 5 + charScore c) 0
+completionScore = foldl' (\acc c -> acc * 5 + charScore c) 0
   where
     charScore :: Char -> Int
     charScore = \case
