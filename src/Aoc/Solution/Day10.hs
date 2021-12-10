@@ -40,7 +40,7 @@ score = go []
   where
     go :: String -> String -> Either Int Int
     go acc [] = Left $ completionScore acc
-    go [] (a : b) = go [toClose a] b
+    go [] (h : t) = go [toClose h] t
     go a@(ha : ta) (hb : tb)
       | isOpen hb = go (toClose hb : a) tb
       | ha == hb = go ta tb
