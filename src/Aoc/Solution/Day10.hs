@@ -27,15 +27,15 @@ completionScore = foldl (\acc c -> acc * 5 + charScore c) 0
       '}' -> 3
       _ -> 4
 
-errorScore :: Char -> Int
-errorScore = \case
+syntaxScore :: Char -> Int
+syntaxScore = \case
   ')' -> 3
   ']' -> 57
   '}' -> 1197
   _ -> 25137
 
-syntaxScore :: String -> Either Int Int
-syntaxScore = go []
+score :: String -> Either Int Int
+score = go []
   where
     go :: String -> String -> Either Int Int
     go acc [] = Left $ completionScore acc
@@ -43,13 +43,13 @@ syntaxScore = go []
     go a@(ha : ta) (hb : tb)
       | isOpen hb = go (toClose hb : a) tb
       | ha == hb = go ta tb
-      | otherwise = Right $ errorScore hb
+      | otherwise = Right $ syntaxScore hb
 
 middle :: [a] -> a
 middle as = as !! (length as `div` 2)
 
 part1 :: String -> Int
-part1 = sum . rights . fmap syntaxScore . lines
+part1 = sum . rights . fmap score . lines
 
 part2 :: String -> Int
-part2 = middle . sort . lefts . fmap syntaxScore . lines
+part2 = middle . sort . lefts . fmap score . lines
