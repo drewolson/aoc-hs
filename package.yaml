@@ -31,17 +31,11 @@ default-extensions:
 dependencies:
 - base >= 4.7 && < 5
 - containers
-- generic-lens
-- lens
 - megaparsec
-- mtl
 - multiset
 - optparse-applicative
-- parser-combinators
 - split
 - text
-- unliftio
-- vector
 
 library:
   source-dirs: src
