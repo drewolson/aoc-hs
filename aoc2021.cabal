@@ -41,27 +41,12 @@ library
       src
   default-extensions:
       BlockArguments
-      DataKinds
-      DeriveAnyClass
-      DeriveGeneric
-      DerivingStrategies
-      FlexibleContexts
-      FlexibleInstances
-      GeneralizedNewtypeDeriving
       ImportQualifiedPost
       InstanceSigs
       LambdaCase
-      MultiParamTypeClasses
       NamedFieldPuns
-      NoMonomorphismRestriction
-      PatternSynonyms
       QuasiQuotes
-      ScopedTypeVariables
       TupleSections
-      TypeApplications
-      TypeFamilies
-      TypeOperators
-      ViewPatterns
   ghc-options: -Werror -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
   build-depends:
       base >=4.7 && <5
@@ -87,27 +72,12 @@ executable aoc-exe
       app
   default-extensions:
       BlockArguments
-      DataKinds
-      DeriveAnyClass
-      DeriveGeneric
-      DerivingStrategies
-      FlexibleContexts
-      FlexibleInstances
-      GeneralizedNewtypeDeriving
       ImportQualifiedPost
       InstanceSigs
       LambdaCase
-      MultiParamTypeClasses
       NamedFieldPuns
-      NoMonomorphismRestriction
-      PatternSynonyms
       QuasiQuotes
-      ScopedTypeVariables
       TupleSections
-      TypeApplications
-      TypeFamilies
-      TypeOperators
-      ViewPatterns
   ghc-options: -Werror -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       aoc2021
@@ -145,27 +115,12 @@ test-suite aoc-test
       test
   default-extensions:
       BlockArguments
-      DataKinds
-      DeriveAnyClass
-      DeriveGeneric
-      DerivingStrategies
-      FlexibleContexts
-      FlexibleInstances
-      GeneralizedNewtypeDeriving
       ImportQualifiedPost
       InstanceSigs
       LambdaCase
-      MultiParamTypeClasses
       NamedFieldPuns
-      NoMonomorphismRestriction
-      PatternSynonyms
       QuasiQuotes
-      ScopedTypeVariables
       TupleSections
-      TypeApplications
-      TypeFamilies
-      TypeOperators
-      ViewPatterns
   ghc-options: -Werror -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       QuickCheck
