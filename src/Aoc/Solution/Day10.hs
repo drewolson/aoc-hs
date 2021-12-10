@@ -17,15 +17,15 @@ toClose = \case
   '{' -> '}'
   _ -> '>'
 
-charScore :: Char -> Int
-charScore = \case
-  ')' -> 1
-  ']' -> 2
-  '}' -> 3
-  _ -> 4
-
 completionScore :: String -> Int
 completionScore = foldl (\acc c -> acc * 5 + charScore c) 0
+  where
+    charScore :: Char -> Int
+    charScore = \case
+      ')' -> 1
+      ']' -> 2
+      '}' -> 3
+      _ -> 4
 
 errorScore :: Char -> Int
 errorScore = \case
