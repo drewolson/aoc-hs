@@ -34,7 +34,6 @@ default-extensions:
 - MultiParamTypeClasses
 - NamedFieldPuns
 - NoMonomorphismRestriction
-- OverloadedStrings
 - PatternSynonyms
 - QuasiQuotes
 - ScopedTypeVariables

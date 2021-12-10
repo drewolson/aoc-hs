@@ -34,6 +34,7 @@ library
       Aoc.Solution.Day07
       Aoc.Solution.Day08
       Aoc.Solution.Day09
+      Aoc.Solution.Day10
   other-modules:
       Paths_aoc2021
   hs-source-dirs:
@@ -53,7 +54,6 @@ library
       MultiParamTypeClasses
       NamedFieldPuns
       NoMonomorphismRestriction
-      OverloadedStrings
       PatternSynonyms
       QuasiQuotes
       ScopedTypeVariables
@@ -100,7 +100,6 @@ executable aoc-exe
       MultiParamTypeClasses
       NamedFieldPuns
       NoMonomorphismRestriction
-      OverloadedStrings
       PatternSynonyms
       QuasiQuotes
       ScopedTypeVariables
@@ -140,6 +139,7 @@ test-suite aoc-test
       Aoc.Solution.Day07Spec
       Aoc.Solution.Day08Spec
       Aoc.Solution.Day09Spec
+      Aoc.Solution.Day10Spec
       Paths_aoc2021
   hs-source-dirs:
       test
@@ -158,7 +158,6 @@ test-suite aoc-test
       MultiParamTypeClasses
       NamedFieldPuns
       NoMonomorphismRestriction
-      OverloadedStrings
       PatternSynonyms
       QuasiQuotes
       ScopedTypeVariables
