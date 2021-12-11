@@ -26,35 +26,29 @@ makeGrid = Map.fromList . mconcat . zipWith makeRow [0 ..]
 
 neighbors :: Coord -> [Coord]
 neighbors (x, y) =
-  [ (x + 1, y),
-    (x - 1, y),
-    (x, y + 1),
-    (x, y - 1),
-    (x + 1, y + 1),
-    (x + 1, y - 1),
-    (x - 1, y + 1),
-    (x - 1, y - 1)
-  ]
+  (,)
+    <$> [x - 1, x, x + 1]
+    <*> [y - 1, y, y + 1]
+
+resetFlash :: Int -> Int
+resetFlash n
+  | n > 9 = 0
+  | otherwise = n
+
+propagate :: Grid -> Set Coord -> [Coord] -> (Grid, Int)
+propagate grid flashed [] = (Map.map resetFlash grid, length flashed)
+propagate grid flashed (h : t) =
+  let valid = filter (`notElem` flashed) $ neighbors h
+      grid' = foldl' (flip $ Map.adjust (+ 1)) grid valid
+      new = filter ((> 9) . flip (Map.findWithDefault 0) grid') valid
+      flashed' = Set.union flashed $ Set.fromList new
+   in propagate grid' flashed' (new <> t)
 
 step :: Grid -> Int -> (Grid, Int)
-step g _ =
-  let g' = fmap (+ 1) g
-      flashed = fmap fst $ filter ((> 9) . snd) $ Map.assocs g'
-   in propagate g' (Set.fromList flashed) flashed
-  where
-    resetFlash :: Int -> Int
-    resetFlash n
-      | n > 9 = 0
-      | otherwise = n
-
-    propagate :: Grid -> Set Coord -> [Coord] -> (Grid, Int)
-    propagate grid flashed [] = (Map.map resetFlash grid, length flashed)
-    propagate grid flashed (h : t) =
-      let valid = filter (\c -> c `Map.member` grid && c `notElem` flashed) $ neighbors h
-          grid' = foldl' (flip (Map.update (Just . (+ 1)))) grid valid
-          new = filter ((> 9) . flip (Map.findWithDefault 0) grid') valid
-          flashed' = Set.union flashed $ Set.fromList new
-       in propagate grid' flashed' (new <> t)
+step grid =
+  let grid' = fmap (+ 1) grid
+      flashed = fmap fst $ filter ((> 9) . snd) $ Map.assocs grid'
+   in const $ propagate grid' (Set.fromList flashed) flashed
 
 part1 :: String -> Int
 part1 input =
