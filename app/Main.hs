@@ -10,6 +10,7 @@ import Aoc.Solution.Day07 qualified as Day07
 import Aoc.Solution.Day08 qualified as Day08
 import Aoc.Solution.Day09 qualified as Day09
 import Aoc.Solution.Day10 qualified as Day10
+import Aoc.Solution.Day11 qualified as Day11
 import Control.Applicative ((<**>))
 import Data.Text qualified as T
 import Options.Applicative (Parser, ParserInfo)
@@ -72,6 +73,8 @@ runSolution input = \case
   Args {day = 9, part = 2} -> print $ Day09.part2 input
   Args {day = 10, part = 1} -> print $ Day10.part1 input
   Args {day = 10, part = 2} -> print $ Day10.part2 input
+  Args {day = 11, part = 1} -> print $ Day11.part1 input
+  Args {day = 11, part = 2} -> print $ Day11.part2 input
   _ -> fail "unknown day and part"
 
 main :: IO ()
