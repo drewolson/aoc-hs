@@ -4,6 +4,7 @@ module Aoc.Solution.Day11
   )
 where
 
+import Control.Monad (guard)
 import Data.Foldable (foldl')
 import Data.Map.Strict (Map)
 import Data.Map.Strict qualified as Map
@@ -25,10 +26,13 @@ makeGrid = Map.fromList . mconcat . zipWith makeRow [0 ..]
     makeRow y = zipWith (\x n -> ((x, y), n)) [0 ..]
 
 neighbors :: Coord -> [Coord]
-neighbors (x, y) =
-  (,)
-    <$> [x - 1, x, x + 1]
-    <*> [y - 1, y, y + 1]
+neighbors (x, y) = do
+  x' <- [x - 1, x, x + 1]
+  y' <- [y - 1, y, y + 1]
+
+  guard $ (x, y) /= (x', y')
+
+  pure (x', y')
 
 resetFlash :: Int -> Int
 resetFlash n
