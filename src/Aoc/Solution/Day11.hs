@@ -42,11 +42,11 @@ resetFlash n
 propagate :: Grid -> Set Coord -> [Coord] -> (Grid, Int)
 propagate grid flashed [] = (Map.map resetFlash grid, length flashed)
 propagate grid flashed (h : t) =
-  let valid = filter (`notElem` flashed) $ neighbors h
-      grid' = foldl' (flip $ Map.adjust (+ 1)) grid valid
-      new = filter ((> 9) . flip (Map.findWithDefault 0) grid') valid
-      flashed' = Set.union flashed $ Set.fromList new
-   in propagate grid' flashed' (new <> t)
+  let validNeighbors = filter (`notElem` flashed) $ neighbors h
+      grid' = foldl' (flip $ Map.adjust (+ 1)) grid validNeighbors
+      newFlashes = filter ((> 9) . flip (Map.findWithDefault 0) grid') validNeighbors
+      flashed' = Set.union flashed $ Set.fromList newFlashes
+   in propagate grid' flashed' (newFlashes <> t)
 
 step :: Grid -> Int -> (Grid, Int)
 step grid =
