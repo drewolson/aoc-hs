@@ -55,12 +55,12 @@ findPaths = go Set.empty "start" []
       | node `elem` seen = Set.empty
       | otherwise =
         let seen' = addSeen node seen
-            newNodes = Map.findWithDefault [] node graph
+            next = Map.findWithDefault [] node graph
             path' = node : path
-            newPaths = foldMap (\n -> go seen' n path' visited graph) newNodes
+            paths = foldMap (\n -> go seen' n path' visited graph) next
          in if not visited && isSmall node
-              then newPaths <> foldMap (\n -> go seen n path' True graph) newNodes
-              else newPaths
+              then paths <> foldMap (\n -> go seen n path' True graph) next
+              else paths
 
 part1 :: String -> Int
 part1 = length . findPaths True . makeGraph . parseInput
