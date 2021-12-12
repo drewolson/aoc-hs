@@ -50,8 +50,8 @@ findPaths = go Set.empty "start" []
       | otherwise = isLowercase s
 
     go :: Set String -> String -> [String] -> Bool -> Graph -> Set [String]
-    go _ "end" path _ _ = Set.singleton $ reverse ("end" : path)
     go seen node path visited graph
+      | node == "end" = Set.singleton $ reverse ("end" : path)
       | node `elem` seen = Set.empty
       | otherwise =
         let seen' = addSeen node seen
