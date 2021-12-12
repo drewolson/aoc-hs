@@ -33,12 +33,12 @@ makeGraph = foldl' addConnection Map.empty
     addConnection graph (a, b) =
       Map.alter (addEdge a) b $ Map.alter (addEdge b) a graph
 
-isLowercase :: String -> Bool
-isLowercase s = s == fmap toLower s
-
 findPaths :: Bool -> Graph -> Set [String]
 findPaths = go Set.empty "start" []
   where
+    isLowercase :: String -> Bool
+    isLowercase s = s == fmap toLower s
+
     addSeen :: String -> Set String -> Set String
     addSeen node seen
       | isLowercase node = Set.insert node seen
