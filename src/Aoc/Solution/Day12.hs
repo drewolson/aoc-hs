@@ -7,7 +7,7 @@ where
 import Data.Char (toLower)
 import Data.Foldable (Foldable (foldl'))
 import Data.List.Split (splitOn)
-import Data.Map (Map)
+import Data.Map (Map, (!))
 import Data.Map qualified as Map
 import Data.Maybe (mapMaybe)
 import Data.Set (Set)
@@ -51,11 +51,11 @@ findPaths = go Set.empty "start" []
 
     go :: Set String -> String -> [String] -> Bool -> Graph -> Set [String]
     go seen node path visited graph
-      | node == "end" = Set.singleton $ reverse ("end" : path)
-      | node `elem` seen = Set.empty
+      | node == "end" = Set.singleton $ reverse $ "end" : path
+      | node `elem` seen = mempty
       | otherwise =
         let seen' = addSeen node seen
-            next = Map.findWithDefault [] node graph
+            next = graph ! node
             path' = node : path
             paths = foldMap (\n -> go seen' n path' visited graph) next
          in if not visited && isSmall node
