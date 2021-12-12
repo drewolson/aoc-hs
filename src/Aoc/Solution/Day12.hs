@@ -6,7 +6,6 @@ where
 
 import Data.Char (toLower)
 import Data.Foldable (Foldable (foldl'))
-import Data.List (nub)
 import Data.List.Split (splitOn)
 import Data.Map (Map)
 import Data.Map qualified as Map
@@ -37,51 +36,38 @@ makeGraph = foldl' addConnection Map.empty
 isLowercase :: String -> Bool
 isLowercase s = s == fmap toLower s
 
-findPaths :: Graph -> Set [String]
-findPaths = go False Set.empty "start" []
+findPaths :: Bool -> Graph -> Set [String]
+findPaths = go Set.empty "start" []
   where
-    addSeen :: Bool -> String -> Set String -> Set String
-    addSeen False ('+' : _) seen = seen
-    addSeen _ node seen
+    addSeen :: String -> Set String -> Set String
+    addSeen node seen
       | isLowercase node = Set.insert node seen
       | otherwise = seen
-
-    isVisited :: String -> Bool
-    isVisited ('+' : _) = True
-    isVisited _ = False
 
     clean :: String -> String
     clean ('+' : s) = s
     clean s = s
 
-    go :: Bool -> Set String -> String -> [String] -> Graph -> Set [String]
-    go _ _ "end" path _ = Set.singleton $ clean <$> reverse ("end" : path)
-    go visited seen node path graph
+    isSmall :: String -> Bool
+    isSmall s
+      | s == "start" || s == "end" = False
+      | otherwise = isLowercase s
+
+    go :: Set String -> String -> [String] -> Bool -> Graph -> Set [String]
+    go _ "end" path _ _ = Set.singleton $ clean <$> reverse ("end" : path)
+    go seen node path visited graph
       | node `elem` seen = Set.empty
       | otherwise =
-        let seen' = addSeen visited node seen
-            visited' = visited || isVisited node
+        let seen' = addSeen node seen
             newNodes = Map.findWithDefault [] node graph
             path' = node : path
-         in foldMap (\n -> go visited' seen' n path' graph) newNodes
-
-permute :: [(String, String)] -> [[(String, String)]]
-permute conns =
-  let nodes = nub $ foldMap (\(a, b) -> [a, b]) conns
-      small = filter (\n -> n /= "start" && n /= "end") $ filter isLowercase nodes
-   in fmap modify small
-  where
-    modify :: String -> [(String, String)]
-    modify target = fmap (replace target) conns
-
-    replace :: String -> (String, String) -> (String, String)
-    replace s (a, b)
-      | s == a = ("+" <> a, b)
-      | s == b = (a, "+" <> b)
-      | otherwise = (a, b)
+            newPaths = foldMap (\n -> go seen' n path' visited graph) newNodes
+         in if not visited && isSmall node
+              then newPaths <> foldMap (\n -> go seen n path' True graph) newNodes
+              else newPaths
 
 part1 :: String -> Int
-part1 = length . findPaths . makeGraph . parseInput
+part1 = length . findPaths True . makeGraph . parseInput
 
 part2 :: String -> Int
-part2 = length . foldMap (findPaths . makeGraph) . permute . parseInput
+part2 = length . findPaths False . makeGraph . parseInput
