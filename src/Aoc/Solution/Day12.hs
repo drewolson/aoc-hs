@@ -44,17 +44,13 @@ findPaths = go Set.empty "start" []
       | isLowercase node = Set.insert node seen
       | otherwise = seen
 
-    clean :: String -> String
-    clean ('+' : s) = s
-    clean s = s
-
     isSmall :: String -> Bool
     isSmall s
       | s == "start" || s == "end" = False
       | otherwise = isLowercase s
 
     go :: Set String -> String -> [String] -> Bool -> Graph -> Set [String]
-    go _ "end" path _ _ = Set.singleton $ clean <$> reverse ("end" : path)
+    go _ "end" path _ _ = Set.singleton $ reverse ("end" : path)
     go seen node path visited graph
       | node `elem` seen = Set.empty
       | otherwise =
