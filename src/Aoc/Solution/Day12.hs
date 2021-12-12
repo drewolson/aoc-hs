@@ -23,7 +23,7 @@ parseInput = mapMaybe (toTuple . splitOn "-") . lines
     toTuple _ = Nothing
 
 makeGraph :: [(String, String)] -> Graph
-makeGraph = foldl' addConnection Map.empty
+makeGraph = foldl' addConnection mempty
   where
     addEdge :: String -> Maybe [String] -> Maybe [String]
     addEdge node Nothing = Just [node]
@@ -34,7 +34,7 @@ makeGraph = foldl' addConnection Map.empty
       Map.alter (addEdge a) b $ Map.alter (addEdge b) a graph
 
 findPaths :: Bool -> Graph -> Set [String]
-findPaths = go Set.empty "start" []
+findPaths = go mempty "start" []
   where
     isLowercase :: String -> Bool
     isLowercase s = s == fmap toLower s
