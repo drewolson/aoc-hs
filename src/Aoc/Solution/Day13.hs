@@ -39,8 +39,7 @@ parseCoords :: Parser (Set Coord)
 parseCoords = Set.fromList <$> sepEndBy1 parseCoord newline
 
 parseInstructions :: Parser Instructions
-parseInstructions =
-  (,) <$> parseCoords <*> (newline *> parseFolds)
+parseInstructions = (,) <$> parseCoords <*> (newline *> parseFolds)
 
 foldPaper :: Paper -> Fold -> Paper
 foldPaper paper fold = Set.map (makeFold fold) paper
