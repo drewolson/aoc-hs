@@ -25,19 +25,19 @@ source-repository head
 library
   exposed-modules:
       Aoc.Parser
-      Aoc.Solution.TwentyOne.Day01
-      Aoc.Solution.TwentyOne.Day02
-      Aoc.Solution.TwentyOne.Day03
-      Aoc.Solution.TwentyOne.Day04
-      Aoc.Solution.TwentyOne.Day05
-      Aoc.Solution.TwentyOne.Day06
-      Aoc.Solution.TwentyOne.Day07
-      Aoc.Solution.TwentyOne.Day08
-      Aoc.Solution.TwentyOne.Day09
-      Aoc.Solution.TwentyOne.Day10
-      Aoc.Solution.TwentyOne.Day11
-      Aoc.Solution.TwentyOne.Day12
-      Aoc.Solution.TwentyOne.Day13
+      Aoc.TwentyOne.Day01
+      Aoc.TwentyOne.Day02
+      Aoc.TwentyOne.Day03
+      Aoc.TwentyOne.Day04
+      Aoc.TwentyOne.Day05
+      Aoc.TwentyOne.Day06
+      Aoc.TwentyOne.Day07
+      Aoc.TwentyOne.Day08
+      Aoc.TwentyOne.Day09
+      Aoc.TwentyOne.Day10
+      Aoc.TwentyOne.Day11
+      Aoc.TwentyOne.Day12
+      Aoc.TwentyOne.Day13
   other-modules:
       Paths_aoc
   hs-source-dirs:
@@ -89,19 +89,19 @@ test-suite aoc-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
-      Aoc.Solution.TwentyOne.Day01Spec
-      Aoc.Solution.TwentyOne.Day02Spec
-      Aoc.Solution.TwentyOne.Day03Spec
-      Aoc.Solution.TwentyOne.Day04Spec
-      Aoc.Solution.TwentyOne.Day05Spec
-      Aoc.Solution.TwentyOne.Day06Spec
-      Aoc.Solution.TwentyOne.Day07Spec
-      Aoc.Solution.TwentyOne.Day08Spec
-      Aoc.Solution.TwentyOne.Day09Spec
-      Aoc.Solution.TwentyOne.Day10Spec
-      Aoc.Solution.TwentyOne.Day11Spec
-      Aoc.Solution.TwentyOne.Day12Spec
-      Aoc.Solution.TwentyOne.Day13Spec
+      Aoc.TwentyOne.Day01Spec
+      Aoc.TwentyOne.Day02Spec
+      Aoc.TwentyOne.Day03Spec
+      Aoc.TwentyOne.Day04Spec
+      Aoc.TwentyOne.Day05Spec
+      Aoc.TwentyOne.Day06Spec
+      Aoc.TwentyOne.Day07Spec
+      Aoc.TwentyOne.Day08Spec
+      Aoc.TwentyOne.Day09Spec
+      Aoc.TwentyOne.Day10Spec
+      Aoc.TwentyOne.Day11Spec
+      Aoc.TwentyOne.Day12Spec
+      Aoc.TwentyOne.Day13Spec
       Paths_aoc
   hs-source-dirs:
       test

@@ -1,9 +1,9 @@
-module Aoc.Solution.TwentyOne.Day03Spec
+module Aoc.TwentyOne.Day03Spec
   ( spec,
   )
 where
 
-import Aoc.Solution.TwentyOne.Day03 qualified as Day03
+import Aoc.TwentyOne.Day03 qualified as Day03
 import Test.Hspec (Spec, describe, it, shouldBe)
 import Text.RawString.QQ (r)
 

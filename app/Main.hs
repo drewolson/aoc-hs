@@ -1,18 +1,18 @@
 module Main where
 
-import Aoc.Solution.TwentyOne.Day01 qualified as TwentyOne.Day01
-import Aoc.Solution.TwentyOne.Day02 qualified as TwentyOne.Day02
-import Aoc.Solution.TwentyOne.Day03 qualified as TwentyOne.Day03
-import Aoc.Solution.TwentyOne.Day04 qualified as TwentyOne.Day04
-import Aoc.Solution.TwentyOne.Day05 qualified as TwentyOne.Day05
-import Aoc.Solution.TwentyOne.Day06 qualified as TwentyOne.Day06
-import Aoc.Solution.TwentyOne.Day07 qualified as TwentyOne.Day07
-import Aoc.Solution.TwentyOne.Day08 qualified as TwentyOne.Day08
-import Aoc.Solution.TwentyOne.Day09 qualified as TwentyOne.Day09
-import Aoc.Solution.TwentyOne.Day10 qualified as TwentyOne.Day10
-import Aoc.Solution.TwentyOne.Day11 qualified as TwentyOne.Day11
-import Aoc.Solution.TwentyOne.Day12 qualified as TwentyOne.Day12
-import Aoc.Solution.TwentyOne.Day13 qualified as TwentyOne.Day13
+import Aoc.TwentyOne.Day01 qualified as TwentyOne.Day01
+import Aoc.TwentyOne.Day02 qualified as TwentyOne.Day02
+import Aoc.TwentyOne.Day03 qualified as TwentyOne.Day03
+import Aoc.TwentyOne.Day04 qualified as TwentyOne.Day04
+import Aoc.TwentyOne.Day05 qualified as TwentyOne.Day05
+import Aoc.TwentyOne.Day06 qualified as TwentyOne.Day06
+import Aoc.TwentyOne.Day07 qualified as TwentyOne.Day07
+import Aoc.TwentyOne.Day08 qualified as TwentyOne.Day08
+import Aoc.TwentyOne.Day09 qualified as TwentyOne.Day09
+import Aoc.TwentyOne.Day10 qualified as TwentyOne.Day10
+import Aoc.TwentyOne.Day11 qualified as TwentyOne.Day11
+import Aoc.TwentyOne.Day12 qualified as TwentyOne.Day12
+import Aoc.TwentyOne.Day13 qualified as TwentyOne.Day13
 import Control.Applicative ((<**>))
 import Data.Text qualified as T
 import Options.Applicative (Parser, ParserInfo)
