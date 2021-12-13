@@ -37,6 +37,7 @@ library
       Aoc.Solution.Day10
       Aoc.Solution.Day11
       Aoc.Solution.Day12
+      Aoc.Solution.Day13
   other-modules:
       Paths_aoc2021
   hs-source-dirs:
@@ -100,6 +101,7 @@ test-suite aoc-test
       Aoc.Solution.Day10Spec
       Aoc.Solution.Day11Spec
       Aoc.Solution.Day12Spec
+      Aoc.Solution.Day13Spec
       Paths_aoc2021
   hs-source-dirs:
       test
