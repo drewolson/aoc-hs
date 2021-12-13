@@ -1,6 +1,6 @@
-# Advent of Code 2021
+# Advent of Code
 
-[![test](https://github.com/drewolson/aoc2021/actions/workflows/test.yml/badge.svg)](https://github.com/drewolson/aoc2021/actions/workflows/test.yml)
+[![test](https://github.com/drewolson/aoc-hs/actions/workflows/test.yml/badge.svg)](https://github.com/drewolson/aoc-hs/actions/workflows/test.yml)
 
 ## Build
 
