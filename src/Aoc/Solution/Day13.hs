@@ -19,7 +19,6 @@ type Paper = Set Coord
 data Fold
   = X Int
   | Y Int
-  deriving (Show)
 
 type Instructions = (Paper, [Fold])
 
