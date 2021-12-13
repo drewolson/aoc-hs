@@ -74,8 +74,9 @@ showGrid paper =
       | (x, y) `elem` paper = "#"
       | otherwise = " "
 
-part2 :: String -> Either String String
+part2 :: String -> String
 part2 input = do
-  (coords, folds) <- runParser parseInstructions input
-
-  pure $ showGrid $ foldl' foldPaper coords folds
+  case runParser parseInstructions input of
+    Left e -> e
+    Right (coords, folds) ->
+      showGrid $ foldl' foldPaper coords folds

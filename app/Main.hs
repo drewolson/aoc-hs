@@ -80,10 +80,7 @@ runSolution input = \case
   Args {day = 12, part = 1} -> print $ Day12.part1 input
   Args {day = 12, part = 2} -> print $ Day12.part2 input
   Args {day = 13, part = 1} -> print $ Day13.part1 input
-  Args {day = 13, part = 2} ->
-    case Day13.part2 input of
-      Left e -> print e
-      Right s -> putStrLn s
+  Args {day = 13, part = 2} -> putStrLn $ Day13.part2 input
   _ -> fail "unknown day and part"
 
 main :: IO ()
