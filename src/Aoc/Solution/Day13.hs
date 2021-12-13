@@ -62,10 +62,10 @@ showGrid paper =
   let points = Set.toList paper
       max_x = maximum $ fst <$> points
       max_y = maximum $ snd <$> points
-   in intercalate "\n" $ fmap (showRow max_x) [0 .. max_y + 1]
+   in intercalate "\n" $ fmap (showRow max_x) [0 .. max_y]
   where
     showRow :: Int -> Int -> String
-    showRow max_x y = foldMap (`showCoord` y) [0 .. max_x + 1]
+    showRow max_x y = foldMap (`showCoord` y) [0 .. max_x]
 
     showCoord :: Int -> Int -> String
     showCoord x y
