@@ -73,7 +73,7 @@ showGrid paper =
       | otherwise = " "
 
 part2 :: String -> String
-part2 input = do
+part2 input =
   case runParser parseInstructions input of
     Left e -> e
     Right (coords, folds) ->
