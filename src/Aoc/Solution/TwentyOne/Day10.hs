@@ -1,4 +1,4 @@
-module Aoc.Solution.Day10
+module Aoc.Solution.TwentyOne.Day10
   ( part1,
     part2,
   )

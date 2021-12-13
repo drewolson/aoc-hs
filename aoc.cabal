@@ -4,11 +4,11 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 
-name:           aoc2021
+name:           aoc
 version:        0.1.0.0
-description:    Advent of Code 2021
-homepage:       https://github.com/drewolson/aoc2021#readme
-bug-reports:    https://github.com/drewolson/aoc2021/issues
+description:    Advent of Code in Haskell
+homepage:       https://github.com/drewolson/aoc-hs#readme
+bug-reports:    https://github.com/drewolson/aoc-hs/issues
 author:         Drew Olson
 maintainer:     drew@drewolson.org
 copyright:      2021 Drew Olson
@@ -20,26 +20,26 @@ extra-source-files:
 
 source-repository head
   type: git
-  location: https://github.com/drewolson/aoc2021
+  location: https://github.com/drewolson/aoc-hs
 
 library
   exposed-modules:
       Aoc.Parser
-      Aoc.Solution.Day01
-      Aoc.Solution.Day02
-      Aoc.Solution.Day03
-      Aoc.Solution.Day04
-      Aoc.Solution.Day05
-      Aoc.Solution.Day06
-      Aoc.Solution.Day07
-      Aoc.Solution.Day08
-      Aoc.Solution.Day09
-      Aoc.Solution.Day10
-      Aoc.Solution.Day11
-      Aoc.Solution.Day12
-      Aoc.Solution.Day13
+      Aoc.Solution.TwentyOne.Day01
+      Aoc.Solution.TwentyOne.Day02
+      Aoc.Solution.TwentyOne.Day03
+      Aoc.Solution.TwentyOne.Day04
+      Aoc.Solution.TwentyOne.Day05
+      Aoc.Solution.TwentyOne.Day06
+      Aoc.Solution.TwentyOne.Day07
+      Aoc.Solution.TwentyOne.Day08
+      Aoc.Solution.TwentyOne.Day09
+      Aoc.Solution.TwentyOne.Day10
+      Aoc.Solution.TwentyOne.Day11
+      Aoc.Solution.TwentyOne.Day12
+      Aoc.Solution.TwentyOne.Day13
   other-modules:
-      Paths_aoc2021
+      Paths_aoc
   hs-source-dirs:
       src
   default-extensions:
@@ -63,7 +63,7 @@ library
 executable aoc-exe
   main-is: Main.hs
   other-modules:
-      Paths_aoc2021
+      Paths_aoc
   hs-source-dirs:
       app
   default-extensions:
@@ -75,7 +75,7 @@ executable aoc-exe
       TupleSections
   ghc-options: -Werror -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      aoc2021
+      aoc
     , base >=4.7 && <5
     , containers
     , megaparsec
@@ -89,20 +89,20 @@ test-suite aoc-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
-      Aoc.Solution.Day01Spec
-      Aoc.Solution.Day02Spec
-      Aoc.Solution.Day03Spec
-      Aoc.Solution.Day04Spec
-      Aoc.Solution.Day05Spec
-      Aoc.Solution.Day06Spec
-      Aoc.Solution.Day07Spec
-      Aoc.Solution.Day08Spec
-      Aoc.Solution.Day09Spec
-      Aoc.Solution.Day10Spec
-      Aoc.Solution.Day11Spec
-      Aoc.Solution.Day12Spec
-      Aoc.Solution.Day13Spec
-      Paths_aoc2021
+      Aoc.Solution.TwentyOne.Day01Spec
+      Aoc.Solution.TwentyOne.Day02Spec
+      Aoc.Solution.TwentyOne.Day03Spec
+      Aoc.Solution.TwentyOne.Day04Spec
+      Aoc.Solution.TwentyOne.Day05Spec
+      Aoc.Solution.TwentyOne.Day06Spec
+      Aoc.Solution.TwentyOne.Day07Spec
+      Aoc.Solution.TwentyOne.Day08Spec
+      Aoc.Solution.TwentyOne.Day09Spec
+      Aoc.Solution.TwentyOne.Day10Spec
+      Aoc.Solution.TwentyOne.Day11Spec
+      Aoc.Solution.TwentyOne.Day12Spec
+      Aoc.Solution.TwentyOne.Day13Spec
+      Paths_aoc
   hs-source-dirs:
       test
   default-extensions:
@@ -115,7 +115,7 @@ test-suite aoc-test
   ghc-options: -Werror -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       QuickCheck
-    , aoc2021
+    , aoc
     , base >=4.7 && <5
     , containers
     , hspec

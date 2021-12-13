@@ -1,6 +1,6 @@
-name:                aoc2021
+name:                aoc
 version:             0.1.0.0
-github:              "drewolson/aoc2021"
+github:              "drewolson/aoc-hs"
 license:             MIT
 author:              "Drew Olson"
 maintainer:          "drew@drewolson.org"
@@ -9,7 +9,7 @@ copyright:           "2021 Drew Olson"
 extra-source-files:
 - README.md
 
-description: Advent of Code 2021
+description: Advent of Code in Haskell
 
 ghc-options:
 - -Werror
@@ -48,7 +48,7 @@ executables:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - aoc2021
+    - aoc
 
 tests:
   aoc-test:
@@ -60,7 +60,7 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - QuickCheck
-    - aoc2021
+    - aoc
     - hspec
     - hspec-discover
     - raw-strings-qq
