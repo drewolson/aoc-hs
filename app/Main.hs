@@ -31,6 +31,7 @@ parseArgs =
       A.auto
       ( A.long "year"
           <> A.short 'y'
+          <> A.metavar "YEAR"
           <> A.help "year to run"
           <> A.showDefault
           <> A.value 2021
@@ -39,12 +40,14 @@ parseArgs =
       A.auto
       ( A.long "day"
           <> A.short 'd'
+          <> A.metavar "DAY"
           <> A.help "day to run (1 - 25)"
       )
     <*> A.option
       A.auto
       ( A.long "part"
           <> A.short 'p'
+          <> A.metavar "PART"
           <> A.help "part to run (1 or 2)"
       )
 

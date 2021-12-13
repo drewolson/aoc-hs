@@ -59,7 +59,6 @@ tests:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - QuickCheck
     - aoc
     - hspec
     - hspec-discover

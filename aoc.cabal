@@ -114,8 +114,7 @@ test-suite aoc-test
       TupleSections
   ghc-options: -Werror -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      QuickCheck
-    , aoc
+      aoc
     , base >=4.7 && <5
     , containers
     , hspec

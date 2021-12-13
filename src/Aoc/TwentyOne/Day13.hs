@@ -5,6 +5,7 @@ module Aoc.TwentyOne.Day13
 where
 
 import Aoc.Parser (Parser, parseInt, runParser)
+import Data.Bifunctor (first, second)
 import Data.Foldable (Foldable (foldl'))
 import Data.List (intercalate)
 import Data.Set (Set)
@@ -41,15 +42,16 @@ parseInstructions :: Parser Instructions
 parseInstructions = (,) <$> parseCoords <*> (newline *> parseFolds)
 
 foldPaper :: Paper -> Fold -> Paper
-foldPaper paper fold = Set.map (makeFold fold) paper
+foldPaper paper fold = Set.map (foldCoord fold) paper
   where
-    makeFold :: Fold -> Coord -> Coord
-    makeFold (X n) (x, y)
-      | x < n = (x, y)
-      | otherwise = (n - (x - n), y)
-    makeFold (Y n) (x, y)
-      | y < n = (x, y)
-      | otherwise = (x, n - (y - n))
+    foldCoord :: Fold -> Coord -> Coord
+    foldCoord (X n) = first (foldPoint n)
+    foldCoord (Y n) = second (foldPoint n)
+
+    foldPoint :: Int -> Int -> Int
+    foldPoint n p
+      | p < n = p
+      | otherwise = n - (p - n)
 
 part1 :: String -> Either String Int
 part1 input = do
