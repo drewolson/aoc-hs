@@ -23,23 +23,23 @@ data Fold
 
 type Instructions = (Paper, [Fold])
 
-parseDir :: Parser (Int -> Fold)
-parseDir = choice [X <$ char 'x', Y <$ char 'y']
-
-parseFold :: Parser Fold
-parseFold = (string "fold along " *> parseDir) <*> (char '=' *> parseInt)
-
-parseFolds :: Parser [Fold]
-parseFolds = sepEndBy1 parseFold newline
-
-parseCoord :: Parser Coord
-parseCoord = (,) <$> parseInt <*> (char ',' *> parseInt)
-
-parseCoords :: Parser (Set Coord)
-parseCoords = Set.fromList <$> sepEndBy1 parseCoord newline
-
 parseInstructions :: Parser Instructions
 parseInstructions = (,) <$> parseCoords <*> (newline *> parseFolds)
+  where
+    parseDir :: Parser (Int -> Fold)
+    parseDir = choice [X <$ char 'x', Y <$ char 'y']
+
+    parseFold :: Parser Fold
+    parseFold = (string "fold along " *> parseDir) <*> (char '=' *> parseInt)
+
+    parseFolds :: Parser [Fold]
+    parseFolds = sepEndBy1 parseFold newline
+
+    parseCoord :: Parser Coord
+    parseCoord = (,) <$> parseInt <*> (char ',' *> parseInt)
+
+    parseCoords :: Parser (Set Coord)
+    parseCoords = Set.fromList <$> sepEndBy1 parseCoord newline
 
 foldPaper :: Paper -> Fold -> Paper
 foldPaper paper fold = Set.map (foldCoord fold) paper
