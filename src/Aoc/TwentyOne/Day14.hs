@@ -22,7 +22,7 @@ parseInput :: String -> Instructions
 parseInput input =
   let parts = splitOn "\n\n" input
       set = MultiSet.fromList $ divvy 2 1 $ head parts
-      mapping = Map.fromList $ mapMaybe toTuple $ lines $ head $ tail parts
+      mapping = Map.fromList $ mapMaybe toTuple $ lines $ last parts
    in (set, mapping, head $ head parts, last $ head parts)
   where
     toTuple :: String -> Maybe (String, [String])
