@@ -49,12 +49,13 @@ score start end poly =
     split [a, b] = [a, b]
     split _ = []
 
-part1 :: String -> Int
-part1 input =
+scoreDay :: Int -> String -> Int
+scoreDay n input =
   let (set, mapping, start, end) = parseInput input
-   in score start end $ (!! 10) $ iterate (evolve mapping) set
+   in score start end $ (!! n) $ iterate (evolve mapping) set
+
+part1 :: String -> Int
+part1 = scoreDay 10
 
 part2 :: String -> Int
-part2 input =
-  let (set, mapping, start, end) = parseInput input
-   in score start end $ (!! 40) $ iterate (evolve mapping) set
+part2 = scoreDay 40
