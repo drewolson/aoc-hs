@@ -99,13 +99,13 @@ run2021 input = \case
   Args {day = 13, part = 2} -> putStrLn $ Year2021.Day13.part2 input
   Args {day = 14, part = 1} -> print $ Year2021.Day14.part1 input
   Args {day = 14, part = 2} -> print $ Year2021.Day14.part2 input
-  _ -> fail "unknown year/day/part"
+  _ -> fail "unknown day/part"
 
 runSolution :: String -> Args -> IO ()
 runSolution input args =
   case args of
     Args {year = 2021} -> run2021 input args
-    _ -> fail "unknown year/day/part"
+    _ -> fail "unknown year"
 
 main :: IO ()
 main = do
