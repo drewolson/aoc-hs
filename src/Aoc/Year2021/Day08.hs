@@ -1,4 +1,4 @@
-module Aoc.TwentyOne.Day08
+module Aoc.Year2021.Day08
   ( part1,
     part2,
   )

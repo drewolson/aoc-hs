@@ -25,20 +25,20 @@ source-repository head
 library
   exposed-modules:
       Aoc.Parser
-      Aoc.TwentyOne.Day01
-      Aoc.TwentyOne.Day02
-      Aoc.TwentyOne.Day03
-      Aoc.TwentyOne.Day04
-      Aoc.TwentyOne.Day05
-      Aoc.TwentyOne.Day06
-      Aoc.TwentyOne.Day07
-      Aoc.TwentyOne.Day08
-      Aoc.TwentyOne.Day09
-      Aoc.TwentyOne.Day10
-      Aoc.TwentyOne.Day11
-      Aoc.TwentyOne.Day12
-      Aoc.TwentyOne.Day13
-      Aoc.TwentyOne.Day14
+      Aoc.Year2021.Day01
+      Aoc.Year2021.Day02
+      Aoc.Year2021.Day03
+      Aoc.Year2021.Day04
+      Aoc.Year2021.Day05
+      Aoc.Year2021.Day06
+      Aoc.Year2021.Day07
+      Aoc.Year2021.Day08
+      Aoc.Year2021.Day09
+      Aoc.Year2021.Day10
+      Aoc.Year2021.Day11
+      Aoc.Year2021.Day12
+      Aoc.Year2021.Day13
+      Aoc.Year2021.Day14
   other-modules:
       Paths_aoc
   hs-source-dirs:
@@ -90,20 +90,20 @@ test-suite aoc-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
-      Aoc.TwentyOne.Day01Spec
-      Aoc.TwentyOne.Day02Spec
-      Aoc.TwentyOne.Day03Spec
-      Aoc.TwentyOne.Day04Spec
-      Aoc.TwentyOne.Day05Spec
-      Aoc.TwentyOne.Day06Spec
-      Aoc.TwentyOne.Day07Spec
-      Aoc.TwentyOne.Day08Spec
-      Aoc.TwentyOne.Day09Spec
-      Aoc.TwentyOne.Day10Spec
-      Aoc.TwentyOne.Day11Spec
-      Aoc.TwentyOne.Day12Spec
-      Aoc.TwentyOne.Day13Spec
-      Aoc.TwentyOne.Day14Spec
+      Aoc.Year2021.Day01Spec
+      Aoc.Year2021.Day02Spec
+      Aoc.Year2021.Day03Spec
+      Aoc.Year2021.Day04Spec
+      Aoc.Year2021.Day05Spec
+      Aoc.Year2021.Day06Spec
+      Aoc.Year2021.Day07Spec
+      Aoc.Year2021.Day08Spec
+      Aoc.Year2021.Day09Spec
+      Aoc.Year2021.Day10Spec
+      Aoc.Year2021.Day11Spec
+      Aoc.Year2021.Day12Spec
+      Aoc.Year2021.Day13Spec
+      Aoc.Year2021.Day14Spec
       Paths_aoc
   hs-source-dirs:
       test
