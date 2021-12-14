@@ -1,4 +1,7 @@
-module Main where
+module Main
+  ( main,
+  )
+where
 
 import Aoc.Year2021.Day01 qualified as Year2021.Day01
 import Aoc.Year2021.Day02 qualified as Year2021.Day02
