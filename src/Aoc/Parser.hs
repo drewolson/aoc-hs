@@ -2,6 +2,7 @@ module Aoc.Parser
   ( Parser,
     parseInt,
     runParser,
+    runParser',
   )
 where
 
@@ -17,3 +18,9 @@ parseInt = read <$> some digitChar
 
 runParser :: Parser a -> String -> Either String a
 runParser p = first errorBundlePretty . parse p ""
+
+runParser' :: Parser a -> String -> a
+runParser' p input =
+  case runParser p input of
+    Left e -> error e
+    Right a -> a
