@@ -22,14 +22,12 @@ parseInput :: String -> Instructions
 parseInput input =
   let parts = splitOn "\n\n" input
       set = MultiSet.fromList $ divvy 2 1 $ head parts
-      mapping = Map.fromList $ mapMaybe toTuple $ lines $ last parts
+      mapping = Map.fromList $ mapMaybe (toTuple . splitOn " -> ") $ lines $ last parts
    in (set, mapping, head $ head parts, last $ head parts)
   where
-    toTuple :: String -> Maybe (String, [String])
-    toTuple line =
-      case splitOn " -> " line of
-        [[a, b], [c]] -> Just ([a, b], [[a, c], [c, b]])
-        _ -> Nothing
+    toTuple :: [String] -> Maybe (String, [String])
+    toTuple [[l, r], [m]] = Just ([l, r], [[l, m], [m, r]])
+    toTuple _ = Nothing
 
 evolve :: Mapping -> Poly -> Poly
 evolve = MultiSet.concatMap . (!)
