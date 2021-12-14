@@ -20,10 +20,11 @@ type Instructions = (Poly, Mapping, Char, Char)
 
 parseInput :: String -> Instructions
 parseInput input =
-  let parts = splitOn "\n\n" input
-      set = MultiSet.fromList $ divvy 2 1 $ head parts
-      mapping = Map.fromList $ mapMaybe (toTuple . splitOn " -> ") $ lines $ last parts
-   in (set, mapping, head $ head parts, last $ head parts)
+  let parts = lines input
+      template = head parts
+      poly = MultiSet.fromList $ divvy 2 1 template
+      mapping = Map.fromList $ mapMaybe (toTuple . splitOn " -> ") $ drop 2 parts
+   in (poly, mapping, head template, last template)
   where
     toTuple :: [String] -> Maybe (String, [String])
     toTuple [[l, r], [m]] = Just ([l, r], [[l, m], [m, r]])
