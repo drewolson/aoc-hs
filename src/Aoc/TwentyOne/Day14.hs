@@ -6,7 +6,7 @@ where
 
 import Data.Bifunctor (Bifunctor (second))
 import Data.List.Split (divvy, splitOn)
-import Data.Map (Map)
+import Data.Map (Map, (!))
 import Data.Map qualified as Map
 import Data.Maybe (mapMaybe)
 import Data.MultiSet (MultiSet)
@@ -32,7 +32,7 @@ parseInput input =
         _ -> Nothing
 
 evolve :: Mapping -> Poly -> Poly
-evolve mapping = MultiSet.concatMap (flip (Map.findWithDefault []) mapping)
+evolve = MultiSet.concatMap . (!)
 
 score :: Char -> Char -> Poly -> Int
 score start end poly =
