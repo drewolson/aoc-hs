@@ -36,7 +36,7 @@ evolve mapping = MultiSet.concatMap (flip (Map.findWithDefault []) mapping)
 
 score :: Char -> Char -> Poly -> Int
 score start end poly =
-  let occurs = MultiSet.toOccurList $ MultiSet.concatMap split poly
+  let occurs = MultiSet.toOccurList $ MultiSet.concatMap id poly
       totals = fmap (incStartEnd . second (`div` 2)) occurs
    in maximum totals - minimum totals
   where
@@ -44,10 +44,6 @@ score start end poly =
     incStartEnd (c, n)
       | c `elem` [start, end] = n + 1
       | otherwise = n
-
-    split :: String -> [Char]
-    split [a, b] = [a, b]
-    split _ = []
 
 scoreDay :: Int -> String -> Int
 scoreDay n input =
