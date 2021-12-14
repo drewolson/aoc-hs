@@ -38,6 +38,7 @@ library
       Aoc.TwentyOne.Day11
       Aoc.TwentyOne.Day12
       Aoc.TwentyOne.Day13
+      Aoc.TwentyOne.Day14
   other-modules:
       Paths_aoc
   hs-source-dirs:
@@ -102,6 +103,7 @@ test-suite aoc-test
       Aoc.TwentyOne.Day11Spec
       Aoc.TwentyOne.Day12Spec
       Aoc.TwentyOne.Day13Spec
+      Aoc.TwentyOne.Day14Spec
       Paths_aoc
   hs-source-dirs:
       test
