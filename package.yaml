@@ -49,6 +49,9 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - aoc
+    when:
+    - condition: false
+      other-modules: Paths_aoc
 
 tests:
   aoc-test:

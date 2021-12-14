@@ -63,8 +63,6 @@ library
 
 executable aoc-exe
   main-is: Main.hs
-  other-modules:
-      Paths_aoc
   hs-source-dirs:
       app
   default-extensions:
