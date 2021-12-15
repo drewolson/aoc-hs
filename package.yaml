@@ -20,6 +20,7 @@ ghc-options:
 - -Wredundant-constraints
 
 default-extensions:
+- BangPatterns
 - BlockArguments
 - ImportQualifiedPost
 - LambdaCase
@@ -33,6 +34,8 @@ dependencies:
 - megaparsec
 - multiset
 - optparse-applicative
+- pqueue
+- search-algorithms
 - split
 - text
 
