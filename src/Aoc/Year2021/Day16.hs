@@ -98,15 +98,15 @@ parseExpr = do
 sumVersions :: Expr -> Int
 sumVersions = \case
   Lit v _ _ -> v
-  Op v _ children -> v + sum (fmap sumVersions children)
+  Op v _ expr -> v + sum (fmap sumVersions expr)
 
 eval :: Expr -> Int
 eval = \case
   Lit _ _ n -> n
-  Op _ 0 children -> sum $ fmap eval children
-  Op _ 1 children -> product $ fmap eval children
-  Op _ 2 children -> minimum $ fmap eval children
-  Op _ 3 children -> maximum $ fmap eval children
+  Op _ 0 exprs -> sum $ fmap eval exprs
+  Op _ 1 exprs -> product $ fmap eval exprs
+  Op _ 2 exprs -> minimum $ fmap eval exprs
+  Op _ 3 exprs -> maximum $ fmap eval exprs
   Op _ 5 [l, r] | eval l > eval r -> 1
   Op _ 6 [l, r] | eval l < eval r -> 1
   Op _ 7 [l, r] | eval l == eval r -> 1
