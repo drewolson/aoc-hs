@@ -40,12 +40,12 @@ library
       Aoc.Year2021.Day13
       Aoc.Year2021.Day14
       Aoc.Year2021.Day15
+      Aoc.Year2021.Day16
   other-modules:
       Paths_aoc
   hs-source-dirs:
       src
   default-extensions:
-      BangPatterns
       BlockArguments
       ImportQualifiedPost
       LambdaCase
@@ -59,7 +59,6 @@ library
     , megaparsec
     , multiset
     , optparse-applicative
-    , pqueue
     , search-algorithms
     , split
     , text
@@ -70,7 +69,6 @@ executable aoc-exe
   hs-source-dirs:
       app
   default-extensions:
-      BangPatterns
       BlockArguments
       ImportQualifiedPost
       LambdaCase
@@ -85,7 +83,6 @@ executable aoc-exe
     , megaparsec
     , multiset
     , optparse-applicative
-    , pqueue
     , search-algorithms
     , split
     , text
@@ -110,11 +107,11 @@ test-suite aoc-test
       Aoc.Year2021.Day13Spec
       Aoc.Year2021.Day14Spec
       Aoc.Year2021.Day15Spec
+      Aoc.Year2021.Day16Spec
       Paths_aoc
   hs-source-dirs:
       test
   default-extensions:
-      BangPatterns
       BlockArguments
       ImportQualifiedPost
       LambdaCase
@@ -131,7 +128,6 @@ test-suite aoc-test
     , megaparsec
     , multiset
     , optparse-applicative
-    , pqueue
     , raw-strings-qq
     , search-algorithms
     , split

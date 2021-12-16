@@ -4,7 +4,7 @@ module Aoc.Year2021.Day15
   )
 where
 
-import Algorithm.Search (dijkstra)
+import Algorithm.Search (dijkstra, pruning)
 import Data.Map.Strict (Map)
 import Data.Map.Strict qualified as Map
 
@@ -41,10 +41,10 @@ makeGrid = Map.fromList . mconcat . zipWith makeRow [0 ..]
 solve :: Grid -> Maybe Int
 solve grid =
   let goal = maximum $ Map.keys grid
-   in fst <$> dijkstra findNeighbors cost (== goal) (0, 0)
+   in fst <$> dijkstra (neighbors `pruning` invalid) cost (== goal) (0, 0)
   where
-    findNeighbors :: Coord -> [Coord]
-    findNeighbors = filter (`Map.member` grid) . neighbors
+    invalid :: Coord -> Bool
+    invalid = (`Map.notMember` grid)
 
     neighbors :: Coord -> [Coord]
     neighbors (x, y) =
