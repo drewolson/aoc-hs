@@ -99,7 +99,7 @@ sumVersions = \case
 
 eval :: Expr -> Int
 eval = \case
-  Lit _ _ v -> v
+  Lit _ _ n -> n
   Op _ 0 children -> sum $ fmap eval children
   Op _ 1 children -> product $ fmap eval children
   Op _ 2 children -> minimum $ fmap eval children
