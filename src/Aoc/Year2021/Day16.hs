@@ -39,14 +39,17 @@ expand = foldMap expandChar
 binToInt :: String -> Int
 binToInt = foldl' (\acc x -> acc * 2 + digitToInt x) 0
 
-parse3DigitBin :: Parser Int
-parse3DigitBin = binToInt <$> count 3 digitChar
+parseBin :: Int -> Parser String
+parseBin n = count n digitChar
+
+parseBinInt :: Int -> Parser Int
+parseBinInt = fmap binToInt . parseBin
 
 litGroup :: Parser String
-litGroup = char '1' *> count 4 digitChar
+litGroup = char '1' *> parseBin 4
 
 lastLitGroup :: Parser String
-lastLitGroup = char '0' *> count 4 digitChar
+lastLitGroup = char '0' *> parseBin 4
 
 parseLiteral :: Parser Int
 parseLiteral = do
@@ -64,14 +67,14 @@ offsetIs n = do
 
 parseLengthOp :: Parser [Expr]
 parseLengthOp = do
-  childLength <- binToInt <$> count 15 digitChar
+  childLength <- parseBinInt 15
   currentOffset <- getOffset
 
   manyTill parseExpr (offsetIs $ currentOffset + childLength)
 
 parseCountOp :: Parser [Expr]
 parseCountOp = do
-  childNum <- binToInt <$> count 11 digitChar
+  childNum <- parseBinInt 11
 
   count childNum parseExpr
 
@@ -85,8 +88,8 @@ parseOp = do
 
 parseExpr :: Parser Expr
 parseExpr = do
-  v <- parse3DigitBin
-  exprId <- parse3DigitBin
+  v <- parseBinInt 3
+  exprId <- parseBinInt 3
 
   case exprId of
     4 -> Lit v exprId <$> parseLiteral
