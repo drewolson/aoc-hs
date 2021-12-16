@@ -55,7 +55,7 @@ parseLiteral :: Parser Int
 parseLiteral = do
   (groups, end) <- manyTill_ litGroup lastLitGroup
 
-  pure $ binToInt $ mconcat $ groups <> [end]
+  pure $ binToInt $ mconcat groups <> end
 
 offsetIs :: Int -> Parser ()
 offsetIs n = do
