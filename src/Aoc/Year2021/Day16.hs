@@ -98,7 +98,7 @@ parseExpr = do
 sumVersions :: Expr -> Int
 sumVersions = \case
   Lit v _ _ -> v
-  Op v _ expr -> v + sum (fmap sumVersions expr)
+  Op v _ exprs -> v + sum (fmap sumVersions exprs)
 
 eval :: Expr -> Int
 eval = \case
