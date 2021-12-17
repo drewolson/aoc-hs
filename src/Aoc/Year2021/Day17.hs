@@ -4,7 +4,7 @@ module Aoc.Year2021.Day17
   )
 where
 
-import Aoc.Parser (Parser, parseInt, runParser')
+import Aoc.Parser (Parser, parseSignedInt, runParser')
 import Data.Maybe (mapMaybe)
 import Data.Set qualified as Set
 import Text.Megaparsec.Char (string)
@@ -15,11 +15,11 @@ type Target = (Coord, Coord)
 
 parseInput :: Parser Target
 parseInput = do
-  xMin <- string "target area: x=" *> parseInt
-  xMax <- string ".." *> parseInt
+  xMin <- string "target area: x=" *> parseSignedInt
+  xMax <- string ".." *> parseSignedInt
 
-  yMin <- string ", y=" *> parseInt
-  yMax <- string ".." *> parseInt
+  yMin <- string ", y=" *> parseSignedInt
+  yMax <- string ".." *> parseSignedInt
 
   pure ((xMin, xMax), (yMin, yMax))
 
