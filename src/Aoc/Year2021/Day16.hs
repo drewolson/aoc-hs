@@ -5,8 +5,7 @@ module Aoc.Year2021.Day16
 where
 
 import Aoc.Parser (Parser, runParser')
-import Data.Char (digitToInt)
-import Data.Foldable (Foldable (foldl'))
+import Aoc.String (binToInt)
 import Text.Megaparsec (count, getOffset, manyTill, manyTill_)
 import Text.Megaparsec.Char (char, digitChar)
 
@@ -35,9 +34,6 @@ expand = foldMap expandChar
       'D' -> "1101"
       'E' -> "1110"
       _ -> "1111"
-
-binToInt :: String -> Int
-binToInt = foldl' (\acc x -> acc * 2 + digitToInt x) 0
 
 parseBin :: Int -> Parser String
 parseBin n = count n digitChar

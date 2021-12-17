@@ -4,13 +4,10 @@ module Aoc.Year2021.Day03
   )
 where
 
-import Data.Char (digitToInt)
-import Data.Foldable (foldl', maximumBy)
+import Aoc.String (binToInt)
+import Data.Foldable (maximumBy)
 import Data.List (group, sort, transpose)
 import Data.Ord (comparing)
-
-binToInt :: String -> Int
-binToInt = foldl' (\acc x -> acc * 2 + digitToInt x) 0
 
 mostCommon :: String -> Char
 mostCommon = head . maximumBy (comparing length) . group . sort

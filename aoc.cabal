@@ -25,6 +25,7 @@ source-repository head
 library
   exposed-modules:
       Aoc.Parser
+      Aoc.String
       Aoc.Year2021.Day01
       Aoc.Year2021.Day02
       Aoc.Year2021.Day03
