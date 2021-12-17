@@ -24,10 +24,9 @@ parseInput = do
   pure ((xMin, xMax), (yMin, yMax))
 
 candidates :: Target -> [Coord]
-candidates ((_, xMax), (yMin, _)) =
-  let x_triangle = head $ filter ((> xMax) . triangle) [0 ..]
-      candidate_y = abs (yMin - x_triangle `div` 2)
-   in (,) <$> [0 .. xMax] <*> [yMin .. candidate_y]
+candidates ((xMin, xMax), (yMin, _)) =
+  let xTriangle = head $ filter ((>= xMin) . triangle) [0 ..]
+   in (,) <$> [xTriangle .. xMax] <*> [yMin .. abs yMin]
   where
     triangle :: Int -> Int
     triangle n = n * (n + 1) `div` 2
