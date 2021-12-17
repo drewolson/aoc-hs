@@ -52,7 +52,7 @@ drawPath = go [] (0, 0)
     go :: [Coord] -> Coord -> Target -> Coord -> Maybe [Coord]
     go path coord@(x, y) target v@(vx, vy)
       | pastTarget target coord = Nothing
-      | inTarget target coord = Just $ reverse (coord : path)
+      | inTarget target coord = Just (coord : path)
       | otherwise = go (coord : path) (x + vx, y + vy) target (updateVelocity v)
 
 part1 :: String -> Int
