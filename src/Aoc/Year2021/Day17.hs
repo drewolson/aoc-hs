@@ -53,10 +53,7 @@ drawPath = go [] (0, 0)
     go path coord@(x, y) target v@(vx, vy)
       | pastTarget target coord = Nothing
       | inTarget target coord = Just $ reverse (coord : path)
-      | otherwise =
-        let coord' = (x + vx, y + vy)
-            v' = updateVelocity v
-         in go (coord : path) coord' target v'
+      | otherwise = go (coord : path) (x + vx, y + vy) target (updateVelocity v)
 
 part1 :: String -> Int
 part1 input =
