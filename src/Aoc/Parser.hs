@@ -15,14 +15,14 @@ import Text.Megaparsec.Char (char, digitChar)
 
 type Parser = Parsec Void String
 
+parseInt :: Parser Int
+parseInt = read <$> some digitChar
+
 parseSignedInt :: Parser Int
 parseSignedInt = do
   mult <- option 1 (-1 <$ char '-' <|> 1 <$ char '+')
 
   (* mult) <$> parseInt
-
-parseInt :: Parser Int
-parseInt = read <$> some digitChar
 
 runParser :: Parser a -> String -> Either String a
 runParser p = first errorBundlePretty . parse p ""
