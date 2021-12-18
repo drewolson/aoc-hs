@@ -61,12 +61,10 @@ explode = fmap fst . go 0
       Pair l r ->
         case (go (i + 1) l, go (i + 1) r) of
           (Just (l', (lVal, rVal)), _) ->
-            let r' = updateL rVal r
-             in Just (Pair l' r', (lVal, 0))
-          (Nothing, Just (r', (lVal, rVal))) ->
-            let l' = updateR lVal l
-             in Just (Pair l' r', (0, rVal))
-          (Nothing, Nothing) -> Nothing
+            Just (Pair l' (updateL rVal r), (lVal, 0))
+          (_, Just (r', (lVal, rVal))) ->
+            Just (Pair (updateR lVal l) r', (0, rVal))
+          _ -> Nothing
 
 split :: SnailFish -> Maybe SnailFish
 split = \case
@@ -75,7 +73,7 @@ split = \case
   Pair l r ->
     case (split l, split r) of
       (Just l', _) -> Just $ Pair l' r
-      (Nothing, Just r') -> Just $ Pair l r'
+      (_, Just r') -> Just $ Pair l r'
       _ -> Nothing
 
 reduceSnailFish :: SnailFish -> SnailFish
