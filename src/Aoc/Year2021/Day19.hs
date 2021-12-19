@@ -97,7 +97,7 @@ normalize positions normalized scanners =
 
 normalizeScanners :: [Scanner] -> ([Coord], [Scanner])
 normalizeScanners scanners =
-  normalize [] (take 1 scanners) (tail scanners)
+  normalize [(0, 0, 0)] (take 1 scanners) (tail scanners)
 
 permutations :: [Coord] -> [(Coord, Coord)]
 permutations coords = do
