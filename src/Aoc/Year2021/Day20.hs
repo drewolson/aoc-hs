@@ -5,17 +5,15 @@ module Aoc.Year2021.Day20
 where
 
 import Aoc.String (binToInt)
-import Data.Array (Array, (!))
-import Data.Array qualified as Array
-import Data.Ix (inRange)
+import Data.Matrix (Matrix)
+import Data.Matrix qualified as Matrix
+import Data.Maybe (fromMaybe)
 import Data.Set (Set)
 import Data.Set qualified as Set
 
-type Coord = (Int, Int)
-
 type Algo = Set Int
 
-type Image = Array Coord Bool
+type Image = Matrix Bool
 
 toBool :: Char -> Bool
 toBool '#' = True
@@ -23,9 +21,9 @@ toBool _ = False
 
 makeImage :: [String] -> Image
 makeImage l =
-  let y = length l
-      x = length $ head l
-   in Array.listArray ((0, 0), (y - 1, x - 1)) $ toBool <$> mconcat l
+  let rows = length l
+      cols = length $ head l
+   in Matrix.fromList rows cols $ toBool <$> mconcat l
 
 parseInput :: String -> (Algo, Image)
 parseInput input =
@@ -43,32 +41,32 @@ enhance algo (image, def) = (enhanceImage, newDefault def)
       | otherwise = b
 
     val :: Int -> Int -> Bool
-    val x y
-      | Array.bounds image `inRange` (y, x) = image ! (y, x)
-      | otherwise = def
+    val row col =
+      fromMaybe def $ Matrix.safeGet row col image
 
     windowInt :: Int -> Int -> Int
-    windowInt x y = binToInt do
-      y' <- [y - 1 .. y + 1]
-      x' <- [x - 1 .. x + 1]
+    windowInt row col = binToInt do
+      r <- [row - 1 .. row + 1]
+      c <- [col - 1 .. col + 1]
 
-      if val x' y'
+      if val r c
         then "1"
         else "0"
 
     enhanceImage :: Image
     enhanceImage =
-      let ((yMin, xMin), (yMax, xMax)) = Array.bounds image
-       in Array.listArray ((yMin - 1, xMin - 1), (yMax + 1, xMax + 1)) do
-            y <- [yMin - 1 .. yMax + 1]
-            x <- [xMin - 1 .. xMax + 1]
+      let rows = Matrix.nrows image
+          cols = Matrix.ncols image
+       in Matrix.fromList (rows + 2) (cols + 2) do
+            row <- [0 .. rows + 1]
+            col <- [0 .. cols + 1]
 
-            pure $ windowInt x y `elem` algo
+            pure $ windowInt row col `elem` algo
 
 solve :: Int -> String -> Int
 solve n input =
   let (algo, image) = parseInput input
-   in length $ filter id $ Array.elems $ fst $ (!! n) $ iterate (enhance algo) (image, False)
+   in length $ filter id $ Matrix.toList $ fst $ (!! n) $ iterate (enhance algo) (image, False)
 
 part1 :: String -> Int
 part1 = solve 2

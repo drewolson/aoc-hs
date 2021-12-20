@@ -63,6 +63,7 @@ library
       array
     , base >=4.7 && <5
     , containers
+    , matrix
     , megaparsec
     , multiset
     , optparse-applicative
@@ -89,6 +90,7 @@ executable aoc-exe
     , array
     , base >=4.7 && <5
     , containers
+    , matrix
     , megaparsec
     , multiset
     , optparse-applicative
@@ -140,6 +142,7 @@ test-suite aoc-test
     , containers
     , hspec
     , hspec-discover
+    , matrix
     , megaparsec
     , multiset
     , optparse-applicative
