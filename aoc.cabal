@@ -45,6 +45,7 @@ library
       Aoc.Year2021.Day17
       Aoc.Year2021.Day18
       Aoc.Year2021.Day19
+      Aoc.Year2021.Day20
   other-modules:
       Paths_aoc
   hs-source-dirs:
@@ -117,6 +118,7 @@ test-suite aoc-test
       Aoc.Year2021.Day17Spec
       Aoc.Year2021.Day18Spec
       Aoc.Year2021.Day19Spec
+      Aoc.Year2021.Day20Spec
       Paths_aoc
   hs-source-dirs:
       test
