@@ -33,12 +33,13 @@ parseInput input =
    in (algo, image)
 
 enhance :: Algo -> (Image, Bool) -> (Image, Bool)
-enhance algo (image, def) = (enhanceImage, newDefault def)
+enhance algo (image, def) = (enhanceImage, newDefault)
   where
-    newDefault :: Bool -> Bool
-    newDefault b
-      | 0 `elem` algo = not b
-      | otherwise = b
+    newDefault :: Bool
+    newDefault =
+      if 0 `elem` algo
+        then not def
+        else def
 
     val :: Int -> Int -> Bool
     val row col =
