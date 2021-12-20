@@ -60,7 +60,8 @@ library
       TupleSections
   ghc-options: -Werror -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
   build-depends:
-      base >=4.7 && <5
+      array
+    , base >=4.7 && <5
     , containers
     , megaparsec
     , multiset
@@ -85,6 +86,7 @@ executable aoc-exe
   ghc-options: -Werror -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       aoc
+    , array
     , base >=4.7 && <5
     , containers
     , megaparsec
@@ -133,6 +135,7 @@ test-suite aoc-test
   ghc-options: -Werror -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       aoc
+    , array
     , base >=4.7 && <5
     , containers
     , hspec

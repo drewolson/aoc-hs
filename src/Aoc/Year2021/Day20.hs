@@ -5,8 +5,9 @@ module Aoc.Year2021.Day20
 where
 
 import Aoc.String (binToInt)
-import Control.Monad (guard)
-import Data.Foldable (foldl')
+import Data.Array (Array, (!))
+import Data.Array qualified as Array
+import Data.Ix (inRange)
 import Data.Set (Set)
 import Data.Set qualified as Set
 
@@ -14,19 +15,17 @@ type Coord = (Int, Int)
 
 type Algo = Set Int
 
-type Image = Set Coord
+type Image = Array Coord Bool
 
-type Bounds = ((Int, Int), (Int, Int))
+toBool :: Char -> Bool
+toBool '#' = True
+toBool _ = False
 
 makeImage :: [String] -> Image
-makeImage = foldl' addRow Set.empty . zip [0 ..]
-  where
-    addRow :: Image -> (Int, String) -> Image
-    addRow image (y, string) = foldl' (addCell y) image $ zip [0 ..] string
-
-    addCell :: Int -> Image -> (Int, Char) -> Image
-    addCell y image (x, '#') = Set.insert (x, y) image
-    addCell _ image _ = image
+makeImage l =
+  let y = length l
+      x = length $ head l
+   in Array.listArray ((0, 0), (y - 1, x - 1)) $ toBool <$> mconcat l
 
 parseInput :: String -> (Algo, Image)
 parseInput input =
@@ -36,27 +35,16 @@ parseInput input =
    in (algo, image)
 
 enhance :: Algo -> (Image, Bool) -> (Image, Bool)
-enhance algo (image, def) = (enhanceImage bounds, newDefault def)
+enhance algo (image, def) = (enhanceImage, newDefault def)
   where
     newDefault :: Bool -> Bool
     newDefault b
       | 0 `elem` algo = not b
       | otherwise = b
 
-    bounds :: Bounds
-    bounds =
-      let xs = Set.map fst image
-          ys = Set.map snd image
-       in ((minimum xs, maximum xs), (minimum ys, maximum ys))
-
-    inBounds :: Int -> Int -> Bool
-    inBounds x y =
-      let ((xMin, xMax), (yMin, yMax)) = bounds
-       in xMin <= x && x <= xMax && yMin <= y && y <= yMax
-
-    active :: Int -> Int -> Bool
-    active x y
-      | inBounds x y = (x, y) `elem` image
+    val :: Int -> Int -> Bool
+    val x y
+      | Array.bounds image `inRange` (y, x) = image ! (y, x)
       | otherwise = def
 
     windowInt :: Int -> Int -> Int
@@ -64,27 +52,26 @@ enhance algo (image, def) = (enhanceImage bounds, newDefault def)
       y' <- [y - 1 .. y + 1]
       x' <- [x - 1 .. x + 1]
 
-      pure $
-        if active x' y'
-          then '1'
-          else '0'
+      if val x' y'
+        then "1"
+        else "0"
 
-    enhanceImage :: Bounds -> Image
-    enhanceImage ((xMin, xMax), (yMin, yMax)) =
-      Set.fromList do
-        x <- [xMin - 2 .. xMax + 2]
-        y <- [yMin - 2 .. yMax + 2]
+    enhanceImage :: Image
+    enhanceImage =
+      let ((yMin, xMin), (yMax, xMax)) = Array.bounds image
+       in Array.listArray ((yMin - 1, xMin - 1), (yMax + 1, xMax + 1)) do
+            y <- [yMin - 1 .. yMax + 1]
+            x <- [xMin - 1 .. xMax + 1]
 
-        guard $ windowInt x y `elem` algo
+            pure $ windowInt x y `elem` algo
 
-        pure (x, y)
+solve :: Int -> String -> Int
+solve n input =
+  let (algo, image) = parseInput input
+   in length $ filter id $ Array.elems $ fst $ (!! n) $ iterate (enhance algo) (image, False)
 
 part1 :: String -> Int
-part1 input =
-  let (algo, image) = parseInput input
-   in length $ fst $ (!! 2) $ iterate (enhance algo) (image, False)
+part1 = solve 2
 
 part2 :: String -> Int
-part2 input =
-  let (algo, image) = parseInput input
-   in length $ fst $ (!! 50) $ iterate (enhance algo) (image, False)
+part2 = solve 50
