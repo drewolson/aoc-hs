@@ -20,10 +20,7 @@ toBool '#' = True
 toBool _ = False
 
 makeImage :: [String] -> Image
-makeImage l =
-  let rows = length l
-      cols = length $ head l
-   in Matrix.fromList rows cols $ toBool <$> mconcat l
+makeImage = Matrix.fromLists . fmap (fmap toBool)
 
 parseInput :: String -> (Algo, Image)
 parseInput input =
