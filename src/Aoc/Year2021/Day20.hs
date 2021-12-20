@@ -32,6 +32,12 @@ parseInput input =
 enhance :: Algo -> (Image, Bool) -> (Image, Bool)
 enhance algo (image, def) = (enhanceImage, newDefault)
   where
+    nRows :: Int
+    nRows = Matrix.nrows image
+
+    nCols :: Int
+    nCols = Matrix.ncols image
+
     newDefault :: Bool
     newDefault =
       if 0 `elem` algo
@@ -53,13 +59,11 @@ enhance algo (image, def) = (enhanceImage, newDefault)
 
     enhanceImage :: Image
     enhanceImage =
-      let rows = Matrix.nrows image
-          cols = Matrix.ncols image
-       in Matrix.fromList (rows + 2) (cols + 2) do
-            row <- [0 .. rows + 1]
-            col <- [0 .. cols + 1]
+      Matrix.fromList (nRows + 2) (nCols + 2) do
+        row <- [0 .. nRows + 1]
+        col <- [0 .. nCols + 1]
 
-            pure $ windowInt row col `elem` algo
+        pure $ windowInt row col `elem` algo
 
 solve :: Int -> String -> Int
 solve n input =
