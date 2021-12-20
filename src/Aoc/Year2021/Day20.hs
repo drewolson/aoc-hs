@@ -66,7 +66,8 @@ enhance algo (image, def) = (enhanceImage, newDefault def)
 solve :: Int -> String -> Int
 solve n input =
   let (algo, image) = parseInput input
-   in length $ filter id $ Matrix.toList $ fst $ (!! n) $ iterate (enhance algo) (image, False)
+      (image', _) = (!! n) $ iterate (enhance algo) (image, False)
+   in length $ filter id $ Matrix.toList image'
 
 part1 :: String -> Int
 part1 = solve 2
