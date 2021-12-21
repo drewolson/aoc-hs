@@ -76,7 +76,6 @@ part2 :: Int -> Int -> Int
 part2 a b =
   let playerA = Player {name = 1, pos = a, score = 0}
       playerB = Player {name = 2, pos = b, score = 0}
-      (scoreA, scoreB) = runST do
+   in uncurry max $ runST do
         cache <- HashTable.new
         scoreAll cache (playerA, playerB)
-   in max scoreA scoreB
