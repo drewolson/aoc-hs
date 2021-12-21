@@ -26,7 +26,7 @@ type State = (Player, Player)
 type Cache s = HashTable s State (Int, Int)
 
 move :: Int -> Int -> Int
-move cur next = (((cur - 1) + next) `mod` 10) + 1
+move cur next = ((cur - 1 + next) `mod` 10) + 1
 
 addScore :: State -> Int -> State
 addScore (p@Player {pos, score}, next) n =
