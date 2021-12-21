@@ -29,9 +29,9 @@ move :: Int -> Int -> Int
 move cur next = (((cur - 1) + next) `mod` 10) + 1
 
 addScore :: State -> Int -> State
-addScore (Player {name, pos, score}, next) n =
+addScore (p@Player {pos, score}, next) n =
   let pos' = move pos n
-   in (next, Player {name, pos = pos', score = score + pos'})
+   in (next, p {pos = pos', score = score + pos'})
 
 isWinner :: Int -> State -> Bool
 isWinner n (a, b) = score a >= n || score b >= n
