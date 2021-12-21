@@ -8,16 +8,19 @@ import Control.Monad.ST (ST, runST)
 import Data.Foldable (maximumBy)
 import Data.HashTable.ST.Cuckoo (HashTable)
 import Data.HashTable.ST.Cuckoo qualified as HashTable
+import Data.Hashable (Hashable)
 import Data.List.Split (divvy)
 import Data.Ord (comparing)
+import GHC.Generics (Generic)
 
 data Player = Player
   { name :: Int,
     pos :: Int,
     score :: Int
   }
+  deriving (Eq, Generic, Hashable)
 
-type Key = ((Int, Int, Int), (Int, Int, Int))
+type Key = (Player, Player)
 
 type Cache s = HashTable s Key (Int, Int)
 
@@ -41,14 +44,11 @@ winTuple (a, b) =
     Player {name = 1} -> (1, 0)
     _ -> (0, 1)
 
-toHashKey :: (Player, Player) -> Key
-toHashKey (a, b) = ((name a, pos a, score a), (name b, pos b, score b))
-
 scoreAll :: Cache s -> (Player, Player) -> ST s (Int, Int)
 scoreAll cache p
   | isWinner 21 p = pure $ winTuple p
   | otherwise = do
-    prev <- HashTable.lookup cache $ toHashKey p
+    prev <- HashTable.lookup cache p
 
     case prev of
       Just v -> pure v
@@ -62,7 +62,7 @@ scoreAll cache p
 
         let v = (sum $ fmap fst results, sum $ fmap snd results)
 
-        HashTable.insert cache (toHashKey p) v
+        HashTable.insert cache p v
 
         pure v
 

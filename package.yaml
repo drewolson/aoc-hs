@@ -21,6 +21,8 @@ ghc-options:
 
 default-extensions:
 - BlockArguments
+- DeriveAnyClass
+- DeriveGeneric
 - ImportQualifiedPost
 - InstanceSigs
 - LambdaCase
@@ -32,6 +34,7 @@ dependencies:
 - base >= 4.7 && < 5
 - array
 - containers
+- hashable
 - hashtables
 - matrix
 - megaparsec

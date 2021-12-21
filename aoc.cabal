@@ -53,6 +53,8 @@ library
       src
   default-extensions:
       BlockArguments
+      DeriveAnyClass
+      DeriveGeneric
       ImportQualifiedPost
       InstanceSigs
       LambdaCase
@@ -64,6 +66,7 @@ library
       array
     , base >=4.7 && <5
     , containers
+    , hashable
     , hashtables
     , matrix
     , megaparsec
@@ -80,6 +83,8 @@ executable aoc-exe
       app
   default-extensions:
       BlockArguments
+      DeriveAnyClass
+      DeriveGeneric
       ImportQualifiedPost
       InstanceSigs
       LambdaCase
@@ -92,6 +97,7 @@ executable aoc-exe
     , array
     , base >=4.7 && <5
     , containers
+    , hashable
     , hashtables
     , matrix
     , megaparsec
@@ -132,6 +138,8 @@ test-suite aoc-test
       test
   default-extensions:
       BlockArguments
+      DeriveAnyClass
+      DeriveGeneric
       ImportQualifiedPost
       InstanceSigs
       LambdaCase
@@ -144,6 +152,7 @@ test-suite aoc-test
     , array
     , base >=4.7 && <5
     , containers
+    , hashable
     , hashtables
     , hspec
     , hspec-discover
