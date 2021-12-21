@@ -32,6 +32,7 @@ dependencies:
 - base >= 4.7 && < 5
 - array
 - containers
+- hashtables
 - matrix
 - megaparsec
 - multiset

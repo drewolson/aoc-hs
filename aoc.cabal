@@ -46,6 +46,7 @@ library
       Aoc.Year2021.Day18
       Aoc.Year2021.Day19
       Aoc.Year2021.Day20
+      Aoc.Year2021.Day21
   other-modules:
       Paths_aoc
   hs-source-dirs:
@@ -63,6 +64,7 @@ library
       array
     , base >=4.7 && <5
     , containers
+    , hashtables
     , matrix
     , megaparsec
     , multiset
@@ -90,6 +92,7 @@ executable aoc-exe
     , array
     , base >=4.7 && <5
     , containers
+    , hashtables
     , matrix
     , megaparsec
     , multiset
@@ -123,6 +126,7 @@ test-suite aoc-test
       Aoc.Year2021.Day18Spec
       Aoc.Year2021.Day19Spec
       Aoc.Year2021.Day20Spec
+      Aoc.Year2021.Day21Spec
       Paths_aoc
   hs-source-dirs:
       test
@@ -140,6 +144,7 @@ test-suite aoc-test
     , array
     , base >=4.7 && <5
     , containers
+    , hashtables
     , hspec
     , hspec-discover
     , matrix
