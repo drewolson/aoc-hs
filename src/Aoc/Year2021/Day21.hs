@@ -71,7 +71,8 @@ part1 :: Int -> Int -> Int
 part1 a b =
   let playerA = Player {name = 1, pos = a, score = 0}
       playerB = Player {name = 2, pos = b, score = 0}
-   in result $ head $ dropWhile (not . isWinner 1000 . snd) $ zip [0 ..] $ scanl addScore (playerA, playerB) $ fmap sum $ divvy 3 3 $ cycle [1 .. 100]
+      states = scanl addScore (playerA, playerB) $ fmap sum $ divvy 3 3 $ cycle [1 .. 100]
+   in result $ head $ dropWhile (not . isWinner 1000 . snd) $ zip [0 ..] states
 
 part2 :: Int -> Int -> Int
 part2 a b =
