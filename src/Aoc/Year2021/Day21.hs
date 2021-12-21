@@ -20,35 +20,35 @@ data Player = Player
   }
   deriving (Eq, Generic, Hashable)
 
-type Key = (Player, Player)
+type State = (Player, Player)
 
-type Cache s = HashTable s Key (Int, Int)
+type Cache s = HashTable s State (Int, Int)
 
 move :: Int -> Int -> Int
 move cur next = (((cur - 1) + next) `mod` 10) + 1
 
-addScore :: (Player, Player) -> Int -> (Player, Player)
+addScore :: State -> Int -> State
 addScore (Player {name, pos, score}, next) n =
   let pos' = move pos n
    in (next, Player {name, pos = pos', score = score + pos'})
 
-isWinner :: Int -> (Player, Player) -> Bool
+isWinner :: Int -> State -> Bool
 isWinner n (a, b) = score a >= n || score b >= n
 
-result :: (Int, (Player, Player)) -> Int
+result :: (Int, State) -> Int
 result (turn, (a, b)) = (turn * 3) * minimum (fmap score [a, b])
 
-winTuple :: (Player, Player) -> (Int, Int)
+winTuple :: State -> (Int, Int)
 winTuple (a, b) =
   case maximumBy (comparing score) [a, b] of
     Player {name = 1} -> (1, 0)
     _ -> (0, 1)
 
-scoreAll :: Cache s -> (Player, Player) -> ST s (Int, Int)
-scoreAll cache p
-  | isWinner 21 p = pure $ winTuple p
+scoreAll :: Cache s -> State -> ST s (Int, Int)
+scoreAll cache state
+  | isWinner 21 state = pure $ winTuple state
   | otherwise = do
-    prev <- HashTable.lookup cache p
+    prev <- HashTable.lookup cache state
 
     case prev of
       Just v -> pure v
@@ -58,11 +58,11 @@ scoreAll cache p
           b <- [1 .. 3]
           c <- [1 .. 3]
 
-          pure $ addScore p (a + b + c)
+          pure $ addScore state (a + b + c)
 
         let v = (sum $ fmap fst results, sum $ fmap snd results)
 
-        HashTable.insert cache p v
+        HashTable.insert cache state v
 
         pure v
 
