@@ -5,6 +5,7 @@ module Aoc.Year2021.Day21
 where
 
 import Control.Monad.ST (ST, runST)
+import Data.Bifunctor (Bifunctor (bimap))
 import Data.Foldable (maximumBy)
 import Data.HashTable.ST.Cuckoo (HashTable)
 import Data.HashTable.ST.Cuckoo qualified as HashTable
@@ -60,7 +61,7 @@ scoreAll cache state
 
           pure $ addScore state (a + b + c)
 
-        let v = (sum $ fmap fst results, sum $ fmap snd results)
+        let v = bimap sum sum $ unzip results
 
         HashTable.insert cache state v
 
