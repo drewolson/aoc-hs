@@ -21,6 +21,7 @@ ghc-options:
 
 default-extensions:
 - BlockArguments
+- DataKinds
 - DeriveAnyClass
 - DeriveGeneric
 - ImportQualifiedPost
@@ -36,6 +37,7 @@ dependencies:
 - containers
 - hashable
 - hashtables
+- hgeometry
 - matrix
 - megaparsec
 - multiset

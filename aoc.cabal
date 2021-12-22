@@ -47,12 +47,14 @@ library
       Aoc.Year2021.Day19
       Aoc.Year2021.Day20
       Aoc.Year2021.Day21
+      Aoc.Year2021.Day22
   other-modules:
       Paths_aoc
   hs-source-dirs:
       src
   default-extensions:
       BlockArguments
+      DataKinds
       DeriveAnyClass
       DeriveGeneric
       ImportQualifiedPost
@@ -68,6 +70,7 @@ library
     , containers
     , hashable
     , hashtables
+    , hgeometry
     , matrix
     , megaparsec
     , multiset
@@ -83,6 +86,7 @@ executable aoc-exe
       app
   default-extensions:
       BlockArguments
+      DataKinds
       DeriveAnyClass
       DeriveGeneric
       ImportQualifiedPost
@@ -99,6 +103,7 @@ executable aoc-exe
     , containers
     , hashable
     , hashtables
+    , hgeometry
     , matrix
     , megaparsec
     , multiset
@@ -133,11 +138,13 @@ test-suite aoc-test
       Aoc.Year2021.Day19Spec
       Aoc.Year2021.Day20Spec
       Aoc.Year2021.Day21Spec
+      Aoc.Year2021.Day22Spec
       Paths_aoc
   hs-source-dirs:
       test
   default-extensions:
       BlockArguments
+      DataKinds
       DeriveAnyClass
       DeriveGeneric
       ImportQualifiedPost
@@ -154,6 +161,7 @@ test-suite aoc-test
     , containers
     , hashable
     , hashtables
+    , hgeometry
     , hspec
     , hspec-discover
     , matrix

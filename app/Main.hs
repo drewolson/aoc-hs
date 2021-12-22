@@ -24,6 +24,7 @@ import Aoc.Year2021.Day18 qualified as Year2021.Day18
 import Aoc.Year2021.Day19 qualified as Year2021.Day19
 import Aoc.Year2021.Day20 qualified as Year2021.Day20
 import Aoc.Year2021.Day21 qualified as Year2021.Day21
+import Aoc.Year2021.Day22 qualified as Year2021.Day22
 import Control.Applicative ((<**>))
 import Data.Text qualified as T
 import Options.Applicative (Parser, ParserInfo)
@@ -120,6 +121,8 @@ run2021 input = \case
   Args {day = 20, part = 2} -> print $ Year2021.Day20.part2 input
   Args {day = 21, part = 1} -> print $ Year2021.Day21.part1 3 10
   Args {day = 21, part = 2} -> print $ Year2021.Day21.part2 3 10
+  Args {day = 22, part = 1} -> print $ Year2021.Day22.part1 input
+  Args {day = 22, part = 2} -> print $ Year2021.Day22.part2 input
   _ -> fail "unknown day/part"
 
 runSolution :: String -> Args -> IO ()
