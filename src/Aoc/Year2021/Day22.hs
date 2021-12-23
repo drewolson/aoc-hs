@@ -1,3 +1,5 @@
+-- Solution liberally borrowed from
+-- https://github.com/borjasotomayor/AoC/blob/main/2021/day22.py
 module Aoc.Year2021.Day22
   ( part1,
     part2,
@@ -23,6 +25,11 @@ data Step = Step
   }
   deriving (Eq, Show)
 
+data Cuboid = Cuboid
+  { cbox :: Box,
+    subs :: [Cuboid]
+  }
+
 parseAction :: Parser Action
 parseAction = On <$ string "on" <|> Off <$ string "off"
 
@@ -47,33 +54,45 @@ parseSteps = sepEndBy1 parseStep newline
 parseInput :: String -> [Step]
 parseInput = runParser' parseSteps
 
-isOn :: [Step] -> Point -> Bool
-isOn steps point = foldl' (transform point) False steps
-  where
-    inRange :: Point -> Step -> Bool
-    inRange (a, b, c) Step {box = ((xmin, ymin, zmin), (xmax, ymax, zmax))} =
-      xmin <= a && a <= xmax && ymin <= b && b <= ymax && zmin <= c && c <= zmax
+intersect :: Box -> Box -> Maybe Box
+intersect ((xmin1, ymin1, zmin1), (xmax1, ymax1, zmax1)) ((xmin2, ymin2, zmin2), (xmax2, ymax2, zmax2)) =
+  let ixmin = max xmin1 xmin2
+      iymin = max ymin1 ymin2
+      izmin = max zmin1 zmin2
+      ixmax = min xmax1 xmax2
+      iymax = min ymax1 ymax2
+      izmax = min zmax1 zmax2
+   in if ixmin <= ixmax && iymin <= iymax && izmin <= izmax
+        then Just ((ixmin, iymin, izmin), (ixmax, iymax, izmax))
+        else Nothing
 
-    transform :: Point -> Bool -> Step -> Bool
-    transform _ False Step {action = Off} = False
-    transform _ True Step {action = On} = True
-    transform p b s@Step {action}
-      | inRange p s = action == On
-      | otherwise = b
+subBox :: Box -> Cuboid -> Cuboid
+subBox box cube =
+  case box `intersect` cbox cube of
+    Nothing -> cube
+    Just inter ->
+      let subs' = subBox inter <$> subs cube
+          iCube = Cuboid {cbox = inter, subs = []}
+       in cube {subs = iCube : subs'}
+
+runSteps :: [Cuboid] -> Step -> [Cuboid]
+runSteps cubes Step {action, box} =
+  let cubes' = fmap (subBox box) cubes
+   in case action of
+        Off -> cubes'
+        On -> Cuboid {cbox = box, subs = []} : cubes'
+
+cuboidSize :: Cuboid -> Int
+cuboidSize Cuboid {cbox = ((xmin, ymin, zmin), (xmax, ymax, zmax)), subs} =
+  let size = (xmax - xmin + 1) * (ymax - ymin + 1) * (zmax - zmin + 1)
+   in size - sum (fmap cuboidSize subs)
+
+smallStep :: Step -> Bool
+smallStep Step {box = ((xmin, ymin, zmin), (xmax, ymax, zmax))} =
+  all (>= -50) [xmin, ymin, zmin] && all (<= 50) [xmax, ymax, zmax]
 
 part1 :: String -> Int
-part1 input =
-  let steps = parseInput input
-   in length $ filter (isOn steps) $ [(x, y, z) | x <- [-50 .. 50], y <- [-50 .. 50], z <- [-50 .. 50]]
+part1 = sum . fmap cuboidSize . foldl' runSteps [] . filter smallStep . parseInput
 
 part2 :: String -> Int
-part2 input =
-  let steps = parseInput input
-      onBoxes = box <$> filter ((== On) . action) steps
-      xmin = minimum $ fmap (\((x, _, _), _) -> x) onBoxes
-      xmax = maximum $ fmap (\((_, _, _), (x, _, _)) -> x) onBoxes
-      ymin = minimum $ fmap (\((_, y, _), _) -> y) onBoxes
-      ymax = maximum $ fmap (\((_, _, _), (_, y, _)) -> y) onBoxes
-      zmin = minimum $ fmap (\((_, _, z), _) -> z) onBoxes
-      zmax = maximum $ fmap (\((_, _, _), (_, _, z)) -> z) onBoxes
-   in length $ filter (isOn steps) $ [(x, y, z) | x <- [xmin .. xmax], y <- [ymin .. ymax], z <- [zmin .. zmax]]
+part2 = sum . fmap cuboidSize . foldl' runSteps [] . parseInput
