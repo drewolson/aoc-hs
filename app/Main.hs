@@ -25,59 +25,38 @@ import Aoc.Year2021.Day19 qualified as Year2021.Day19
 import Aoc.Year2021.Day20 qualified as Year2021.Day20
 import Aoc.Year2021.Day21 qualified as Year2021.Day21
 import Aoc.Year2021.Day22 qualified as Year2021.Day22
-import Control.Applicative ((<**>))
 import Data.Text qualified as T
-import Options.Applicative (Parser, ParserInfo)
-import Options.Applicative qualified as A
+import GHC.Generics (Generic)
+import Options.Generic
+  ( ParseRecord,
+    Unwrapped,
+    Wrapped,
+    unwrapRecord,
+    type (:::),
+    type (<!>),
+    type (<#>),
+    type (<?>),
+  )
 
-data Args = Args
-  { year :: Int,
-    day :: Int,
-    part :: Int
+data Args w = Args
+  { year :: w ::: Int <?> "year to run" <#> "y" <!> "2021",
+    day :: w ::: Int <?> "day to run (1 - 25)" <#> "d",
+    part :: w ::: Int <?> "part to run (1 or 2)" <#> "p"
   }
+  deriving (Generic)
 
-parseArgs :: Parser Args
-parseArgs =
-  Args
-    <$> A.option
-      A.auto
-      ( A.long "year"
-          <> A.short 'y'
-          <> A.metavar "YEAR"
-          <> A.help "year to run"
-          <> A.showDefault
-          <> A.value 2021
-      )
-    <*> A.option
-      A.auto
-      ( A.long "day"
-          <> A.short 'd'
-          <> A.metavar "DAY"
-          <> A.help "day to run (1 - 25)"
-      )
-    <*> A.option
-      A.auto
-      ( A.long "part"
-          <> A.short 'p'
-          <> A.metavar "PART"
-          <> A.help "part to run (1 or 2)"
-      )
+instance ParseRecord (Args Wrapped)
 
-parseInfoArgs :: ParserInfo Args
-parseInfoArgs =
-  A.info
-    (parseArgs <**> A.helper)
-    ( A.fullDesc
-        <> A.progDesc "run aoc solution"
-        <> A.header "aoc-exe - run aoc solution"
-    )
+deriving instance Show (Args Unwrapped)
 
-readInput :: Args -> IO String
+type Args' = Args Unwrapped
+
+readInput :: Args' -> IO String
 readInput Args {year, day} =
   let dayText = T.justifyRight 2 '0' $ T.pack $ show day
    in readFile $ "./data/" <> show year <> "/day" <> T.unpack dayText <> ".txt"
 
-run2021 :: String -> Args -> IO ()
+run2021 :: String -> Args' -> IO ()
 run2021 input = \case
   Args {day = 01, part = 1} -> print $ Year2021.Day01.part1 input
   Args {day = 01, part = 2} -> print $ Year2021.Day01.part2 input
@@ -125,7 +104,7 @@ run2021 input = \case
   Args {day = 22, part = 2} -> print $ Year2021.Day22.part2 input
   _ -> fail "unknown day/part"
 
-runSolution :: String -> Args -> IO ()
+runSolution :: String -> Args' -> IO ()
 runSolution input args =
   case args of
     Args {year = 2021} -> run2021 input args
@@ -133,7 +112,7 @@ runSolution input args =
 
 main :: IO ()
 main = do
-  args <- A.execParser parseInfoArgs
+  args <- unwrapRecord $ T.pack "run aoc solution"
   input <- readInput args
 
   runSolution input args

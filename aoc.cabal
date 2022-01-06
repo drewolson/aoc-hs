@@ -57,12 +57,16 @@ library
       DataKinds
       DeriveAnyClass
       DeriveGeneric
+      ExplicitNamespaces
+      FlexibleInstances
       ImportQualifiedPost
       InstanceSigs
       LambdaCase
       NamedFieldPuns
       QuasiQuotes
+      StandaloneDeriving
       TupleSections
+      TypeOperators
   ghc-options: -Werror -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
   build-depends:
       array
@@ -73,7 +77,7 @@ library
     , matrix
     , megaparsec
     , multiset
-    , optparse-applicative
+    , optparse-generic
     , search-algorithms
     , split
     , text
@@ -88,12 +92,16 @@ executable aoc-exe
       DataKinds
       DeriveAnyClass
       DeriveGeneric
+      ExplicitNamespaces
+      FlexibleInstances
       ImportQualifiedPost
       InstanceSigs
       LambdaCase
       NamedFieldPuns
       QuasiQuotes
+      StandaloneDeriving
       TupleSections
+      TypeOperators
   ghc-options: -Werror -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       aoc
@@ -105,7 +113,7 @@ executable aoc-exe
     , matrix
     , megaparsec
     , multiset
-    , optparse-applicative
+    , optparse-generic
     , search-algorithms
     , split
     , text
@@ -145,12 +153,16 @@ test-suite aoc-test
       DataKinds
       DeriveAnyClass
       DeriveGeneric
+      ExplicitNamespaces
+      FlexibleInstances
       ImportQualifiedPost
       InstanceSigs
       LambdaCase
       NamedFieldPuns
       QuasiQuotes
+      StandaloneDeriving
       TupleSections
+      TypeOperators
   ghc-options: -Werror -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       aoc
@@ -164,7 +176,7 @@ test-suite aoc-test
     , matrix
     , megaparsec
     , multiset
-    , optparse-applicative
+    , optparse-generic
     , raw-strings-qq
     , search-algorithms
     , split
