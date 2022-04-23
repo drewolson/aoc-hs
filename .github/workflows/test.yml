@@ -20,4 +20,4 @@ jobs:
           key: ${{ runner.os }}
       - name: Permissions bug workaround
         run: "chown -R $(id -un):$(id -gn) ~"
-      - run: stack test
+      - run: stack test --allow-different-user

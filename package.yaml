@@ -31,6 +31,7 @@ default-extensions:
 - LambdaCase
 - NamedFieldPuns
 - QuasiQuotes
+- ScopedTypeVariables
 - StandaloneDeriving
 - TupleSections
 - TypeOperators
@@ -79,3 +80,4 @@ tests:
     - hspec
     - hspec-discover
     - raw-strings-qq
+    - QuickCheck

@@ -64,6 +64,7 @@ library
       LambdaCase
       NamedFieldPuns
       QuasiQuotes
+      ScopedTypeVariables
       StandaloneDeriving
       TupleSections
       TypeOperators
@@ -99,6 +100,7 @@ executable aoc-exe
       LambdaCase
       NamedFieldPuns
       QuasiQuotes
+      ScopedTypeVariables
       StandaloneDeriving
       TupleSections
       TypeOperators
@@ -160,12 +162,14 @@ test-suite aoc-test
       LambdaCase
       NamedFieldPuns
       QuasiQuotes
+      ScopedTypeVariables
       StandaloneDeriving
       TupleSections
       TypeOperators
   ghc-options: -Werror -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      aoc
+      QuickCheck
+    , aoc
     , array
     , base >=4.7 && <5
     , containers
