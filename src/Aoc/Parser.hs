@@ -1,7 +1,7 @@
 module Aoc.Parser
   ( Parser,
-    parseInt,
-    parseSignedInt,
+    intP,
+    signedIntP,
     runParser,
     runParser',
   )
@@ -15,14 +15,14 @@ import Text.Megaparsec.Char (char, digitChar)
 
 type Parser = Parsec Void String
 
-parseInt :: Parser Int
-parseInt = read <$> some digitChar
+intP :: Parser Int
+intP = read <$> some digitChar
 
-parseSignedInt :: Parser Int
-parseSignedInt = do
+signedIntP :: Parser Int
+signedIntP = do
   mult <- option 1 (-1 <$ char '-' <|> 1 <$ char '+')
 
-  (* mult) <$> parseInt
+  (* mult) <$> intP
 
 runParser :: Parser a -> String -> Either String a
 runParser p = first errorBundlePretty . parse p ""

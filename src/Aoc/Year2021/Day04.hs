@@ -4,7 +4,7 @@ module Aoc.Year2021.Day04
   )
 where
 
-import Aoc.Parser (Parser, parseInt, runParser)
+import Aoc.Parser (Parser, intP, runParser)
 import Control.Monad (join)
 import Data.List (mapAccumL, transpose, (\\))
 import Data.Set (Set)
@@ -20,10 +20,10 @@ data Bingo = Bingo
   }
 
 parseGuesses :: Parser [Int]
-parseGuesses = sepBy1 parseInt (char ',')
+parseGuesses = sepBy1 intP (char ',')
 
 parseRow :: Parser [Int]
-parseRow = count 5 (hspace *> parseInt)
+parseRow = count 5 (hspace *> intP)
 
 parseBoard :: Parser Board
 parseBoard = count 5 (parseRow <* newline)

@@ -4,7 +4,7 @@ module Aoc.Year2021.Day05
   )
 where
 
-import Aoc.Parser (Parser, parseInt, runParser)
+import Aoc.Parser (Parser, intP, runParser)
 import Data.Map qualified as M
 import Data.MultiSet (MultiSet)
 import Data.MultiSet qualified as MS
@@ -16,7 +16,7 @@ type Point = (Int, Int)
 type Pair = (Point, Point)
 
 parsePoint :: Parser Point
-parsePoint = (,) <$> parseInt <*> (char ',' *> parseInt)
+parsePoint = (,) <$> intP <*> (char ',' *> intP)
 
 parsePair :: Parser Pair
 parsePair = (,) <$> parsePoint <*> (string " -> " *> parsePoint)

@@ -4,7 +4,7 @@ module Aoc.Year2021.Day18
   )
 where
 
-import Aoc.Parser (Parser, parseInt, runParser')
+import Aoc.Parser (Parser, intP, runParser')
 import Control.Applicative ((<|>))
 import Control.Monad (guard)
 import Data.List (foldl1')
@@ -23,7 +23,7 @@ instance Show SnailFish where
     Pair l r -> "[" <> show l <> "," <> show r <> "]"
 
 parseReg :: Parser SnailFish
-parseReg = Reg <$> parseInt
+parseReg = Reg <$> intP
 
 parsePair :: Parser SnailFish
 parsePair = do

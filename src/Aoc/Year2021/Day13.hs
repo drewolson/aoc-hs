@@ -4,7 +4,7 @@ module Aoc.Year2021.Day13
   )
 where
 
-import Aoc.Parser (Parser, parseInt, runParser)
+import Aoc.Parser (Parser, intP, runParser)
 import Data.Bifunctor (first, second)
 import Data.Foldable (Foldable (foldl'))
 import Data.List (intercalate)
@@ -30,13 +30,13 @@ parseInstructions = (,) <$> parseCoords <*> (newline *> parseFolds)
     parseDir = choice [X <$ char 'x', Y <$ char 'y']
 
     parseFold :: Parser Fold
-    parseFold = (string "fold along " *> parseDir) <*> (char '=' *> parseInt)
+    parseFold = (string "fold along " *> parseDir) <*> (char '=' *> intP)
 
     parseFolds :: Parser [Fold]
     parseFolds = sepEndBy1 parseFold newline
 
     parseCoord :: Parser Coord
-    parseCoord = (,) <$> parseInt <*> (char ',' *> parseInt)
+    parseCoord = (,) <$> intP <*> (char ',' *> intP)
 
     parseCoords :: Parser (Set Coord)
     parseCoords = Set.fromList <$> sepEndBy1 parseCoord newline

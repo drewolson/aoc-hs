@@ -6,7 +6,7 @@ module Aoc.Year2021.Day22
   )
 where
 
-import Aoc.Parser (Parser, parseSignedInt, runParser')
+import Aoc.Parser (Parser, runParser', signedIntP)
 import Control.Applicative ((<|>))
 import Data.Foldable (Foldable (foldl'))
 import Text.Megaparsec (sepEndBy1)
@@ -34,7 +34,7 @@ parseAction :: Parser Action
 parseAction = On <$ string "on" <|> Off <$ string "off"
 
 parseRange :: Parser (Int, Int)
-parseRange = (,) <$> parseSignedInt <*> (string ".." *> parseSignedInt)
+parseRange = (,) <$> signedIntP <*> (string ".." *> signedIntP)
 
 parseBox :: Parser Box
 parseBox = do

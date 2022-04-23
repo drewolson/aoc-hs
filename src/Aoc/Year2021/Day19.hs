@@ -4,7 +4,7 @@ module Aoc.Year2021.Day19
   )
 where
 
-import Aoc.Parser (Parser, parseInt, parseSignedInt, runParser')
+import Aoc.Parser (Parser, intP, runParser', signedIntP)
 import Control.Monad (guard)
 import Data.List qualified as List
 import Data.Set qualified as Set
@@ -18,16 +18,16 @@ type Scanner = [Coord]
 parseCoord :: Parser Coord
 parseCoord =
   (,,)
-    <$> parseSignedInt <* char ','
-    <*> parseSignedInt <* char ','
-    <*> parseSignedInt
+    <$> signedIntP <* char ','
+    <*> signedIntP <* char ','
+    <*> signedIntP
 
 parseCoords :: Parser [Coord]
 parseCoords = sepEndBy1 parseCoord newline
 
 parseScanner :: Parser Scanner
 parseScanner =
-  string "--- scanner " *> parseInt *> string " ---" *> newline *> parseCoords
+  string "--- scanner " *> intP *> string " ---" *> newline *> parseCoords
 
 parseScanners :: Parser [Scanner]
 parseScanners = sepEndBy1 parseScanner newline
@@ -38,19 +38,19 @@ parseInput = runParser' parseScanners
 axisChanges :: [Coord -> Coord]
 axisChanges =
   [ id,
-    \(x, y, z) -> (- x, y, - z),
-    \(x, y, z) -> (- z, y, x),
-    \(x, y, z) -> (z, y, - x),
-    \(x, y, z) -> (y, - x, z),
-    \(x, y, z) -> (- y, x, z)
+    \(x, y, z) -> (-x, y, -z),
+    \(x, y, z) -> (-z, y, x),
+    \(x, y, z) -> (z, y, -x),
+    \(x, y, z) -> (y, -x, z),
+    \(x, y, z) -> (-y, x, z)
   ]
 
 rotations :: [Coord -> Coord]
 rotations =
   [ id,
-    \(x, y, z) -> (x, z, - y),
-    \(x, y, z) -> (x, - y, - z),
-    \(x, y, z) -> (x, - z, y)
+    \(x, y, z) -> (x, z, -y),
+    \(x, y, z) -> (x, -y, -z),
+    \(x, y, z) -> (x, -z, y)
   ]
 
 variantFunctions :: [Coord -> Coord]
@@ -65,7 +65,7 @@ variants scanner = fmap (`fmap` scanner) variantFunctions
 
 delta :: Int -> Int -> Int
 delta n x
-  | n < x = - (x - n)
+  | n < x = -(x - n)
   | otherwise = n - x
 
 makeDiff :: Coord -> Coord -> Coord -> Coord

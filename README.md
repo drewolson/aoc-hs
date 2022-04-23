@@ -11,6 +11,7 @@ stack build
 ## Run Solution
 
 ```
+stack run -- --help
 stack run -- --day 1 --part 1
 stack run -- -d 1 -p 1
 ```
