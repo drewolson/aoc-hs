@@ -9,9 +9,13 @@ import Options.Generic (unwrapRecord)
 import Runner.Year2021 qualified as Year2021
 
 readInput :: Args' -> IO String
-readInput Args {year, day} =
-  let dayText = T.justifyRight 2 '0' $ T.pack $ show day
-   in readFile $ "./data/" <> show year <> "/day" <> T.unpack dayText <> ".txt"
+readInput Args {year, day} = readFile $ "./data/" <> show year <> "/day" <> paddedDay <> ".txt"
+  where
+    paddedDay :: String
+    paddedDay =
+      case show day of
+        [d] -> ['0', d]
+        d -> d
 
 runSolution :: String -> Args' -> IO ()
 runSolution input args =
