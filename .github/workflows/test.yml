@@ -8,7 +8,7 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     container:
-      image: haskell:8.10.7-buster
+      image: haskell:9.0.2-buster
       options: --user root
     steps:
       - uses: actions/checkout@v2
