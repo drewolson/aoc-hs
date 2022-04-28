@@ -86,6 +86,9 @@ library
 
 executable aoc-exe
   main-is: Main.hs
+  other-modules:
+      Args
+      Runner.Year2021
   hs-source-dirs:
       app
   default-extensions:
