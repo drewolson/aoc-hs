@@ -1,4 +1,4 @@
-module Args
+module Aoc.Runner.Args
   ( Args (..),
     Args',
   )

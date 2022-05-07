@@ -3,10 +3,9 @@ module Main
   )
 where
 
-import Args (Args (..), Args')
-import Data.Text qualified as T
+import Aoc.Runner.Args (Args (..), Args')
+import Aoc.Runner.Year2021 qualified as Year2021
 import Options.Generic (unwrapRecord)
-import Runner.Year2021 qualified as Year2021
 
 readInput :: Args' -> IO String
 readInput Args {year, day} = readFile $ "./data/" <> show year <> "/day" <> paddedDay <> ".txt"
@@ -25,7 +24,7 @@ runSolution input args =
 
 main :: IO ()
 main = do
-  args <- unwrapRecord $ T.pack "run aoc solution"
+  args <- unwrapRecord "run aoc solution"
   input <- readInput args
 
   runSolution input args

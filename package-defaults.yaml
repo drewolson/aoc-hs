@@ -1,0 +1,27 @@
+ghc-options:
+- -Werror
+- -Wall
+- -Wcompat
+- -Wincomplete-record-updates
+- -Wincomplete-uni-patterns
+- -Wredundant-constraints
+
+default-extensions:
+- BlockArguments
+- DataKinds
+- DeriveAnyClass
+- DeriveGeneric
+- ExplicitNamespaces
+- FlexibleInstances
+- ImportQualifiedPost
+- InstanceSigs
+- LambdaCase
+- NamedFieldPuns
+- QuasiQuotes
+- ScopedTypeVariables
+- StandaloneDeriving
+- TupleSections
+- TypeOperators
+
+build-tools:
+- ormolu

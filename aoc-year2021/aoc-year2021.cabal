@@ -4,28 +4,24 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 
-name:           aoc
+name:           aoc-year2021
 version:        0.1.0.0
-description:    Advent of Code in Haskell
+description:    Advent of Code in Haskell 2021
 homepage:       https://github.com/drewolson/aoc-hs#readme
 bug-reports:    https://github.com/drewolson/aoc-hs/issues
 author:         Drew Olson
 maintainer:     drew@drewolson.org
 copyright:      2021 Drew Olson
 license:        MIT
-license-file:   LICENSE
 build-type:     Simple
-extra-source-files:
-    README.md
 
 source-repository head
   type: git
   location: https://github.com/drewolson/aoc-hs
+  subdir: aoc-year2021
 
 library
   exposed-modules:
-      Aoc.Parser
-      Aoc.String
       Aoc.Year2021.Day01
       Aoc.Year2021.Day02
       Aoc.Year2021.Day03
@@ -49,7 +45,7 @@ library
       Aoc.Year2021.Day21
       Aoc.Year2021.Day22
   other-modules:
-      Paths_aoc
+      Paths_aoc_year2021
   hs-source-dirs:
       src
   default-extensions:
@@ -69,47 +65,10 @@ library
       TupleSections
       TypeOperators
   ghc-options: -Werror -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
+  build-tool-depends:
+      ormolu:ormolu
   build-depends:
-      array
-    , base >=4.7 && <5
-    , containers
-    , hashable
-    , hashtables
-    , matrix
-    , megaparsec
-    , multiset
-    , optparse-generic
-    , search-algorithms
-    , split
-    , text
-  default-language: Haskell2010
-
-executable aoc-exe
-  main-is: Main.hs
-  other-modules:
-      Args
-      Runner.Year2021
-  hs-source-dirs:
-      app
-  default-extensions:
-      BlockArguments
-      DataKinds
-      DeriveAnyClass
-      DeriveGeneric
-      ExplicitNamespaces
-      FlexibleInstances
-      ImportQualifiedPost
-      InstanceSigs
-      LambdaCase
-      NamedFieldPuns
-      QuasiQuotes
-      ScopedTypeVariables
-      StandaloneDeriving
-      TupleSections
-      TypeOperators
-  ghc-options: -Werror -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
-  build-depends:
-      aoc
+      aoc-core
     , array
     , base >=4.7 && <5
     , containers
@@ -118,13 +77,12 @@ executable aoc-exe
     , matrix
     , megaparsec
     , multiset
-    , optparse-generic
     , search-algorithms
     , split
     , text
   default-language: Haskell2010
 
-test-suite aoc-test
+test-suite aoc-year2021-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
@@ -150,7 +108,7 @@ test-suite aoc-test
       Aoc.Year2021.Day20Spec
       Aoc.Year2021.Day21Spec
       Aoc.Year2021.Day22Spec
-      Paths_aoc
+      Paths_aoc_year2021
   hs-source-dirs:
       test
   default-extensions:
@@ -170,9 +128,12 @@ test-suite aoc-test
       TupleSections
       TypeOperators
   ghc-options: -Werror -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+  build-tool-depends:
+      ormolu:ormolu
   build-depends:
       QuickCheck
-    , aoc
+    , aoc-core
+    , aoc-year2021
     , array
     , base >=4.7 && <5
     , containers
@@ -183,7 +144,6 @@ test-suite aoc-test
     , matrix
     , megaparsec
     , multiset
-    , optparse-generic
     , raw-strings-qq
     , search-algorithms
     , split

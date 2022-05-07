@@ -21,3 +21,10 @@ stack run -- -d 1 -p 1
 ```
 stack test
 ```
+
+## Format
+
+```
+make format-check
+make format
+```

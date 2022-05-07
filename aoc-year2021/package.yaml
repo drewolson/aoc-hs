@@ -1,0 +1,44 @@
+name:                aoc-year2021
+version:             0.1.0.0
+github:              "drewolson/aoc-hs/aoc-year2021"
+license:             MIT
+author:              "Drew Olson"
+maintainer:          "drew@drewolson.org"
+copyright:           "2021 Drew Olson"
+
+description: Advent of Code in Haskell 2021
+
+defaults:
+  local: ../package-defaults.yaml
+
+dependencies:
+- base >= 4.7 && < 5
+- aoc-core
+- array
+- containers
+- hashable
+- hashtables
+- matrix
+- megaparsec
+- multiset
+- search-algorithms
+- split
+- text
+
+library:
+  source-dirs: src
+
+tests:
+  aoc-year2021-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - aoc-year2021
+    - hspec
+    - hspec-discover
+    - raw-strings-qq
+    - QuickCheck
