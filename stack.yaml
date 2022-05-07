@@ -2,5 +2,5 @@ resolver: lts-19.6
 
 packages:
 - aoc-core
-- aoc-year2021
 - aoc-runner
+- aoc-year2021
