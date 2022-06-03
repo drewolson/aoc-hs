@@ -4,7 +4,7 @@ github:              "drewolson/aoc-hs/aoc-runner"
 license:             MIT
 author:              "Drew Olson"
 maintainer:          "drew@drewolson.org"
-copyright:           "2021 Drew Olson"
+copyright:           "2022 Drew Olson"
 
 description: Advent of Code in Haskell Runner
 
@@ -15,6 +15,7 @@ dependencies:
 - base >= 4.7 && < 5
 - aoc-year2021
 - optparse-generic
+- text
 
 library:
   source-dirs: src
@@ -27,8 +28,6 @@ executables:
     - -threaded
     - -rtsopts
     - -with-rtsopts=-N
-    default-extensions:
-    - OverloadedStrings
     dependencies:
     - aoc-runner
     when:

@@ -5,6 +5,7 @@ where
 
 import Aoc.Runner.Args (Args (..), Args')
 import Aoc.Runner.Year2021 qualified as Year2021
+import Data.Text qualified as T
 import Options.Generic (unwrapRecord)
 
 readInput :: Args' -> IO String
@@ -24,7 +25,7 @@ runSolution input args =
 
 main :: IO ()
 main = do
-  args <- unwrapRecord "run aoc solution"
+  args <- unwrapRecord $ T.pack "run aoc solution"
   input <- readInput args
 
   runSolution input args

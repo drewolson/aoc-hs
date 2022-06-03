@@ -11,7 +11,7 @@ homepage:       https://github.com/drewolson/aoc-hs#readme
 bug-reports:    https://github.com/drewolson/aoc-hs/issues
 author:         Drew Olson
 maintainer:     drew@drewolson.org
-copyright:      2021 Drew Olson
+copyright:      2022 Drew Olson
 license:        MIT
 build-type:     Simple
 
