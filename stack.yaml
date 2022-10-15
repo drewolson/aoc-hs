@@ -1,6 +1,7 @@
-resolver: lts-19.18
+resolver: lts-19.28
 
 packages:
 - aoc-core
 - aoc-runner
 - aoc-year2021
+- aoc-year2022

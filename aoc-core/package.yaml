@@ -1,6 +1,6 @@
 name:                aoc-core
 version:             0.1.0.0
-github:              "drewolson/aoc-hs/aoc-core"
+github:              "drewolson/aoc/aoc-core"
 license:             MIT
 author:              "Drew Olson"
 maintainer:          "drew@drewolson.org"

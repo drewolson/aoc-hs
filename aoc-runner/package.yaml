@@ -1,6 +1,6 @@
 name:                aoc-runner
 version:             0.1.0.0
-github:              "drewolson/aoc-hs/aoc-runner"
+github:              "drewolson/aoc/aoc-runner"
 license:             MIT
 author:              "Drew Olson"
 maintainer:          "drew@drewolson.org"
@@ -14,6 +14,7 @@ defaults:
 dependencies:
 - base >= 4.7 && < 5
 - aoc-year2021
+- aoc-year2022
 - optparse-generic
 - text
 

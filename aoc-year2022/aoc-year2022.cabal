@@ -4,9 +4,9 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 
-name:           aoc-runner
+name:           aoc-year2022
 version:        0.1.0.0
-description:    Advent of Code in Haskell Runner
+description:    Advent of Code in Haskell 2022
 homepage:       https://github.com/drewolson/aoc#readme
 bug-reports:    https://github.com/drewolson/aoc/issues
 author:         Drew Olson
@@ -18,15 +18,13 @@ build-type:     Simple
 source-repository head
   type: git
   location: https://github.com/drewolson/aoc
-  subdir: aoc-runner
+  subdir: aoc-year2022
 
 library
   exposed-modules:
-      Aoc.Runner.Args
-      Aoc.Runner.Year2021
-      Aoc.Runner.Year2022
+      Aoc.Year2022.Day01
   other-modules:
-      Paths_aoc_runner
+      Paths_aoc_year2022
   hs-source-dirs:
       src
   default-extensions:
@@ -49,50 +47,16 @@ library
   build-tool-depends:
       ormolu:ormolu
   build-depends:
-      aoc-year2021
-    , aoc-year2022
+      aoc-core
     , base >=4.7 && <5
-    , optparse-generic
-    , text
   default-language: Haskell2010
 
-executable aoc-exe
-  main-is: Main.hs
-  hs-source-dirs:
-      app
-  default-extensions:
-      BlockArguments
-      DataKinds
-      DeriveAnyClass
-      DeriveGeneric
-      ExplicitNamespaces
-      FlexibleInstances
-      ImportQualifiedPost
-      InstanceSigs
-      LambdaCase
-      NamedFieldPuns
-      QuasiQuotes
-      ScopedTypeVariables
-      StandaloneDeriving
-      TupleSections
-      TypeOperators
-  ghc-options: -Werror -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
-  build-tool-depends:
-      ormolu:ormolu
-  build-depends:
-      aoc-runner
-    , aoc-year2021
-    , aoc-year2022
-    , base >=4.7 && <5
-    , optparse-generic
-    , text
-  default-language: Haskell2010
-
-test-suite aoc-runner-test
+test-suite aoc-year2022-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
-      Paths_aoc_runner
+      Aoc.Year2022.Day01Spec
+      Paths_aoc_year2022
   hs-source-dirs:
       test
   default-extensions:
@@ -116,13 +80,10 @@ test-suite aoc-runner-test
       ormolu:ormolu
   build-depends:
       QuickCheck
-    , aoc-runner
-    , aoc-year2021
+    , aoc-core
     , aoc-year2022
     , base >=4.7 && <5
     , hspec
     , hspec-discover
-    , optparse-generic
     , raw-strings-qq
-    , text
   default-language: Haskell2010

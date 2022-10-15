@@ -7,8 +7,8 @@ cabal-version: 1.12
 name:           aoc-year2021
 version:        0.1.0.0
 description:    Advent of Code in Haskell 2021
-homepage:       https://github.com/drewolson/aoc-hs#readme
-bug-reports:    https://github.com/drewolson/aoc-hs/issues
+homepage:       https://github.com/drewolson/aoc#readme
+bug-reports:    https://github.com/drewolson/aoc/issues
 author:         Drew Olson
 maintainer:     drew@drewolson.org
 copyright:      2022 Drew Olson
@@ -17,7 +17,7 @@ build-type:     Simple
 
 source-repository head
   type: git
-  location: https://github.com/drewolson/aoc-hs
+  location: https://github.com/drewolson/aoc
   subdir: aoc-year2021
 
 library
