@@ -1,6 +1,6 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.34.4.
+-- This file has been generated from package.yaml by hpack version 0.35.0.
 --
 -- see: https://github.com/sol/hpack
 
@@ -38,7 +38,6 @@ library
       FlexibleInstances
       ImportQualifiedPost
       InstanceSigs
-      LambdaCase
       NamedFieldPuns
       QuasiQuotes
       ScopedTypeVariables
@@ -69,7 +68,6 @@ executable aoc-exe
       FlexibleInstances
       ImportQualifiedPost
       InstanceSigs
-      LambdaCase
       NamedFieldPuns
       QuasiQuotes
       ScopedTypeVariables
@@ -104,7 +102,6 @@ test-suite aoc-runner-test
       FlexibleInstances
       ImportQualifiedPost
       InstanceSigs
-      LambdaCase
       NamedFieldPuns
       QuasiQuotes
       ScopedTypeVariables

@@ -17,23 +17,24 @@ expand :: String -> String
 expand = foldMap expandChar
   where
     expandChar :: Char -> String
-    expandChar = \case
-      '0' -> "0000"
-      '1' -> "0001"
-      '2' -> "0010"
-      '3' -> "0011"
-      '4' -> "0100"
-      '5' -> "0101"
-      '6' -> "0110"
-      '7' -> "0111"
-      '8' -> "1000"
-      '9' -> "1001"
-      'A' -> "1010"
-      'B' -> "1011"
-      'C' -> "1100"
-      'D' -> "1101"
-      'E' -> "1110"
-      _ -> "1111"
+    expandChar c =
+      case c of
+        '0' -> "0000"
+        '1' -> "0001"
+        '2' -> "0010"
+        '3' -> "0011"
+        '4' -> "0100"
+        '5' -> "0101"
+        '6' -> "0110"
+        '7' -> "0111"
+        '8' -> "1000"
+        '9' -> "1001"
+        'A' -> "1010"
+        'B' -> "1011"
+        'C' -> "1100"
+        'D' -> "1101"
+        'E' -> "1110"
+        _ -> "1111"
 
 parseBin :: Int -> Parser String
 parseBin n = count n digitChar
@@ -92,21 +93,23 @@ parseExpr = do
     _ -> Op v exprId <$> parseOp
 
 sumVersions :: Expr -> Int
-sumVersions = \case
-  Lit v _ _ -> v
-  Op v _ exprs -> v + sum (fmap sumVersions exprs)
+sumVersions expr =
+  case expr of
+    Lit v _ _ -> v
+    Op v _ exprs -> v + sum (fmap sumVersions exprs)
 
 eval :: Expr -> Int
-eval = \case
-  Lit _ _ n -> n
-  Op _ 0 exprs -> sum $ fmap eval exprs
-  Op _ 1 exprs -> product $ fmap eval exprs
-  Op _ 2 exprs -> minimum $ fmap eval exprs
-  Op _ 3 exprs -> maximum $ fmap eval exprs
-  Op _ 5 [l, r] | eval l > eval r -> 1
-  Op _ 6 [l, r] | eval l < eval r -> 1
-  Op _ 7 [l, r] | eval l == eval r -> 1
-  _ -> 0
+eval expr =
+  case expr of
+    Lit _ _ n -> n
+    Op _ 0 exprs -> sum $ fmap eval exprs
+    Op _ 1 exprs -> product $ fmap eval exprs
+    Op _ 2 exprs -> minimum $ fmap eval exprs
+    Op _ 3 exprs -> maximum $ fmap eval exprs
+    Op _ 5 [l, r] | eval l > eval r -> 1
+    Op _ 6 [l, r] | eval l < eval r -> 1
+    Op _ 7 [l, r] | eval l == eval r -> 1
+    _ -> 0
 
 part1 :: String -> Int
 part1 = sumVersions . runParser' parseExpr . expand . init

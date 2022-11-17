@@ -12,28 +12,31 @@ isOpen :: Char -> Bool
 isOpen = (`elem` "([{<")
 
 toClose :: Char -> Char
-toClose = \case
-  '(' -> ')'
-  '[' -> ']'
-  '{' -> '}'
-  _ -> '>'
+toClose c =
+  case c of
+    '(' -> ')'
+    '[' -> ']'
+    '{' -> '}'
+    _ -> '>'
 
 completionScore :: String -> Int
 completionScore = foldl' (\acc c -> acc * 5 + charScore c) 0
   where
     charScore :: Char -> Int
-    charScore = \case
-      ')' -> 1
-      ']' -> 2
-      '}' -> 3
-      _ -> 4
+    charScore c =
+      case c of
+        ')' -> 1
+        ']' -> 2
+        '}' -> 3
+        _ -> 4
 
 syntaxScore :: Char -> Int
-syntaxScore = \case
-  ')' -> 3
-  ']' -> 57
-  '}' -> 1197
-  _ -> 25137
+syntaxScore c =
+  case c of
+    ')' -> 3
+    ']' -> 57
+    '}' -> 1197
+    _ -> 25137
 
 score :: String -> Either Int Int
 score = go []
