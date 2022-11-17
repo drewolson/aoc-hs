@@ -20,3 +20,9 @@ cradle:
 
     - path: "aoc-year2021/test"
       component: "aoc-year2021:test:aoc-year2021-test"
+
+    - path: "aoc-year2022/src"
+      component: "aoc-year2022:lib"
+
+    - path: "aoc-year2022/test"
+      component: "aoc-year2022:test:aoc-year2022-test"
