@@ -9,20 +9,29 @@ import Text.RawString.QQ (r)
 
 input :: String
 input =
-  [r|199
-200
-208
-210
-200
-207
-240
-269
-260
-263|]
+  [r|1000
+2000
+3000
+
+4000
+
+5000
+6000
+
+7000
+8000
+9000
+
+10000|]
 
 spec :: Spec
 spec = do
   it "2022 day 1 part 1 works" do
     let result = Day01.part1 input
 
-    result `shouldBe` 1
+    result `shouldBe` 24000
+
+  it "2022 day 1 part 2 works" do
+    let result = Day01.part2 input
+
+    result `shouldBe` 45000

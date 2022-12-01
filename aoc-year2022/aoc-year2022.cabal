@@ -48,6 +48,7 @@ library
   build-depends:
       aoc-core
     , base >=4.7 && <5
+    , split
   default-language: Haskell2010
 
 test-suite aoc-year2022-test
@@ -84,4 +85,5 @@ test-suite aoc-year2022-test
     , hspec
     , hspec-discover
     , raw-strings-qq
+    , split
   default-language: Haskell2010
