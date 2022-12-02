@@ -23,6 +23,7 @@ source-repository head
 library
   exposed-modules:
       Aoc.Year2022.Day01
+      Aoc.Year2022.Day02
   other-modules:
       Paths_aoc_year2022
   hs-source-dirs:
@@ -56,6 +57,7 @@ test-suite aoc-year2022-test
   main-is: Spec.hs
   other-modules:
       Aoc.Year2022.Day01Spec
+      Aoc.Year2022.Day02Spec
       Paths_aoc_year2022
   hs-source-dirs:
       test
