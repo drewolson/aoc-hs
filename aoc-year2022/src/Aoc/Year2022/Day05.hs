@@ -17,13 +17,11 @@ data Move = Move
     from :: Int,
     to :: Int
   }
-  deriving (Show)
 
 data Input = Input
   { stacks :: Map Int [Char],
     moves :: [Move]
   }
-  deriving (Show)
 
 stackItemP :: Parser (Maybe Char)
 stackItemP =
