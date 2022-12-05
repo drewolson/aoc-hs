@@ -1,5 +1,6 @@
 module Aoc.Parser
   ( Parser,
+    dropLineP,
     intP,
     signedIntP,
     runParser,
@@ -8,12 +9,16 @@ module Aoc.Parser
 where
 
 import Control.Applicative ((<|>))
+import Control.Monad (void)
 import Data.Bifunctor (first)
 import Data.Void (Void)
-import Text.Megaparsec (Parsec, errorBundlePretty, option, parse, some)
-import Text.Megaparsec.Char (char, digitChar)
+import Text.Megaparsec (MonadParsec (takeWhileP), Parsec, errorBundlePretty, option, parse, some)
+import Text.Megaparsec.Char (char, digitChar, newline)
 
 type Parser = Parsec Void String
+
+dropLineP :: Parser ()
+dropLineP = void $ takeWhileP Nothing (/= '\n') *> newline
 
 intP :: Parser Int
 intP = read <$> some digitChar

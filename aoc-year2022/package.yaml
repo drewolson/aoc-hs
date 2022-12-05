@@ -15,6 +15,7 @@ dependencies:
 - base >= 4.7 && < 5
 - aoc-core
 - containers
+- megaparsec
 - split
 
 library:
