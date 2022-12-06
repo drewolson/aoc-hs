@@ -4,13 +4,14 @@ module Aoc.Year2022.Day05
   )
 where
 
-import Aoc.Parser (Parser, dropLineP, intP, runParser')
+import Aoc.Parser (Parser, dropLineP, runParser')
 import Data.List (foldl', transpose)
 import Data.Map.Strict (Map, (!))
 import Data.Map.Strict qualified as Map
 import Data.Maybe (catMaybes)
 import Text.Megaparsec (anySingle, choice, sepBy1, sepEndBy1)
 import Text.Megaparsec.Char (char, newline, string)
+import Text.Megaparsec.Char.Lexer (decimal)
 
 data Move = Move
   { num :: Int,
@@ -39,9 +40,9 @@ stacksP = sepEndBy1 stackP newline
 moveP :: Parser Move
 moveP =
   Move
-    <$> (string "move " *> intP)
-    <*> (string " from " *> intP)
-    <*> (string " to " *> intP)
+    <$> (string "move " *> decimal)
+    <*> (string " from " *> decimal)
+    <*> (string " to " *> decimal)
 
 movesP :: Parser [Move]
 movesP = sepEndBy1 moveP newline
