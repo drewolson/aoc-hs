@@ -5,9 +5,9 @@ module Aoc.Year2022.Day05
 where
 
 import Aoc.Parser (Parser, dropLineP, runParser')
+import Data.IntMap.Strict (IntMap, (!))
+import Data.IntMap.Strict qualified as IntMap
 import Data.List (foldl', transpose)
-import Data.Map.Strict (Map, (!))
-import Data.Map.Strict qualified as Map
 import Data.Maybe (catMaybes)
 import Text.Megaparsec (anySingle, choice, sepBy1, sepEndBy1)
 import Text.Megaparsec.Char (char, newline, string)
@@ -20,7 +20,7 @@ data Move = Move
   }
 
 data Input = Input
-  { stacks :: Map Int [Char],
+  { stacks :: IntMap [Char],
     moves :: [Move]
   }
 
@@ -52,23 +52,19 @@ parseInput = runParser' do
   rawStacks <- stacksP
   dropLineP <* newline
   moves <- movesP
-  let stacks = Map.fromList $ zip [1 ..] $ catMaybes <$> transpose rawStacks
+  let stacks = IntMap.fromList $ zip [1 ..] $ catMaybes <$> transpose rawStacks
   pure Input {stacks, moves}
 
-checkTop :: Map Int [Char] -> String
-checkTop = foldMap safeHead . Map.elems
-  where
-    safeHead :: String -> String
-    safeHead (h : _) = [h]
-    safeHead _ = ""
+checkTop :: IntMap [Char] -> String
+checkTop = foldMap (pure . head) . IntMap.elems
 
-performMoves :: ([Char] -> [Char]) -> Input -> Map Int [Char]
+performMoves :: ([Char] -> [Char]) -> Input -> IntMap [Char]
 performMoves f Input {stacks, moves} = foldl' makeMove stacks moves
   where
-    makeMove :: Map Int [Char] -> Move -> Map Int [Char]
+    makeMove :: IntMap [Char] -> Move -> IntMap [Char]
     makeMove m Move {num, from, to} =
       let new = f $ take num $ m ! from
-       in Map.adjust (drop num) from $ Map.adjust (new <>) to m
+       in IntMap.adjust (drop num) from $ IntMap.adjust (new <>) to m
 
 part1 :: String -> String
 part1 = checkTop . performMoves reverse . parseInput
