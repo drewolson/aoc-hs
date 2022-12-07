@@ -40,7 +40,6 @@ buildFs = fst . buildDir "/" . drop 2
     buildNodes :: [Fs] -> [Cmd] -> ([Fs], [Cmd])
     buildNodes nodes (DirCmd _ : t) = buildNodes nodes t
     buildNodes nodes (Cd ".." : t) = (nodes, t)
-    buildNodes nodes [] = (nodes, [])
     buildNodes nodes (FileCmd i s : t) =
       buildNodes (File s i : nodes) t
     buildNodes nodes (Cd dir : t) =
