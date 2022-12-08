@@ -16,26 +16,21 @@ gridSize g =
   let keys = Map.keys g
    in (maximum $ fmap fst keys, maximum $ fmap snd keys)
 
-visible :: Int -> Int -> Grid -> ((Int, Int), Int) -> Bool
-visible maxX maxY grid ((x, y), n) =
-  any
-    (all ((< n) . (grid !)))
-    [ zip [0 .. x - 1] (repeat y),
-      zip [x + 1 .. maxX] (repeat y),
-      zip (repeat x) [0 .. y - 1],
-      zip (repeat x) [y + 1 .. maxY]
-    ]
+rays :: (Int, Int) -> (Int, Int) -> [[(Int, Int)]]
+rays (maxX, maxY) (x, y) =
+  [ zip [x - 1, x - 2 .. 0] (repeat y),
+    zip [x + 1 .. maxX] (repeat y),
+    zip (repeat x) [y - 1, y - 2 .. 0],
+    zip (repeat x) [y + 1 .. maxY]
+  ]
 
-scenicScore :: Int -> Int -> Grid -> ((Int, Int), Int) -> Int
-scenicScore maxX maxY grid ((x, y), n) =
-  product $
-    fmap
-      numLower
-      [ zip [x - 1, x - 2 .. 0] (repeat y),
-        zip [x + 1 .. maxX] (repeat y),
-        zip (repeat x) [y - 1, y - 2 .. 0],
-        zip (repeat x) [y + 1 .. maxY]
-      ]
+visible :: Grid -> ((Int, Int), Int) -> Bool
+visible grid (coord, n) =
+  any (all ((< n) . (grid !))) $ rays (gridSize grid) coord
+
+scenicScore :: Grid -> ((Int, Int), Int) -> Int
+scenicScore grid (coord, n) =
+  product $ numLower <$> rays (gridSize grid) coord
   where
     numLower :: [(Int, Int)] -> Int
     numLower [] = 0
@@ -46,11 +41,9 @@ scenicScore maxX maxY grid ((x, y), n) =
 part1 :: String -> Int
 part1 input =
   let grid = makeGrid input
-      (x, y) = gridSize grid
-   in length $ filter (visible x y grid) $ Map.toList grid
+   in length $ filter (visible grid) $ Map.toList grid
 
 part2 :: String -> Int
 part2 input =
   let grid = makeGrid input
-      (x, y) = gridSize grid
-   in maximum $ scenicScore x y grid <$> Map.toList grid
+   in maximum $ scenicScore grid <$> Map.toList grid
