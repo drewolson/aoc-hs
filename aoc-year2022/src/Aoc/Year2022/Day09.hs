@@ -9,36 +9,22 @@ import Text.Megaparsec (choice, sepEndBy1)
 import Text.Megaparsec.Char (newline, string)
 import Text.Megaparsec.Char.Lexer (decimal)
 
-data Dir = R | L | U | D
-
-type Cmd = (Dir, Int)
-
 type Coord = (Int, Int)
 
-dirP :: Parser Dir
-dirP =
-  choice
-    [ R <$ string "R ",
-      L <$ string "L ",
-      U <$ string "U ",
-      D <$ string "D "
-    ]
-
-cmdP :: Parser Cmd
-cmdP = (,) <$> dirP <*> decimal
-
-parseInput :: String -> [Cmd]
+parseInput :: String -> [(Int, Coord)]
 parseInput = runParser' $ sepEndBy1 cmdP newline
-
-expand :: Cmd -> [Coord]
-expand (dir, n) = replicate n step
   where
-    step :: Coord
-    step = case dir of
-      R -> (1, 0)
-      L -> (-1, 0)
-      U -> (0, 1)
-      D -> (0, -1)
+    dirP :: Parser Coord
+    dirP =
+      choice
+        [ (1, 0) <$ string "R ",
+          (-1, 0) <$ string "L ",
+          (0, 1) <$ string "U ",
+          (0, -1) <$ string "D "
+        ]
+
+    cmdP :: Parser (Int, Coord)
+    cmdP = flip (,) <$> dirP <*> decimal
 
 data State = S {s :: Set Coord, h :: Coord, ks :: [Coord]}
 
@@ -62,7 +48,7 @@ takeSteps n = s . foldl' go S {s = Set.singleton (0, 0), h = (0, 0), ks = replic
        in S s' h' ks'
 
 part1 :: String -> Int
-part1 = length . takeSteps 1 . (expand <=< parseInput)
+part1 = length . takeSteps 1 . (uncurry replicate <=< parseInput)
 
 part2 :: String -> Int
-part2 = length . takeSteps 9 . (expand <=< parseInput)
+part2 = length . takeSteps 9 . (uncurry replicate <=< parseInput)
