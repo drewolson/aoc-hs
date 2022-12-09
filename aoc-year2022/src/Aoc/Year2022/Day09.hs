@@ -54,24 +54,8 @@ makeSteps n = s . foldl' go (S (Set.singleton (0, 0)) (0, 0) (replicate n (0, 0)
 
     moveTail :: Coord -> Coord -> (Coord, Coord)
     moveTail (hX, hY) (tX, tY)
-      | abs (hX - tX) >= 2 && abs (hY - tY) >= 2 =
-        if hX > tX
-          then
-            if hY > tY
-              then dupe (hX - 1, hY - 1)
-              else dupe (hX - 1, hY + 1)
-          else
-            if hY > tY
-              then dupe (hX + 1, hY - 1)
-              else dupe (hX + 1, hY + 1)
-      | abs (hX - tX) >= 2 =
-        if hX > tX
-          then dupe (hX - 1, hY)
-          else dupe (hX + 1, hY)
-      | abs (hY - tY) >= 2 =
-        if hY > tY
-          then dupe (hX, hY - 1)
-          else dupe (hX, hY + 1)
+      | abs (hX - tX) >= 2 || abs (hY - tY) >= 2 =
+        dupe (tX + signum (hX - tX), tY + signum (hY - tY))
       | otherwise = dupe (tX, tY)
 
     go :: State -> Coord -> State
