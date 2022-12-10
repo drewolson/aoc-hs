@@ -1,11 +1,10 @@
 module Aoc.Year2022.Day10 where
 
-import Aoc.Parser (Parser, runParser')
+import Aoc.Parser (Parser, runParser', signedIntP)
 import Data.Function ((&))
 import Data.List.Split (chunksOf)
 import Text.Megaparsec (sepEndBy1, (<|>))
 import Text.Megaparsec.Char (newline, string)
-import Text.Megaparsec.Char.Lexer (decimal, signed)
 
 parseInput :: String -> [Int -> Int]
 parseInput = runParser' $ mconcat <$> sepEndBy1 cmdP newline
@@ -18,7 +17,7 @@ parseInput = runParser' $ mconcat <$> sepEndBy1 cmdP newline
 
     addxP :: Parser [Int -> Int]
     addxP = do
-      n <- string "addx " *> signed (pure ()) decimal
+      n <- string "addx " *> signedIntP
       pure [id, (+ n)]
 
 draw :: (Int, Int) -> Char
