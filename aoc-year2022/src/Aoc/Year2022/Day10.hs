@@ -26,7 +26,21 @@ draw (c, i)
   | otherwise = '.'
 
 part1 :: String -> Int
-part1 = sum . fmap (uncurry (*) . head) . chunksOf 40 . drop 19 . zip [1 ..] . scanl (&) 1 . parseInput
+part1 =
+  sum
+    . fmap (uncurry (*) . head)
+    . chunksOf 40
+    . drop 19
+    . zip [1 ..]
+    . scanl (&) 1
+    . parseInput
 
 part2 :: String -> String
-part2 = unlines . take 6 . chunksOf 40 . fmap draw . zip ((`mod` 40) <$> [0 ..]) . scanl (&) 1 . parseInput
+part2 =
+  unlines
+    . take 6
+    . chunksOf 40
+    . fmap draw
+    . zip ((`mod` 40) <$> [0 ..])
+    . scanl (&) 1
+    . parseInput
