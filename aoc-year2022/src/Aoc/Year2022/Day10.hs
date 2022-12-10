@@ -14,7 +14,7 @@ parseInput = runParser' $ mconcat <$> sepEndBy1 cmdP newline
     cmdP = noopP <|> addxP
 
     noopP :: Parser [Int -> Int]
-    noopP = pure id <$ string "noop"
+    noopP = [id] <$ string "noop"
 
     addxP :: Parser [Int -> Int]
     addxP = do
