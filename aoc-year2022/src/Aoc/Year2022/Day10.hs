@@ -1,0 +1,33 @@
+module Aoc.Year2022.Day10 where
+
+import Aoc.Parser (Parser, runParser')
+import Data.Function ((&))
+import Data.List.Split (chunksOf)
+import Text.Megaparsec (sepEndBy1, (<|>))
+import Text.Megaparsec.Char (newline, string)
+import Text.Megaparsec.Char.Lexer (decimal, signed)
+
+parseInput :: String -> [Int -> Int]
+parseInput = runParser' $ mconcat <$> sepEndBy1 cmdP newline
+  where
+    cmdP :: Parser [Int -> Int]
+    cmdP = noopP <|> addxP
+
+    noopP :: Parser [Int -> Int]
+    noopP = pure id <$ string "noop"
+
+    addxP :: Parser [Int -> Int]
+    addxP = do
+      n <- string "addx " *> signed (pure ()) decimal
+      pure [id, (+ n)]
+
+draw :: (Int, Int) -> Char
+draw (c, i)
+  | abs (c - i) <= 1 = '#'
+  | otherwise = '.'
+
+part1 :: String -> Int
+part1 = sum . fmap (uncurry (*) . head) . chunksOf 40 . drop 19 . zip [1 ..] . scanl (&) 1 . parseInput
+
+part2 :: String -> String
+part2 = unlines . take 6 . chunksOf 40 . fmap draw . zip ((`mod` 40) <$> [0 ..]) . scanl (&) 1 . parseInput
