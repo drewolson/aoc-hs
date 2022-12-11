@@ -11,7 +11,7 @@ where
 import Control.Monad (void)
 import Data.Bifunctor (first)
 import Data.Void (Void)
-import Text.Megaparsec (MonadParsec (takeWhileP), Parsec, errorBundlePretty, parse)
+import Text.Megaparsec (Parsec, errorBundlePretty, parse, takeWhileP)
 import Text.Megaparsec.Char (newline)
 import Text.Megaparsec.Char.Lexer (decimal, signed)
 
