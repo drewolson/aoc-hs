@@ -159,12 +159,12 @@ noop
 
 spec :: Spec
 spec = do
-  it "2022 day 9 part 1 works" do
+  it "2022 day 10 part 1 works" do
     let result = Day10.part1 input
 
     result `shouldBe` 13140
 
-  it "2022 day 9 part 2 works" do
+  it "2022 day 10 part 2 works" do
     let result = Day10.part2 input
     let output =
           [r|##..##..##..##..##..##..##..##..##..##..
