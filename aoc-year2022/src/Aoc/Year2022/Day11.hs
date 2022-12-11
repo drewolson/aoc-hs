@@ -17,10 +17,6 @@ data Monkey = Monkey
     ifFalse :: Int
   }
 
-instance Show Monkey where
-  show (Monkey {num, items, op = _, divTest, ifTrue, ifFalse}) =
-    show (num, items, divTest, ifTrue, ifFalse)
-
 type State = Map Int Monkey
 
 type Counts = Map Int Integer
