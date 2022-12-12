@@ -36,8 +36,8 @@ shortestPath graph end = dijkstra neighbors (\_ _ -> 1) (== end)
     canClimb s d = asInt d - asInt s <= 1
 
     asInt :: Char -> Int
-    asInt 'S' = ord 'a'
-    asInt 'E' = ord 'z'
+    asInt 'S' = asInt 'a'
+    asInt 'E' = asInt 'z'
     asInt c = ord c
 
 part1 :: String -> Maybe Int
