@@ -33,10 +33,12 @@ shortestPath graph end = dijkstra neighbors (\_ _ -> 1) (== end)
          in canClimb s d
 
     canClimb :: Char -> Char -> Bool
-    canClimb 'S' d = d == 'a'
-    canClimb s 'E' = s == 'z'
-    canClimb _ 'S' = False
-    canClimb s d = ord d - ord s <= 1
+    canClimb s d = asInt d - asInt s <= 1
+
+    asInt :: Char -> Int
+    asInt 'S' = ord 'a'
+    asInt 'E' = ord 'z'
+    asInt c = ord c
 
 part1 :: String -> Maybe Int
 part1 input = do
@@ -53,4 +55,5 @@ part2 input = do
   let items = Map.toList graph
   (end, _) <- find ((== 'E') . snd) items
   let starts = fst <$> filter ((== 'a') . snd) items
+
   pure $ minimum $ fst <$> mapMaybe (shortestPath graph end) starts
