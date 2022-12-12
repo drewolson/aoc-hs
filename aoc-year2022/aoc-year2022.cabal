@@ -33,6 +33,7 @@ library
       Aoc.Year2022.Day09
       Aoc.Year2022.Day10
       Aoc.Year2022.Day11
+      Aoc.Year2022.Day12
   other-modules:
       Paths_aoc_year2022
   hs-source-dirs:
@@ -60,6 +61,7 @@ library
     , base >=4.7 && <5
     , containers
     , megaparsec
+    , search-algorithms
     , split
   default-language: Haskell2010
 
@@ -78,6 +80,7 @@ test-suite aoc-year2022-test
       Aoc.Year2022.Day09Spec
       Aoc.Year2022.Day10Spec
       Aoc.Year2022.Day11Spec
+      Aoc.Year2022.Day12Spec
       Paths_aoc_year2022
   hs-source-dirs:
       test
@@ -109,5 +112,6 @@ test-suite aoc-year2022-test
     , hspec-discover
     , megaparsec
     , raw-strings-qq
+    , search-algorithms
     , split
   default-language: Haskell2010
