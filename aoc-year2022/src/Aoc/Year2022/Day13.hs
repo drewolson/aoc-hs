@@ -12,7 +12,7 @@ data Packet
 
 instance Eq Packet where
   (==) :: Packet -> Packet -> Bool
-  a == b = compare a b == EQ
+  l == r = compare l r == EQ
 
 instance Ord Packet where
   compare :: Packet -> Packet -> Ordering
