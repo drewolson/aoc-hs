@@ -9,7 +9,10 @@ import Text.Megaparsec.Char.Lexer (decimal)
 data Packet
   = L [Packet]
   | V Int
-  deriving (Eq)
+
+instance Eq Packet where
+  (==) :: Packet -> Packet -> Bool
+  a == b = compare a b == EQ
 
 instance Ord Packet where
   compare :: Packet -> Packet -> Ordering
