@@ -1,6 +1,6 @@
 module Aoc.Year2022.Day12 where
 
-import Algorithm.Search (dijkstra)
+import Algorithm.Search (bfs)
 import Data.Char (ord)
 import Data.Foldable (find)
 import Data.Map.Strict (Map, (!))
@@ -17,20 +17,17 @@ parseInput = Map.fromList . foldMap makeRow . zip [0 ..] . lines
     makeRow :: (Int, String) -> [((Int, Int), Char)]
     makeRow (y, l) = (\(x, c) -> ((x, y), c)) <$> zip [0 ..] l
 
-shortestPath :: Graph -> Coord -> Coord -> Maybe (Int, [Coord])
-shortestPath graph end = dijkstra neighbors (\_ _ -> 1) (== end)
+shortestPath :: Graph -> Coord -> Coord -> Maybe [Coord]
+shortestPath graph end = bfs neighbors (== end)
   where
     neighbors :: Coord -> [Coord]
     neighbors s@(x, y) =
       [d | d <- [(x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)], reachable s d]
 
     reachable :: Coord -> Coord -> Bool
-    reachable sc dc
-      | Map.notMember dc graph = False
-      | otherwise =
-        let s = graph ! sc
-            d = graph ! dc
-         in canClimb s d
+    reachable s d
+      | Map.notMember d graph = False
+      | otherwise = canClimb (graph ! s) (graph ! d)
 
     canClimb :: Char -> Char -> Bool
     canClimb s d = asInt d - asInt s <= 1
@@ -47,7 +44,7 @@ part1 input = do
   (start, _) <- find ((== 'S') . snd) items
   (end, _) <- find ((== 'E') . snd) items
 
-  fst <$> shortestPath graph end start
+  length <$> shortestPath graph end start
 
 part2 :: String -> Maybe Int
 part2 input = do
@@ -56,4 +53,4 @@ part2 input = do
   (end, _) <- find ((== 'E') . snd) items
   let starts = fst <$> filter ((== 'a') . snd) items
 
-  pure $ minimum $ fst <$> mapMaybe (shortestPath graph end) starts
+  pure $ minimum $ length <$> mapMaybe (shortestPath graph end) starts
