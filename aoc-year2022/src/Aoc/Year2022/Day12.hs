@@ -1,11 +1,12 @@
 module Aoc.Year2022.Day12 where
 
 import Algorithm.Search (bfs)
+import Control.Parallel.Strategies (parMap, rpar)
 import Data.Char (ord)
 import Data.Foldable (find)
 import Data.Map.Strict (Map, (!))
 import Data.Map.Strict qualified as Map
-import Data.Maybe (mapMaybe)
+import Data.Maybe (catMaybes)
 
 type Coord = (Int, Int)
 
@@ -53,4 +54,4 @@ part2 input = do
   let starts = fst <$> filter ((== 'a') . snd) items
   (end, _) <- find ((== 'E') . snd) items
 
-  pure $ minimum $ length <$> mapMaybe (shortestPath graph end) starts
+  pure $ minimum $ fmap length $ catMaybes $ parMap rpar (shortestPath graph end) starts
