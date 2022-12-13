@@ -50,7 +50,7 @@ part2 :: String -> Maybe Int
 part2 input = do
   let graph = parseInput input
   let items = Map.toList graph
-  (end, _) <- find ((== 'E') . snd) items
   let starts = fst <$> filter ((== 'a') . snd) items
+  (end, _) <- find ((== 'E') . snd) items
 
   pure $ minimum $ length <$> mapMaybe (shortestPath graph end) starts
