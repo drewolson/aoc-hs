@@ -38,7 +38,7 @@ dropSand maxY grid = Set.insert (fall (500, 0)) grid
     next (x, y) = [(x, y + 1), (x - 1, y + 1), (x + 1, y + 1)]
 
     freeSlot :: Coord -> Bool
-    freeSlot c@(_, y) = Set.notMember c grid && y < maxY
+    freeSlot c = Set.notMember c grid && snd c < maxY
 
     fall :: Coord -> Coord
     fall c = maybe c fall (find freeSlot $ next c)
