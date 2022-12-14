@@ -16,7 +16,6 @@ dependencies:
 - aoc-core
 - containers
 - megaparsec
-- parallel
 - search-algorithms
 - split
 

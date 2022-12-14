@@ -18,8 +18,8 @@ instance Ord Packet where
   compare :: Packet -> Packet -> Ordering
   compare (V l) (V r) = compare l r
   compare (L l) (L r) = compare l r
-  compare (L l) v@(V _) = compare l [v]
-  compare v@(V _) (L r) = compare [v] r
+  compare (L l) v = compare l [v]
+  compare v (L r) = compare [v] r
 
 div1 :: Packet
 div1 = L [L [V 2]]
