@@ -41,10 +41,7 @@ dropSand maxY grid = Set.insert (fall (500, 0)) grid
     freeSlot c@(_, y) = Set.notMember c grid && y < maxY
 
     fall :: Coord -> Coord
-    fall c =
-      case find freeSlot $ next c of
-        Nothing -> c
-        (Just n) -> fall n
+    fall c = maybe c fall (find freeSlot $ next c)
 
 part1 :: String -> Int
 part1 input =
