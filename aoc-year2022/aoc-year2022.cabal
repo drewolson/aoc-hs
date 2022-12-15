@@ -36,6 +36,7 @@ library
       Aoc.Year2022.Day12
       Aoc.Year2022.Day13
       Aoc.Year2022.Day14
+      Aoc.Year2022.Day15
   other-modules:
       Paths_aoc_year2022
   hs-source-dirs:
@@ -85,6 +86,7 @@ test-suite aoc-year2022-test
       Aoc.Year2022.Day12Spec
       Aoc.Year2022.Day13Spec
       Aoc.Year2022.Day14Spec
+      Aoc.Year2022.Day15Spec
       Paths_aoc_year2022
   hs-source-dirs:
       test

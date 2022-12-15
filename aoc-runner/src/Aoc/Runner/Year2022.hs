@@ -18,6 +18,7 @@ import Aoc.Year2022.Day11 qualified as Day11
 import Aoc.Year2022.Day12 qualified as Day12
 import Aoc.Year2022.Day13 qualified as Day13
 import Aoc.Year2022.Day14 qualified as Day14
+import Aoc.Year2022.Day15 qualified as Day15
 
 run :: String -> Args' -> IO ()
 run input args =
@@ -50,4 +51,6 @@ run input args =
     Args {day = 13, part = 2} -> print $ Day13.part2 input
     Args {day = 14, part = 1} -> print $ Day14.part1 input
     Args {day = 14, part = 2} -> print $ Day14.part2 input
+    Args {day = 15, part = 1} -> print $ Day15.part1 2000000 input
+    Args {day = 15, part = 2} -> print $ Day15.part2 4000000 input
     _ -> fail "unknown day/part"
