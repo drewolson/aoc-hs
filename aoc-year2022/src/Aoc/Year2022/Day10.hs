@@ -1,4 +1,8 @@
-module Aoc.Year2022.Day10 where
+module Aoc.Year2022.Day10
+  ( part1,
+    part2,
+  )
+where
 
 import Aoc.Parser (Parser, runParser', signedIntP)
 import Data.Function ((&))

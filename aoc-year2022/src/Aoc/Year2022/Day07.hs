@@ -1,4 +1,8 @@
-module Aoc.Year2022.Day07 where
+module Aoc.Year2022.Day07
+  ( part1,
+    part2,
+  )
+where
 
 import Aoc.Parser (Parser, runParser')
 import Control.Applicative ((<|>))

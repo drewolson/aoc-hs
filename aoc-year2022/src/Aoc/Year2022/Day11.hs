@@ -1,4 +1,8 @@
-module Aoc.Year2022.Day11 where
+module Aoc.Year2022.Day11
+  ( part1,
+    part2,
+  )
+where
 
 import Aoc.Parser (Parser, runParser')
 import Data.List (foldl', partition, sort)

@@ -1,4 +1,8 @@
-module Aoc.Year2022.Day12 where
+module Aoc.Year2022.Day12
+  ( part1,
+    part2,
+  )
+where
 
 import Algorithm.Search (bfs)
 import Aoc.Parallel (pmap)

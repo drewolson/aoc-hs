@@ -1,4 +1,8 @@
-module Aoc.Year2022.Day15 where
+module Aoc.Year2022.Day15
+  ( part1,
+    part2,
+  )
+where
 
 import Aoc.Parser (Parser, runParser')
 import Data.List (find, genericLength)
@@ -7,11 +11,11 @@ import Text.Megaparsec (sepEndBy1)
 import Text.Megaparsec.Char (newline, string)
 import Text.Megaparsec.Char.Lexer (decimal, signed)
 
-type Interval = (Integer, Integer)
-
 type Coord = (Integer, Integer)
 
-type Pairs = [(Coord, Coord)]
+type Pair = (Coord, Coord)
+
+type Pairs = [Pair]
 
 parseInput :: String -> Pairs
 parseInput = runParser' $ sepEndBy1 pairP newline
@@ -33,23 +37,24 @@ findMinMaxX pairs =
   let ends = foldMap xRange pairs
    in (minimum ends, maximum ends)
   where
-    xRange :: (Coord, Coord) -> [Integer]
+    xRange :: Pair -> [Integer]
     xRange (s@(x, _), b) = [x - dist s b, x + dist s b]
 
 isCovered :: Pairs -> Coord -> Bool
 isCovered pairs coord = any (covered coord) pairs
   where
-    covered :: Coord -> (Coord, Coord) -> Bool
+    covered :: Coord -> Pair -> Bool
     covered c (a, b) = dist a c <= dist a b
 
 beaconsIn :: Integer -> Pairs -> Integer
 beaconsIn y = genericLength . Set.toList . Set.filter ((== y) . snd) . Set.fromList . fmap snd
 
-perimeter :: (Coord, Coord) -> [Coord]
-perimeter (s@(sx, sy), b) =
+perimeter :: Pair -> [Coord]
+perimeter (s@(sx, sy), b) = do
   let d = dist s b
-      pairs = zip [sx - d - 1 .. sx + d + 1] ([0 .. d + 1] <> [d, d - 1 .. 0])
-   in foldMap (\(x, dy) -> [(x, sy + dy), (x, sy - dy)]) pairs
+  (x, dy) <- zip [sx - d - 1 .. sx + d + 1] ([0 .. d + 1] <> [d, d - 1 .. 0])
+
+  [(x, sy + dy), (x, sy - dy)]
 
 inBounds :: Integer -> Coord -> Bool
 inBounds size (x, y) = x >= 0 && x <= size && y >= 0 && y <= size

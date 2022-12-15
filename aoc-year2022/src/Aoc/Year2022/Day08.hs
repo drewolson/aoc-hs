@@ -1,4 +1,8 @@
-module Aoc.Year2022.Day08 where
+module Aoc.Year2022.Day08
+  ( part1,
+    part2,
+  )
+where
 
 import Data.Map.Strict (Map, (!))
 import Data.Map.Strict qualified as Map
