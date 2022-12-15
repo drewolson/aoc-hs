@@ -15,9 +15,7 @@ type Coord = (Integer, Integer)
 
 type Pair = (Coord, Coord)
 
-type Pairs = [Pair]
-
-parseInput :: String -> Pairs
+parseInput :: String -> [Pair]
 parseInput = runParser' $ sepEndBy1 pairP newline
   where
     signedP :: Parser Integer
@@ -32,7 +30,7 @@ parseInput = runParser' $ sepEndBy1 pairP newline
 dist :: Coord -> Coord -> Integer
 dist (xa, ya) (xb, yb) = abs (xa - xb) + abs (ya - yb)
 
-findMinMaxX :: Pairs -> (Integer, Integer)
+findMinMaxX :: [Pair] -> (Integer, Integer)
 findMinMaxX pairs =
   let ends = foldMap xRange pairs
    in (minimum ends, maximum ends)
@@ -40,13 +38,13 @@ findMinMaxX pairs =
     xRange :: Pair -> [Integer]
     xRange (s@(x, _), b) = [x - dist s b, x + dist s b]
 
-isCovered :: Pairs -> Coord -> Bool
+isCovered :: [Pair] -> Coord -> Bool
 isCovered pairs coord = any (covered coord) pairs
   where
     covered :: Coord -> Pair -> Bool
     covered c (a, b) = dist a c <= dist a b
 
-beaconsIn :: Integer -> Pairs -> Integer
+beaconsIn :: Integer -> [Pair] -> Integer
 beaconsIn y = genericLength . Set.toList . Set.filter ((== y) . snd) . Set.fromList . fmap snd
 
 perimeter :: Pair -> [Coord]
