@@ -1,8 +1,7 @@
 module Aoc.Year2022.Day15 where
 
 import Aoc.Parser (Parser, runParser')
-import Data.List (genericLength, sort)
-import Data.Maybe (mapMaybe)
+import Data.List (find, genericLength)
 import Data.Set qualified as Set
 import Text.Megaparsec (sepEndBy1)
 import Text.Megaparsec.Char (newline, string)
@@ -46,28 +45,14 @@ isCovered pairs coord = any (covered coord) pairs
 beaconsIn :: Integer -> Pairs -> Integer
 beaconsIn y = genericLength . Set.toList . Set.filter ((== y) . snd) . Set.fromList . fmap snd
 
-makeInterval :: Integer -> (Coord, Coord) -> Maybe Interval
-makeInterval y (s@(sx, sy), b) =
+perimeter :: (Coord, Coord) -> [Coord]
+perimeter (s@(sx, sy), b) =
   let d = dist s b
-      d' = d - abs (sy - y)
-   in if d' > 0
-        then Just (sx - d', sx + d')
-        else Nothing
+      pairs = zip [sx - d - 1 .. sx + d + 1] ([0 .. d + 1] <> [d, d - 1 .. 0])
+   in foldMap (\(x, dy) -> [(x, sy + dy), (x, sy - dy)]) pairs
 
-merge :: [Interval] -> [Interval]
-merge (a@(ah, at) : b@(bh, bt) : t)
-  | bh <= at = merge ((ah, max at bt) : t)
-  | otherwise = a : merge (b : t)
-merge a = a
-
-findMissing :: [Interval] -> Maybe Integer
-findMissing ((_, t) : _ : _) = Just $ t + 1
-findMissing _ = Nothing
-
-findPoint :: Pairs -> Integer -> Maybe Coord
-findPoint pairs y =
-  let intervals = merge $ sort $ mapMaybe (makeInterval y) pairs
-   in (,y) <$> findMissing intervals
+inBounds :: Integer -> Coord -> Bool
+inBounds size (x, y) = x >= 0 && x <= size && y >= 0 && y <= size
 
 part1 :: Integer -> String -> Integer
 part1 y input =
@@ -77,8 +62,10 @@ part1 y input =
       beaconCount = beaconsIn y pairs
    in count - beaconCount
 
-part2 :: Integer -> String -> Integer
+part2 :: Integer -> String -> Maybe Integer
 part2 size input = do
   let pairs = parseInput input
-      (x, y) = head $ mapMaybe (findPoint pairs) [0 .. size]
-   in x * 4000000 + y
+  let candidates = filter (inBounds size) $ foldMap perimeter pairs
+  (x, y) <- find (not . isCovered pairs) candidates
+
+  Just $ x * 4000000 + y

@@ -35,4 +35,4 @@ spec = do
   it "2022 day 15 part 2 works" do
     let result = Day15.part2 20 input
 
-    result `shouldBe` 56000011
+    result `shouldBe` Just 56000011
