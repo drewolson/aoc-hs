@@ -3,7 +3,7 @@ module Aoc.Runner.Year2022
   )
 where
 
-import Aoc.Runner.Args (Args (..), Args')
+import Aoc.Runner.Args (Args (..))
 import Aoc.Year2022.Day01 qualified as Day01
 import Aoc.Year2022.Day02 qualified as Day02
 import Aoc.Year2022.Day03 qualified as Day03
@@ -20,7 +20,7 @@ import Aoc.Year2022.Day13 qualified as Day13
 import Aoc.Year2022.Day14 qualified as Day14
 import Aoc.Year2022.Day15 qualified as Day15
 
-run :: String -> Args' -> IO ()
+run :: String -> Args -> IO ()
 run input args =
   case args of
     Args {day = 01, part = 1} -> print $ Day01.part1 input

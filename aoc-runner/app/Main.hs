@@ -3,13 +3,12 @@ module Main
   )
 where
 
-import Aoc.Runner.Args (Args (..), Args')
+import Aoc.Runner.Args (Args (..))
+import Aoc.Runner.Args qualified as Args
 import Aoc.Runner.Year2021 qualified as Year2021
 import Aoc.Runner.Year2022 qualified as Year2022
-import Data.Text qualified as T
-import Options.Generic (unwrapRecord)
 
-readInput :: Args' -> IO String
+readInput :: Args -> IO String
 readInput Args {year, day} = readFile $ "./data/" <> show year <> "/day" <> paddedDay <> ".txt"
   where
     paddedDay :: String
@@ -18,7 +17,7 @@ readInput Args {year, day} = readFile $ "./data/" <> show year <> "/day" <> padd
         [d] -> ['0', d]
         d -> d
 
-runSolution :: String -> Args' -> IO ()
+runSolution :: String -> Args -> IO ()
 runSolution input args =
   case args of
     Args {year = 2021} -> Year2021.run input args
@@ -27,7 +26,7 @@ runSolution input args =
 
 main :: IO ()
 main = do
-  args <- unwrapRecord $ T.pack "run aoc solution"
+  args <- Args.parse
   input <- readInput args
 
   runSolution input args

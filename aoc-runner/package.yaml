@@ -15,8 +15,7 @@ dependencies:
 - base >= 4.7 && < 5
 - aoc-year2021
 - aoc-year2022
-- optparse-generic
-- text
+- optparse-applicative
 
 library:
   source-dirs: src
