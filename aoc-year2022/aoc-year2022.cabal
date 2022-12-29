@@ -43,19 +43,8 @@ library
       src
   default-extensions:
       BlockArguments
-      DataKinds
       DeriveAnyClass
-      DeriveGeneric
-      ExplicitNamespaces
-      FlexibleInstances
-      ImportQualifiedPost
-      InstanceSigs
-      NamedFieldPuns
       QuasiQuotes
-      ScopedTypeVariables
-      StandaloneDeriving
-      TupleSections
-      TypeOperators
   ghc-options: -Werror -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
   build-tool-depends:
       ormolu:ormolu
@@ -66,7 +55,7 @@ library
     , megaparsec
     , search-algorithms
     , split
-  default-language: Haskell2010
+  default-language: GHC2021
 
 test-suite aoc-year2022-test
   type: exitcode-stdio-1.0
@@ -92,19 +81,8 @@ test-suite aoc-year2022-test
       test
   default-extensions:
       BlockArguments
-      DataKinds
       DeriveAnyClass
-      DeriveGeneric
-      ExplicitNamespaces
-      FlexibleInstances
-      ImportQualifiedPost
-      InstanceSigs
-      NamedFieldPuns
       QuasiQuotes
-      ScopedTypeVariables
-      StandaloneDeriving
-      TupleSections
-      TypeOperators
   ghc-options: -Werror -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-tool-depends:
       ormolu:ormolu
@@ -120,4 +98,4 @@ test-suite aoc-year2022-test
     , raw-strings-qq
     , search-algorithms
     , split
-  default-language: Haskell2010
+  default-language: GHC2021

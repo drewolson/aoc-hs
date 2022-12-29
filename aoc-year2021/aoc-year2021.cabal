@@ -1,6 +1,6 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.35.0.
+-- This file has been generated from package.yaml by hpack version 0.35.1.
 --
 -- see: https://github.com/sol/hpack
 
@@ -50,19 +50,8 @@ library
       src
   default-extensions:
       BlockArguments
-      DataKinds
       DeriveAnyClass
-      DeriveGeneric
-      ExplicitNamespaces
-      FlexibleInstances
-      ImportQualifiedPost
-      InstanceSigs
-      NamedFieldPuns
       QuasiQuotes
-      ScopedTypeVariables
-      StandaloneDeriving
-      TupleSections
-      TypeOperators
   ghc-options: -Werror -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
   build-tool-depends:
       ormolu:ormolu
@@ -79,7 +68,7 @@ library
     , search-algorithms
     , split
     , text
-  default-language: Haskell2010
+  default-language: GHC2021
 
 test-suite aoc-year2021-test
   type: exitcode-stdio-1.0
@@ -112,19 +101,8 @@ test-suite aoc-year2021-test
       test
   default-extensions:
       BlockArguments
-      DataKinds
       DeriveAnyClass
-      DeriveGeneric
-      ExplicitNamespaces
-      FlexibleInstances
-      ImportQualifiedPost
-      InstanceSigs
-      NamedFieldPuns
       QuasiQuotes
-      ScopedTypeVariables
-      StandaloneDeriving
-      TupleSections
-      TypeOperators
   ghc-options: -Werror -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-tool-depends:
       ormolu:ormolu
@@ -146,4 +124,4 @@ test-suite aoc-year2021-test
     , search-algorithms
     , split
     , text
-  default-language: Haskell2010
+  default-language: GHC2021

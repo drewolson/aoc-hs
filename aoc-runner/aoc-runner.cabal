@@ -31,19 +31,8 @@ library
       src
   default-extensions:
       BlockArguments
-      DataKinds
       DeriveAnyClass
-      DeriveGeneric
-      ExplicitNamespaces
-      FlexibleInstances
-      ImportQualifiedPost
-      InstanceSigs
-      NamedFieldPuns
       QuasiQuotes
-      ScopedTypeVariables
-      StandaloneDeriving
-      TupleSections
-      TypeOperators
   ghc-options: -Werror -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
   build-tool-depends:
       ormolu:ormolu
@@ -52,7 +41,7 @@ library
     , aoc-year2022
     , base >=4.7 && <5
     , optparse-applicative
-  default-language: Haskell2010
+  default-language: GHC2021
 
 executable aoc-exe
   main-is: Main.hs
@@ -60,19 +49,8 @@ executable aoc-exe
       app
   default-extensions:
       BlockArguments
-      DataKinds
       DeriveAnyClass
-      DeriveGeneric
-      ExplicitNamespaces
-      FlexibleInstances
-      ImportQualifiedPost
-      InstanceSigs
-      NamedFieldPuns
       QuasiQuotes
-      ScopedTypeVariables
-      StandaloneDeriving
-      TupleSections
-      TypeOperators
   ghc-options: -Werror -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-tool-depends:
       ormolu:ormolu
@@ -82,7 +60,7 @@ executable aoc-exe
     , aoc-year2022
     , base >=4.7 && <5
     , optparse-applicative
-  default-language: Haskell2010
+  default-language: GHC2021
 
 test-suite aoc-runner-test
   type: exitcode-stdio-1.0
@@ -93,19 +71,8 @@ test-suite aoc-runner-test
       test
   default-extensions:
       BlockArguments
-      DataKinds
       DeriveAnyClass
-      DeriveGeneric
-      ExplicitNamespaces
-      FlexibleInstances
-      ImportQualifiedPost
-      InstanceSigs
-      NamedFieldPuns
       QuasiQuotes
-      ScopedTypeVariables
-      StandaloneDeriving
-      TupleSections
-      TypeOperators
   ghc-options: -Werror -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-tool-depends:
       ormolu:ormolu
@@ -119,4 +86,4 @@ test-suite aoc-runner-test
     , hspec-discover
     , optparse-applicative
     , raw-strings-qq
-  default-language: Haskell2010
+  default-language: GHC2021

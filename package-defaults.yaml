@@ -6,21 +6,12 @@ ghc-options:
 - -Wincomplete-uni-patterns
 - -Wredundant-constraints
 
+language: GHC2021
+
 default-extensions:
 - BlockArguments
-- DataKinds
 - DeriveAnyClass
-- DeriveGeneric
-- ExplicitNamespaces
-- FlexibleInstances
-- ImportQualifiedPost
-- InstanceSigs
-- NamedFieldPuns
 - QuasiQuotes
-- ScopedTypeVariables
-- StandaloneDeriving
-- TupleSections
-- TypeOperators
 
 build-tools:
 - ormolu
