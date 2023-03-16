@@ -18,8 +18,10 @@ type Scanner = [Coord]
 parseCoord :: Parser Coord
 parseCoord =
   (,,)
-    <$> signedIntP <* char ','
-    <*> signedIntP <* char ','
+    <$> signedIntP
+    <* char ','
+    <*> signedIntP
+    <* char ','
     <*> signedIntP
 
 parseCoords :: Parser [Coord]

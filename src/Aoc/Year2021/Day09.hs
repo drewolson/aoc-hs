@@ -59,9 +59,9 @@ basinSize grid = basinSize' Set.empty 0 . pure
     basinSize' seen acc ((coord, val) : r)
       | coord `elem` seen = basinSize' seen acc r
       | otherwise =
-        let seen' = Set.insert coord seen
-            new = validNeighbors val coord
-         in basinSize' seen' (acc + 1) (new <> r)
+          let seen' = Set.insert coord seen
+              new = validNeighbors val coord
+           in basinSize' seen' (acc + 1) (new <> r)
 
 part2 :: String -> Int
 part2 input =

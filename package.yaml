@@ -1,0 +1,72 @@
+name:                aoc
+version:             0.1.0.0
+github:              "drewolson/aoc/aoc-hs"
+license:             MIT
+author:              "Drew Olson"
+maintainer:          "drew@drewolson.org"
+copyright:           "2022-present Drew Olson"
+
+description: Advent of Code in Haskell
+
+ghc-options:
+- -Werror
+- -Wall
+- -Wcompat
+- -Wincomplete-record-updates
+- -Wincomplete-uni-patterns
+- -Wredundant-constraints
+
+language: GHC2021
+
+default-extensions:
+- BlockArguments
+- DeriveAnyClass
+- QuasiQuotes
+
+build-tools:
+- ormolu
+
+dependencies:
+- base >= 4.7 && < 5
+- containers
+- hashable
+- hashtables
+- matrix
+- megaparsec
+- multiset
+- optparse-applicative
+- parallel
+- search-algorithms
+- split
+
+library:
+  source-dirs: src
+
+tests:
+  aoc-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - aoc
+    - hspec
+    - hspec-discover
+    - raw-strings-qq
+    - QuickCheck
+
+executables:
+  aoc-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - aoc
+    when:
+    - condition: false
+      other-modules: Paths_aoc

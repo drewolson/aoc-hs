@@ -54,13 +54,13 @@ findPaths = go mempty "start" []
       | node == "end" = Set.singleton $ reverse $ "end" : path
       | node `elem` seen = mempty
       | otherwise =
-        let seen' = addSeen node seen
-            next = graph ! node
-            path' = node : path
-            paths = foldMap (\n -> go seen' n path' visited graph) next
-         in if not visited && isSmall node
-              then paths <> foldMap (\n -> go seen n path' True graph) next
-              else paths
+          let seen' = addSeen node seen
+              next = graph ! node
+              path' = node : path
+              paths = foldMap (\n -> go seen' n path' visited graph) next
+           in if not visited && isSmall node
+                then paths <> foldMap (\n -> go seen n path' True graph) next
+                else paths
 
 part1 :: String -> Int
 part1 = length . findPaths True . makeGraph . parseInput

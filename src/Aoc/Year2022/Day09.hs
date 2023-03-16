@@ -41,7 +41,7 @@ takeSteps n = s . foldl' go S {s = Set.singleton (0, 0), h = (0, 0), ks = replic
     moveTail :: Coord -> Coord -> Coord
     moveTail (hX, hY) (tX, tY)
       | abs (hX - tX) >= 2 || abs (hY - tY) >= 2 =
-        (tX + signum (hX - tX), tY + signum (hY - tY))
+          (tX + signum (hX - tX), tY + signum (hY - tY))
       | otherwise = (tX, tY)
 
     go :: State -> Coord -> State

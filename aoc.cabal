@@ -4,24 +4,31 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 
-name:           aoc-year2021
+name:           aoc
 version:        0.1.0.0
-description:    Advent of Code in Haskell 2021
+description:    Advent of Code in Haskell
 homepage:       https://github.com/drewolson/aoc#readme
 bug-reports:    https://github.com/drewolson/aoc/issues
 author:         Drew Olson
 maintainer:     drew@drewolson.org
-copyright:      2022 Drew Olson
+copyright:      2022-present Drew Olson
 license:        MIT
+license-file:   LICENSE
 build-type:     Simple
 
 source-repository head
   type: git
   location: https://github.com/drewolson/aoc
-  subdir: aoc-year2021
+  subdir: aoc-hs
 
 library
   exposed-modules:
+      Aoc.Parallel
+      Aoc.Parser
+      Aoc.Runner.Args
+      Aoc.Runner.Year2021
+      Aoc.Runner.Year2022
+      Aoc.String
       Aoc.Year2021.Day01
       Aoc.Year2021.Day02
       Aoc.Year2021.Day03
@@ -44,8 +51,23 @@ library
       Aoc.Year2021.Day20
       Aoc.Year2021.Day21
       Aoc.Year2021.Day22
+      Aoc.Year2022.Day01
+      Aoc.Year2022.Day02
+      Aoc.Year2022.Day03
+      Aoc.Year2022.Day04
+      Aoc.Year2022.Day05
+      Aoc.Year2022.Day06
+      Aoc.Year2022.Day07
+      Aoc.Year2022.Day08
+      Aoc.Year2022.Day09
+      Aoc.Year2022.Day10
+      Aoc.Year2022.Day11
+      Aoc.Year2022.Day12
+      Aoc.Year2022.Day13
+      Aoc.Year2022.Day14
+      Aoc.Year2022.Day15
   other-modules:
-      Paths_aoc_year2021
+      Paths_aoc
   hs-source-dirs:
       src
   default-extensions:
@@ -56,8 +78,32 @@ library
   build-tool-depends:
       ormolu:ormolu
   build-depends:
-      aoc-core
-    , array
+      base >=4.7 && <5
+    , containers
+    , hashable
+    , hashtables
+    , matrix
+    , megaparsec
+    , multiset
+    , optparse-applicative
+    , parallel
+    , search-algorithms
+    , split
+  default-language: GHC2021
+
+executable aoc-exe
+  main-is: Main.hs
+  hs-source-dirs:
+      app
+  default-extensions:
+      BlockArguments
+      DeriveAnyClass
+      QuasiQuotes
+  ghc-options: -Werror -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+  build-tool-depends:
+      ormolu:ormolu
+  build-depends:
+      aoc
     , base >=4.7 && <5
     , containers
     , hashable
@@ -65,12 +111,13 @@ library
     , matrix
     , megaparsec
     , multiset
+    , optparse-applicative
+    , parallel
     , search-algorithms
     , split
-    , text
   default-language: GHC2021
 
-test-suite aoc-year2021-test
+test-suite aoc-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
@@ -96,7 +143,22 @@ test-suite aoc-year2021-test
       Aoc.Year2021.Day20Spec
       Aoc.Year2021.Day21Spec
       Aoc.Year2021.Day22Spec
-      Paths_aoc_year2021
+      Aoc.Year2022.Day01Spec
+      Aoc.Year2022.Day02Spec
+      Aoc.Year2022.Day03Spec
+      Aoc.Year2022.Day04Spec
+      Aoc.Year2022.Day05Spec
+      Aoc.Year2022.Day06Spec
+      Aoc.Year2022.Day07Spec
+      Aoc.Year2022.Day08Spec
+      Aoc.Year2022.Day09Spec
+      Aoc.Year2022.Day10Spec
+      Aoc.Year2022.Day11Spec
+      Aoc.Year2022.Day12Spec
+      Aoc.Year2022.Day13Spec
+      Aoc.Year2022.Day14Spec
+      Aoc.Year2022.Day15Spec
+      Paths_aoc
   hs-source-dirs:
       test
   default-extensions:
@@ -108,9 +170,7 @@ test-suite aoc-year2021-test
       ormolu:ormolu
   build-depends:
       QuickCheck
-    , aoc-core
-    , aoc-year2021
-    , array
+    , aoc
     , base >=4.7 && <5
     , containers
     , hashable
@@ -120,8 +180,9 @@ test-suite aoc-year2021-test
     , matrix
     , megaparsec
     , multiset
+    , optparse-applicative
+    , parallel
     , raw-strings-qq
     , search-algorithms
     , split
-    , text
   default-language: GHC2021

@@ -49,23 +49,23 @@ scoreAll :: Cache s -> State -> ST s (Int, Int)
 scoreAll cache state
   | isWinner 21 state = pure $ winTuple state
   | otherwise = do
-    prev <- HashTable.lookup cache state
+      prev <- HashTable.lookup cache state
 
-    case prev of
-      Just v -> pure v
-      Nothing -> do
-        results <- traverse (scoreAll cache) do
-          a <- [1 .. 3]
-          b <- [1 .. 3]
-          c <- [1 .. 3]
+      case prev of
+        Just v -> pure v
+        Nothing -> do
+          results <- traverse (scoreAll cache) do
+            a <- [1 .. 3]
+            b <- [1 .. 3]
+            c <- [1 .. 3]
 
-          pure $ addScore state (a + b + c)
+            pure $ addScore state (a + b + c)
 
-        let v = bimap sum sum $ unzip results
+          let v = bimap sum sum $ unzip results
 
-        HashTable.insert cache state v
+          HashTable.insert cache state v
 
-        pure v
+          pure v
 
 part1 :: Int -> Int -> Int
 part1 a b =
