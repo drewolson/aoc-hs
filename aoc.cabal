@@ -78,15 +78,19 @@ library
   build-tool-depends:
       ormolu:ormolu
   build-depends:
-      base >=4.7 && <5
+      QuickCheck
+    , base >=4.7 && <5
     , containers
     , hashable
     , hashtables
+    , hspec
+    , hspec-discover
     , matrix
     , megaparsec
     , multiset
     , optparse-applicative
     , parallel
+    , raw-strings-qq
     , search-algorithms
     , split
   default-language: GHC2021
@@ -103,16 +107,20 @@ executable aoc-exe
   build-tool-depends:
       ormolu:ormolu
   build-depends:
-      aoc
+      QuickCheck
+    , aoc
     , base >=4.7 && <5
     , containers
     , hashable
     , hashtables
+    , hspec
+    , hspec-discover
     , matrix
     , megaparsec
     , multiset
     , optparse-applicative
     , parallel
+    , raw-strings-qq
     , search-algorithms
     , split
   default-language: GHC2021

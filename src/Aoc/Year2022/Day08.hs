@@ -22,10 +22,10 @@ gridSize g =
 
 rays :: (Int, Int) -> (Int, Int) -> [[(Int, Int)]]
 rays (maxX, maxY) (x, y) =
-  [ zip [x - 1, x - 2 .. 0] (repeat y),
-    zip [x + 1 .. maxX] (repeat y),
-    zip (repeat x) [y - 1, y - 2 .. 0],
-    zip (repeat x) [y + 1 .. maxY]
+  [ fmap (,y) [x - 1, x - 2 .. 0],
+    fmap (,y) [x + 1 .. maxX],
+    fmap (x,) [y - 1, y - 2 .. 0],
+    fmap (x,) [y + 1 .. maxY]
   ]
 
 visible :: Grid -> ((Int, Int), Int) -> Bool

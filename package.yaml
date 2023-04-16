@@ -28,14 +28,18 @@ build-tools:
 
 dependencies:
 - base >= 4.7 && < 5
+- QuickCheck
 - containers
 - hashable
 - hashtables
+- hspec
+- hspec-discover
 - matrix
 - megaparsec
 - multiset
 - optparse-applicative
 - parallel
+- raw-strings-qq
 - search-algorithms
 - split
 
@@ -52,10 +56,6 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - aoc
-    - hspec
-    - hspec-discover
-    - raw-strings-qq
-    - QuickCheck
 
 executables:
   aoc-exe:
