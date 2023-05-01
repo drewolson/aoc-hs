@@ -36,12 +36,12 @@ $ ls
 
 spec :: Spec
 spec = do
-  it "2022 day 7 part 1 works" do
+  it "2022 day 7 part 1 works" $ do
     let result = Day07.part1 input
 
     result `shouldBe` 95437
 
-  it "2022 day 7 part 2 works" do
+  it "2022 day 7 part 2 works" $ do
     let result = Day07.part2 input
 
     result `shouldBe` 24933642

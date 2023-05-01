@@ -33,17 +33,17 @@ U 20
 
 spec :: Spec
 spec = do
-  it "2022 day 9 part 1 works" do
+  it "2022 day 9 part 1 works" $ do
     let result = Day09.part1 input
 
     result `shouldBe` 13
 
-  it "2022 day 9 part 2 works" do
+  it "2022 day 9 part 2 works" $ do
     let result = Day09.part2 input
 
     result `shouldBe` 1
 
-  it "2022 day 9 part 2 works for second input" do
+  it "2022 day 9 part 2 works for second input" $ do
     let result = Day09.part2 input2
 
     result `shouldBe` 36

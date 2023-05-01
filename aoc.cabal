@@ -70,10 +70,6 @@ library
       Paths_aoc
   hs-source-dirs:
       src
-  default-extensions:
-      BlockArguments
-      DeriveAnyClass
-      QuasiQuotes
   ghc-options: -Werror -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
   build-tool-depends:
       ormolu:ormolu
@@ -99,10 +95,6 @@ executable aoc-exe
   main-is: Main.hs
   hs-source-dirs:
       app
-  default-extensions:
-      BlockArguments
-      DeriveAnyClass
-      QuasiQuotes
   ghc-options: -Werror -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-tool-depends:
       ormolu:ormolu
@@ -170,8 +162,6 @@ test-suite aoc-test
   hs-source-dirs:
       test
   default-extensions:
-      BlockArguments
-      DeriveAnyClass
       QuasiQuotes
   ghc-options: -Werror -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-tool-depends:

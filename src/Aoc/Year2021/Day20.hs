@@ -49,7 +49,7 @@ enhance algo (image, def) = (enhanceImage, newDefault)
       fromMaybe def $ Matrix.safeGet row col image
 
     windowInt :: Int -> Int -> Int
-    windowInt row col = binToInt do
+    windowInt row col = binToInt $ do
       r <- [row - 1 .. row + 1]
       c <- [col - 1 .. col + 1]
 
@@ -59,7 +59,7 @@ enhance algo (image, def) = (enhanceImage, newDefault)
 
     enhanceImage :: Image
     enhanceImage =
-      Matrix.fromList (nRows + 2) (nCols + 2) do
+      Matrix.fromList (nRows + 2) (nCols + 2) $ do
         row <- [0 .. nRows + 1]
         col <- [0 .. nCols + 1]
 

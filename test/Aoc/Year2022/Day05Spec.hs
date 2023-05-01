@@ -22,12 +22,12 @@ move 1 from 1 to 2
 
 spec :: Spec
 spec = do
-  it "2022 day 5 part 1 works" do
+  it "2022 day 5 part 1 works" $ do
     let result = Day05.part1 input
 
     result `shouldBe` "CMZ"
 
-  it "2022 day 5 part 2 works" do
+  it "2022 day 5 part 2 works" $ do
     let result = Day05.part2 input
 
     result `shouldBe` "MCD"

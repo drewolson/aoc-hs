@@ -47,7 +47,7 @@ monkeysP :: Parser [Monkey]
 monkeysP = sepBy1 monkeyP newline
 
 parseInput :: String -> State
-parseInput = runParser' do
+parseInput = runParser' $ do
   monkeys <- monkeysP
 
   pure $ Map.fromList $ (\m -> (num m, m)) <$> monkeys

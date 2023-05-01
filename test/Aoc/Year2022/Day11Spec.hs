@@ -40,12 +40,12 @@ Monkey 3:
 
 spec :: Spec
 spec = do
-  it "2022 day 11 part 1 works" do
+  it "2022 day 11 part 1 works" $ do
     let result = Day11.part1 input
 
     result `shouldBe` 10605
 
-  it "2022 day 11 part 2 works" do
+  it "2022 day 11 part 2 works" $ do
     let result = Day11.part2 input
 
     result `shouldBe` 2713310158

@@ -20,14 +20,14 @@ input =
 
 spec :: Spec
 spec = do
-  describe "part1" do
-    it "day 20 part 1 works" do
+  describe "part1" $ do
+    it "day 20 part 1 works" $ do
       let result = Day20.part1 input
 
       result `shouldBe` 35
 
-  describe "part2" do
-    it "day 20 part 2 works" do
+  describe "part2" $ do
+    it "day 20 part 2 works" $ do
       let result = Day20.part2 input
 
       result `shouldBe` 3351

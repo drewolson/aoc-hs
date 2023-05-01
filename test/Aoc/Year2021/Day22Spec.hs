@@ -99,14 +99,14 @@ off x=-93533..-4276,y=-16170..68771,z=-104985..-24507
 
 spec :: Spec
 spec = do
-  describe "part1" do
-    it "day 22 part 1 works" do
+  describe "part1" $ do
+    it "day 22 part 1 works" $ do
       let result = Day22.part1 input
 
       result `shouldBe` 590784
 
-  describe "part2" do
-    it "day 22 part 2 works" do
+  describe "part2" $ do
+    it "day 22 part 2 works" $ do
       let result = Day22.part2 input2
 
       result `shouldBe` 2758514936282235

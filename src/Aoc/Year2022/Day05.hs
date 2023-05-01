@@ -48,7 +48,7 @@ movesP :: Parser [Move]
 movesP = sepEndBy1 moveP newline
 
 parseInput :: String -> Input
-parseInput = runParser' do
+parseInput = runParser' $ do
   rawStacks <- stacksP
   dropLineP <* newline
   moves <- movesP

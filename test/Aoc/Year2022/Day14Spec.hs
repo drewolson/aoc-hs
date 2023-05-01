@@ -15,12 +15,12 @@ input =
 
 spec :: Spec
 spec = do
-  it "2022 day 14 part 1 works" do
+  it "2022 day 14 part 1 works" $ do
     let result = Day14.part1 input
 
     result `shouldBe` 24
 
-  it "2022 day 14 part 2 works" do
+  it "2022 day 14 part 2 works" $ do
     let result = Day14.part2 input
 
     result `shouldBe` 93

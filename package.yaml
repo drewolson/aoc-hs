@@ -18,11 +18,6 @@ ghc-options:
 
 language: GHC2021
 
-default-extensions:
-- BlockArguments
-- DeriveAnyClass
-- QuasiQuotes
-
 build-tools:
 - ormolu
 
@@ -50,6 +45,8 @@ tests:
   aoc-test:
     main:                Spec.hs
     source-dirs:         test
+    default-extensions:
+    - QuasiQuotes
     ghc-options:
     - -threaded
     - -rtsopts

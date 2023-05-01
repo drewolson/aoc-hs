@@ -27,12 +27,12 @@ Sensor at x=20, y=1: closest beacon is at x=15, y=3
 
 spec :: Spec
 spec = do
-  it "2022 day 15 part 1 works" do
+  it "2022 day 15 part 1 works" $ do
     let result = Day15.part1 10 input
 
     result `shouldBe` 26
 
-  it "2022 day 15 part 2 works" do
+  it "2022 day 15 part 2 works" $ do
     let result = Day15.part2 20 input
 
     result `shouldBe` Just 56000011

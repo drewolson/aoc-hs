@@ -31,14 +31,14 @@ CN -> C
 
 spec :: Spec
 spec = do
-  describe "part1" do
-    it "day 14 part 1 works" do
+  describe "part1" $ do
+    it "day 14 part 1 works" $ do
       let result = Day14.part1 input
 
       result `shouldBe` 1588
 
-  describe "part2" do
-    it "day 14 part 2 works" do
+  describe "part2" $ do
+    it "day 14 part 2 works" $ do
       let result = Day14.part2 input
 
       result `shouldBe` 2188189693529

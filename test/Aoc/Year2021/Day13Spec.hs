@@ -34,14 +34,14 @@ fold along x=5
 
 spec :: Spec
 spec = do
-  describe "part1" do
-    it "day 13 part 1 works" do
+  describe "part1" $ do
+    it "day 13 part 1 works" $ do
       let result = Day13.part1 input
 
       result `shouldBe` Right 17
 
-  describe "part2" do
-    it "day 13 part 2 works" do
+  describe "part2" $ do
+    it "day 13 part 2 works" $ do
       let result = Day13.part2 input
 
       let expected =

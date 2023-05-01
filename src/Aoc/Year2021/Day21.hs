@@ -19,7 +19,9 @@ data Player = Player
     pos :: Int,
     score :: Int
   }
-  deriving (Eq, Generic, Hashable)
+  deriving (Eq, Generic)
+
+instance Hashable Player
 
 type State = (Player, Player)
 
@@ -54,7 +56,7 @@ scoreAll cache state
       case prev of
         Just v -> pure v
         Nothing -> do
-          results <- traverse (scoreAll cache) do
+          results <- traverse (scoreAll cache) $ do
             a <- [1 .. 3]
             b <- [1 .. 3]
             c <- [1 .. 3]
@@ -78,6 +80,6 @@ part2 :: Int -> Int -> Int
 part2 a b =
   let playerA = Player {name = 1, pos = a, score = 0}
       playerB = Player {name = 2, pos = b, score = 0}
-   in uncurry max $ runST do
+   in uncurry max $ runST $ do
         cache <- HashTable.new
         scoreAll cache (playerA, playerB)
