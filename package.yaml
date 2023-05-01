@@ -1,6 +1,6 @@
 name:                aoc
 version:             0.1.0.0
-github:              "drewolson/aoc/aoc-hs"
+github:              "drewolson/aoc-hs"
 license:             MIT
 author:              "Drew Olson"
 maintainer:          "drew@drewolson.org"
