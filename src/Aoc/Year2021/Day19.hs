@@ -4,12 +4,13 @@ module Aoc.Year2021.Day19
   )
 where
 
-import Aoc.Parser (Parser, intP, runParser', signedIntP)
+import Aoc.Parser (Parser, runParser', signedIntP)
 import Control.Monad (guard)
 import Data.List qualified as List
 import Data.Set qualified as Set
 import Text.Megaparsec (sepEndBy1)
 import Text.Megaparsec.Char (char, newline, string)
+import Text.Megaparsec.Char.Lexer (decimal)
 
 type Coord = (Int, Int, Int)
 
@@ -27,9 +28,12 @@ parseCoord =
 parseCoords :: Parser [Coord]
 parseCoords = sepEndBy1 parseCoord newline
 
+parseScannerNum :: Parser Int
+parseScannerNum = decimal
+
 parseScanner :: Parser Scanner
 parseScanner =
-  string "--- scanner " *> intP *> string " ---" *> newline *> parseCoords
+  string "--- scanner " *> parseScannerNum *> string " ---" *> newline *> parseCoords
 
 parseScanners :: Parser [Scanner]
 parseScanners = sepEndBy1 parseScanner newline

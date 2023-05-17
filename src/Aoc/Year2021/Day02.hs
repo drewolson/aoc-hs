@@ -4,10 +4,11 @@ module Aoc.Year2021.Day02
   )
 where
 
-import Aoc.Parser (Parser, intP, runParser)
+import Aoc.Parser (Parser, runParser)
 import Data.Foldable (foldl')
 import Text.Megaparsec (choice, sepEndBy1)
 import Text.Megaparsec.Char (newline, space, string)
+import Text.Megaparsec.Char.Lexer (decimal)
 
 data Dir = Forward | Up | Down
 
@@ -25,7 +26,7 @@ parseDir =
     ]
 
 parseMove :: Parser Move
-parseMove = Move <$> parseDir <*> (space *> intP)
+parseMove = Move <$> parseDir <*> (space *> decimal)
 
 parseMoves :: Parser [Move]
 parseMoves = sepEndBy1 parseMove newline

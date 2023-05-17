@@ -1,7 +1,6 @@
 module Aoc.Parser
   ( Parser,
     dropLineP,
-    intP,
     signedIntP,
     runParser,
     runParser',
@@ -19,9 +18,6 @@ type Parser = Parsec Void String
 
 dropLineP :: Parser ()
 dropLineP = void $ takeWhileP Nothing (/= '\n') *> newline
-
-intP :: Parser Int
-intP = decimal
 
 signedIntP :: Parser Int
 signedIntP = signed (pure ()) decimal

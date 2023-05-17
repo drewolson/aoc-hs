@@ -4,19 +4,20 @@ module Aoc.Year2021.Day05
   )
 where
 
-import Aoc.Parser (Parser, intP, runParser)
+import Aoc.Parser (Parser, runParser)
 import Data.Map qualified as M
 import Data.MultiSet (MultiSet)
 import Data.MultiSet qualified as MS
 import Text.Megaparsec (sepEndBy1)
 import Text.Megaparsec.Char (char, newline, string)
+import Text.Megaparsec.Char.Lexer (decimal)
 
 type Point = (Int, Int)
 
 type Pair = (Point, Point)
 
 parsePoint :: Parser Point
-parsePoint = (,) <$> intP <*> (char ',' *> intP)
+parsePoint = (,) <$> decimal <*> (char ',' *> decimal)
 
 parsePair :: Parser Pair
 parsePair = (,) <$> parsePoint <*> (string " -> " *> parsePoint)

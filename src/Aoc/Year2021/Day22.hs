@@ -1,5 +1,6 @@
 -- Solution liberally borrowed from
 -- https://github.com/borjasotomayor/AoC/blob/main/2021/day22.py
+
 module Aoc.Year2021.Day22
   ( part1,
     part2,

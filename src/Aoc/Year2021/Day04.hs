@@ -4,13 +4,14 @@ module Aoc.Year2021.Day04
   )
 where
 
-import Aoc.Parser (Parser, intP, runParser)
+import Aoc.Parser (Parser, runParser)
 import Control.Monad (join)
 import Data.List (mapAccumL, transpose, (\\))
 import Data.Set (Set)
 import Data.Set qualified as Set
 import Text.Megaparsec (count, sepBy1)
 import Text.Megaparsec.Char (char, hspace, newline, space1)
+import Text.Megaparsec.Char.Lexer (decimal)
 
 type Board = [[Int]]
 
@@ -20,10 +21,10 @@ data Bingo = Bingo
   }
 
 parseGuesses :: Parser [Int]
-parseGuesses = sepBy1 intP (char ',')
+parseGuesses = sepBy1 decimal (char ',')
 
 parseRow :: Parser [Int]
-parseRow = count 5 (hspace *> intP)
+parseRow = count 5 (hspace *> decimal)
 
 parseBoard :: Parser Board
 parseBoard = count 5 (parseRow <* newline)

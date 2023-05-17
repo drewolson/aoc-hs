@@ -4,7 +4,7 @@ module Aoc.Year2021.Day13
   )
 where
 
-import Aoc.Parser (Parser, intP, runParser)
+import Aoc.Parser (Parser, runParser)
 import Data.Bifunctor (first, second)
 import Data.Foldable (Foldable (foldl'))
 import Data.List (intercalate)
@@ -12,6 +12,7 @@ import Data.Set (Set)
 import Data.Set qualified as Set
 import Text.Megaparsec (choice, sepEndBy1)
 import Text.Megaparsec.Char (char, newline, string)
+import Text.Megaparsec.Char.Lexer (decimal)
 
 type Coord = (Int, Int)
 
@@ -30,13 +31,13 @@ parseInstructions = (,) <$> parseCoords <*> (newline *> parseFolds)
     parseDir = choice [X <$ char 'x', Y <$ char 'y']
 
     parseFold :: Parser Fold
-    parseFold = (string "fold along " *> parseDir) <*> (char '=' *> intP)
+    parseFold = (string "fold along " *> parseDir) <*> (char '=' *> decimal)
 
     parseFolds :: Parser [Fold]
     parseFolds = sepEndBy1 parseFold newline
 
     parseCoord :: Parser Coord
-    parseCoord = (,) <$> intP <*> (char ',' *> intP)
+    parseCoord = (,) <$> decimal <*> (char ',' *> decimal)
 
     parseCoords :: Parser (Set Coord)
     parseCoords = Set.fromList <$> sepEndBy1 parseCoord newline
