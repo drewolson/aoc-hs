@@ -7,17 +7,6 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
-    container:
-      image: haskell:9.4.5-buster
-      options: --user root
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/cache@v2
-        with:
-          path: |
-            ~/.stack
-            .stack-work
-          key: ${{ runner.os }}
-      - name: Permissions bug workaround
-        run: "chown -R $(id -un):$(id -gn) ~"
-      - run: stack test --allow-different-user
+      - uses: freckle/stack-action@v4
