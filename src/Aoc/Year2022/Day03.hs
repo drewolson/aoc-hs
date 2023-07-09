@@ -20,7 +20,7 @@ split s = splitAt (length s `div` 2) s
 collapse :: (String, String) -> Set Char
 collapse (a, b) = Set.intersection (Set.fromList a) (Set.fromList b)
 
-intersections :: Ord a => [Set a] -> Set a
+intersections :: (Ord a) => [Set a] -> Set a
 intersections = foldl1' Set.intersection
 
 part1 :: String -> Int

@@ -55,7 +55,7 @@ tests:
     - aoc
 
 executables:
-  aoc-exe:
+  aoc:
     main:                Main.hs
     source-dirs:         app
     ghc-options:

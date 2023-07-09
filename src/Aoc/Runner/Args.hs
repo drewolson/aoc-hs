@@ -19,7 +19,7 @@ data Args = Args
     part :: Int
   }
 
-autoOpt :: Read a => Mod OptionFields a -> Parser a
+autoOpt :: (Read a) => Mod OptionFields a -> Parser a
 autoOpt = OA.option OA.auto
 
 argsP :: Parser Args
@@ -52,7 +52,7 @@ opts =
     (argsP <**> OA.helper)
     ( OA.fullDesc
         <> OA.progDesc "Run aoc solution for YEAR, DAY, and PART"
-        <> OA.header "aoc-exe -- run an aoc solution"
+        <> OA.header "aoc -- run an aoc solution"
     )
 
 parse :: IO Args
