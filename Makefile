@@ -1,8 +1,6 @@
 list-files = find . -name '*.hs' | grep -v '.stack-work'
 
-stack = stack --allow-different-user
-
-ormolu = $(stack) exec -- ormolu -o '-XImportQualifiedPost' -o '-XPatternSynonyms' -o '-XTypeApplications'
+ormolu = stack exec -- ormolu
 
 format:
 	@$(ormolu) --mode inplace $(shell $(list-files))
