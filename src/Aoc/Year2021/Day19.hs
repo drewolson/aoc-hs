@@ -4,7 +4,7 @@ module Aoc.Year2021.Day19
   )
 where
 
-import Aoc.Parser (Parser, runParser', signedIntP)
+import Aoc.Core.Parser (Parser, runParser', signedIntP)
 import Control.Monad (guard)
 import Data.List qualified as List
 import Data.Set qualified as Set

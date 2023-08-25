@@ -1,4 +1,4 @@
-module Aoc.Parser
+module Aoc.Core.Parser
   ( Parser,
     dropLineP,
     signedIntP,

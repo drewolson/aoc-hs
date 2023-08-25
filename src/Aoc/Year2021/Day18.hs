@@ -4,7 +4,7 @@ module Aoc.Year2021.Day18
   )
 where
 
-import Aoc.Parser (Parser, runParser')
+import Aoc.Core.Parser (Parser, runParser')
 import Control.Applicative ((<|>))
 import Control.Monad (guard)
 import Data.List (foldl1')

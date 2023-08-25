@@ -4,7 +4,7 @@ module Aoc.Year2022.Day10
   )
 where
 
-import Aoc.Parser (Parser, runParser', signedIntP)
+import Aoc.Core.Parser (Parser, runParser', signedIntP)
 import Data.Function ((&))
 import Data.List.Split (chunksOf)
 import Text.Megaparsec (sepEndBy1, (<|>))

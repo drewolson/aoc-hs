@@ -4,7 +4,7 @@ module Aoc.Year2021.Day03
   )
 where
 
-import Aoc.String (binToInt)
+import Aoc.Core.String (binToInt)
 import Data.Foldable (maximumBy)
 import Data.List (group, sort, transpose)
 import Data.Ord (comparing)

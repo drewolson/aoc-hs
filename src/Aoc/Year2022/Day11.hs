@@ -4,7 +4,7 @@ module Aoc.Year2022.Day11
   )
 where
 
-import Aoc.Parser (Parser, runParser')
+import Aoc.Core.Parser (Parser, runParser')
 import Data.List (foldl', partition, sort)
 import Data.Map.Strict (Map, (!))
 import Data.Map.Strict qualified as Map

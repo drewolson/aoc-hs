@@ -1,4 +1,4 @@
-module Aoc.Parallel
+module Aoc.Core.Parallel
   ( pmap,
   )
 where

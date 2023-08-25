@@ -4,7 +4,7 @@ module Aoc.Year2022.Day07
   )
 where
 
-import Aoc.Parser (Parser, runParser')
+import Aoc.Core.Parser (Parser, runParser')
 import Control.Applicative ((<|>))
 import Data.Monoid (Sum (..))
 import Text.Megaparsec (choice, sepEndBy1, some)

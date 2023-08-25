@@ -4,7 +4,7 @@ module Aoc.Year2021.Day20
   )
 where
 
-import Aoc.String (binToInt)
+import Aoc.Core.String (binToInt)
 import Data.Matrix (Matrix)
 import Data.Matrix qualified as Matrix
 import Data.Maybe (fromMaybe)

@@ -1,4 +1,4 @@
-module Aoc.String
+module Aoc.Core.String
   ( binToInt,
   )
 where

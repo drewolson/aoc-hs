@@ -4,7 +4,7 @@ module Aoc.Year2021.Day04
   )
 where
 
-import Aoc.Parser (Parser, runParser)
+import Aoc.Core.Parser (Parser, runParser)
 import Control.Monad (join)
 import Data.List (mapAccumL, transpose, (\\))
 import Data.Set (Set)

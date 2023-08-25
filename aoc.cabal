@@ -22,12 +22,12 @@ source-repository head
 
 library
   exposed-modules:
-      Aoc.Parallel
-      Aoc.Parser
+      Aoc.Core.Parallel
+      Aoc.Core.Parser
+      Aoc.Core.String
       Aoc.Runner.Args
       Aoc.Runner.Year2021
       Aoc.Runner.Year2022
-      Aoc.String
       Aoc.Year2021.Day01
       Aoc.Year2021.Day02
       Aoc.Year2021.Day03

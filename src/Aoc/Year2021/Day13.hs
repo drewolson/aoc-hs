@@ -4,7 +4,7 @@ module Aoc.Year2021.Day13
   )
 where
 
-import Aoc.Parser (Parser, runParser)
+import Aoc.Core.Parser (Parser, runParser)
 import Data.Bifunctor (first, second)
 import Data.Foldable (Foldable (foldl'))
 import Data.List (intercalate)

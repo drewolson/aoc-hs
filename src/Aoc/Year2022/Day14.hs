@@ -4,7 +4,7 @@ module Aoc.Year2022.Day14
   )
 where
 
-import Aoc.Parser (Parser, runParser')
+import Aoc.Core.Parser (Parser, runParser')
 import Data.List (find)
 import Data.Set (Set)
 import Data.Set qualified as Set

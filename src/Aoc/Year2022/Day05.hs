@@ -4,7 +4,7 @@ module Aoc.Year2022.Day05
   )
 where
 
-import Aoc.Parser (Parser, dropLineP, runParser')
+import Aoc.Core.Parser (Parser, dropLineP, runParser')
 import Data.IntMap.Strict (IntMap, (!))
 import Data.IntMap.Strict qualified as IntMap
 import Data.List (foldl', transpose)

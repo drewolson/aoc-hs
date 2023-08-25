@@ -4,7 +4,7 @@ module Aoc.Year2021.Day05
   )
 where
 
-import Aoc.Parser (Parser, runParser)
+import Aoc.Core.Parser (Parser, runParser)
 import Data.Map qualified as M
 import Data.MultiSet (MultiSet)
 import Data.MultiSet qualified as MS

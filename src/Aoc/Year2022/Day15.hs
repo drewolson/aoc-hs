@@ -4,7 +4,7 @@ module Aoc.Year2022.Day15
   )
 where
 
-import Aoc.Parser (Parser, runParser')
+import Aoc.Core.Parser (Parser, runParser')
 import Data.List (find, genericLength)
 import Data.Set qualified as Set
 import Text.Megaparsec (sepEndBy1)

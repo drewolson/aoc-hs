@@ -4,7 +4,7 @@ module Aoc.Year2021.Day17
   )
 where
 
-import Aoc.Parser (Parser, runParser', signedIntP)
+import Aoc.Core.Parser (Parser, runParser', signedIntP)
 import Data.Maybe (mapMaybe)
 import Data.Set qualified as Set
 import Text.Megaparsec.Char (string)

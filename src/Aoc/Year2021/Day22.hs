@@ -7,7 +7,7 @@ module Aoc.Year2021.Day22
   )
 where
 
-import Aoc.Parser (Parser, runParser', signedIntP)
+import Aoc.Core.Parser (Parser, runParser', signedIntP)
 import Control.Applicative ((<|>))
 import Data.Foldable (Foldable (foldl'))
 import Text.Megaparsec (sepEndBy1)

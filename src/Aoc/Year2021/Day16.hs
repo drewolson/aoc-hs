@@ -4,8 +4,8 @@ module Aoc.Year2021.Day16
   )
 where
 
-import Aoc.Parser (Parser, runParser')
-import Aoc.String (binToInt)
+import Aoc.Core.Parser (Parser, runParser')
+import Aoc.Core.String (binToInt)
 import Text.Megaparsec (count, getOffset, manyTill, manyTill_)
 import Text.Megaparsec.Char (char, digitChar)
 

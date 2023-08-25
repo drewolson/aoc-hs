@@ -5,7 +5,7 @@ module Aoc.Year2022.Day12
 where
 
 import Algorithm.Search (bfs)
-import Aoc.Parallel (pmap)
+import Aoc.Core.Parallel (pmap)
 import Data.Char (ord)
 import Data.Foldable (find)
 import Data.Map.Strict (Map, (!))
