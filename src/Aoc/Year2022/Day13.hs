@@ -47,8 +47,7 @@ parseInput = runParser' $ sepEndBy1 packetPairP newline
     packetPairP = (,) <$> (packetP <* newline) <*> (packetP <* newline)
 
 collapse :: [(a, a)] -> [a]
-collapse ((a1, a2) : t) = a1 : a2 : collapse t
-collapse [] = []
+collapse = concatMap (\(a, b) -> [a, b])
 
 part1 :: String -> Int
 part1 = sum . fmap fst . filter (uncurry (<) . snd) . zip [1 ..] . parseInput
