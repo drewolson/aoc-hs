@@ -7,15 +7,10 @@ import Aoc.Runner.Args (Args (..))
 import Aoc.Runner.Args qualified as Args
 import Aoc.Runner.Year2021 qualified as Year2021
 import Aoc.Runner.Year2022 qualified as Year2022
+import Text.Printf qualified as Printf
 
 readInput :: Args -> IO String
-readInput Args {year, day} = readFile $ "./data/" <> show year <> "/day" <> paddedDay <> ".txt"
-  where
-    paddedDay :: String
-    paddedDay =
-      case show day of
-        [d] -> ['0', d]
-        d -> d
+readInput Args {year, day} = readFile $ Printf.printf "./data/%i/day%02i.txt" year day
 
 runSolution :: String -> Args -> IO ()
 runSolution input args =
