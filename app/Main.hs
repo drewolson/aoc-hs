@@ -10,7 +10,8 @@ import Aoc.Runner.Year2022 qualified as Year2022
 import Text.Printf qualified as Printf
 
 readInput :: Args -> IO String
-readInput Args {year, day} = readFile $ Printf.printf "./data/%i/day%02i.txt" year day
+readInput Args {year, day} =
+  readFile $ Printf.printf "./data/%i/day%02i.txt" year day
 
 runSolution :: String -> Args -> IO ()
 runSolution input args =
