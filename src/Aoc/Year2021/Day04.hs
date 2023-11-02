@@ -35,7 +35,7 @@ parseBoards = sepBy1 parseBoard newline
 parseBingo :: Parser Bingo
 parseBingo = Bingo <$> parseGuesses <*> (space1 *> parseBoards)
 
-parseInput :: String -> Either String Bingo
+parseInput :: String -> Bingo
 parseInput = runParser parseBingo
 
 isSolved :: Set Int -> Board -> Bool
@@ -60,14 +60,12 @@ solve c b = join . snd . mapAccumL solveNext (c, b)
           boards' = boards \\ solved
        in ((called', boards'), scores)
 
-part1 :: String -> Either String Int
-part1 input = do
-  Bingo {guesses, boards} <- parseInput input
+part1 :: String -> Int
+part1 input =
+  let Bingo {guesses, boards} = parseInput input
+   in head $ solve Set.empty boards guesses
 
-  pure $ head $ solve Set.empty boards guesses
-
-part2 :: String -> Either String Int
+part2 :: String -> Int
 part2 input = do
-  Bingo {guesses, boards} <- parseInput input
-
-  pure $ last $ solve Set.empty boards guesses
+  let Bingo {guesses, boards} = parseInput input
+   in last $ solve Set.empty boards guesses

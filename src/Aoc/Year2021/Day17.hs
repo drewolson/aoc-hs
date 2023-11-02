@@ -4,7 +4,7 @@ module Aoc.Year2021.Day17
   )
 where
 
-import Aoc.Core.Parser (Parser, runParser', signedIntP)
+import Aoc.Core.Parser (Parser, runParser, signedIntP)
 import Data.Maybe (mapMaybe)
 import Data.Set qualified as Set
 import Text.Megaparsec.Char (string)
@@ -56,11 +56,11 @@ drawPath = go [] (0, 0)
 
 part1 :: String -> Int
 part1 input =
-  let target = runParser' parseInput input
+  let target = runParser parseInput input
       paths = mapMaybe (drawPath target) $ candidates target
    in maximum $ Set.map snd $ foldMap Set.fromList paths
 
 part2 :: String -> Int
 part2 input =
-  let target = runParser' parseInput input
+  let target = runParser parseInput input
    in length $ mapMaybe (drawPath target) $ candidates target

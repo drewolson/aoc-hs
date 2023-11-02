@@ -25,7 +25,7 @@ parsePair = (,) <$> parsePoint <*> (string " -> " *> parsePoint)
 parsePairs :: Parser [Pair]
 parsePairs = sepEndBy1 parsePair newline
 
-parseInput :: String -> Either String [Pair]
+parseInput :: String -> [Pair]
 parseInput = runParser parsePairs
 
 isStraight :: Pair -> Bool
@@ -43,10 +43,10 @@ expandPair ((x1, y1), (x2, y2)) = zip (ints x1 x2) (ints y1 y2)
 toLine :: Pair -> MultiSet Point
 toLine = MS.fromList . expandPair
 
-part2 :: String -> Either String Int
+part2 :: String -> Int
 part2 =
-  fmap (length . M.filter (> 1) . MS.toMap . foldMap toLine) . parseInput
+  length . M.filter (> 1) . MS.toMap . foldMap toLine . parseInput
 
-part1 :: String -> Either String Int
+part1 :: String -> Int
 part1 =
-  fmap (length . M.filter (> 1) . MS.toMap . foldMap toLine . filter isStraight) . parseInput
+  length . M.filter (> 1) . MS.toMap . foldMap toLine . filter isStraight . parseInput

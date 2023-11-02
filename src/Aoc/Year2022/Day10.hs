@@ -4,14 +4,14 @@ module Aoc.Year2022.Day10
   )
 where
 
-import Aoc.Core.Parser (Parser, runParser', signedIntP)
+import Aoc.Core.Parser (Parser, runParser, signedIntP)
 import Data.Function ((&))
 import Data.List.Split (chunksOf)
 import Text.Megaparsec (sepEndBy1, (<|>))
 import Text.Megaparsec.Char (newline, string)
 
 parseInput :: String -> [Int -> Int]
-parseInput = runParser' $ mconcat <$> sepEndBy1 cmdP newline
+parseInput = runParser $ mconcat <$> sepEndBy1 cmdP newline
   where
     cmdP :: Parser [Int -> Int]
     cmdP = noopP <|> addxP

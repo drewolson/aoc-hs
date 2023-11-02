@@ -4,7 +4,7 @@ module Aoc.Year2021.Day16
   )
 where
 
-import Aoc.Core.Parser (Parser, runParser')
+import Aoc.Core.Parser (Parser, runParser)
 import Aoc.Core.String (binToInt)
 import Text.Megaparsec (count, getOffset, manyTill, manyTill_)
 import Text.Megaparsec.Char (char, digitChar)
@@ -112,7 +112,7 @@ eval expr =
     _ -> 0
 
 part1 :: String -> Int
-part1 = sumVersions . runParser' parseExpr . expand . init
+part1 = sumVersions . runParser parseExpr . expand . init
 
 part2 :: String -> Int
-part2 = eval . runParser' parseExpr . expand . init
+part2 = eval . runParser parseExpr . expand . init

@@ -4,7 +4,7 @@ module Aoc.Year2022.Day07
   )
 where
 
-import Aoc.Core.Parser (Parser, runParser')
+import Aoc.Core.Parser (Parser, runParser)
 import Control.Applicative ((<|>))
 import Data.Monoid (Sum (..))
 import Text.Megaparsec (choice, sepEndBy1, some)
@@ -36,7 +36,7 @@ cmdP =
     ]
 
 parseInput :: String -> [Cmd]
-parseInput = runParser' $ sepEndBy1 cmdP newline
+parseInput = runParser $ sepEndBy1 cmdP newline
 
 buildFs :: [Cmd] -> Fs
 buildFs = fst . buildDir "/" . drop 2

@@ -4,7 +4,7 @@ module Aoc.Year2022.Day13
   )
 where
 
-import Aoc.Core.Parser (Parser, runParser')
+import Aoc.Core.Parser (Parser, runParser)
 import Data.List (elemIndex, sort)
 import Text.Megaparsec (between, sepBy, sepEndBy1, (<|>))
 import Text.Megaparsec.Char (char, newline)
@@ -32,7 +32,7 @@ div2 :: Packet
 div2 = L [L [V 6]]
 
 parseInput :: String -> [(Packet, Packet)]
-parseInput = runParser' $ sepEndBy1 packetPairP newline
+parseInput = runParser $ sepEndBy1 packetPairP newline
   where
     listP :: Parser Packet
     listP = L <$> between (char '[') (char ']') (sepBy packetP (char ','))

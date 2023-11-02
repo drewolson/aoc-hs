@@ -7,7 +7,7 @@ module Aoc.Year2021.Day22
   )
 where
 
-import Aoc.Core.Parser (Parser, runParser', signedIntP)
+import Aoc.Core.Parser (Parser, runParser, signedIntP)
 import Control.Applicative ((<|>))
 import Data.Foldable (Foldable (foldl'))
 import Text.Megaparsec (sepEndBy1)
@@ -53,7 +53,7 @@ parseSteps :: Parser [Step]
 parseSteps = sepEndBy1 parseStep newline
 
 parseInput :: String -> [Step]
-parseInput = runParser' parseSteps
+parseInput = runParser parseSteps
 
 intersect :: Box -> Box -> Maybe Box
 intersect ((xmin1, ymin1, zmin1), (xmax1, ymax1, zmax1)) ((xmin2, ymin2, zmin2), (xmax2, ymax2, zmax2)) =

@@ -4,7 +4,7 @@ module Aoc.Year2022.Day11
   )
 where
 
-import Aoc.Core.Parser (Parser, runParser')
+import Aoc.Core.Parser (Parser, runParser)
 import Data.List (foldl', partition, sort)
 import Data.Map.Strict (Map, (!))
 import Data.Map.Strict qualified as Map
@@ -47,7 +47,7 @@ monkeysP :: Parser [Monkey]
 monkeysP = sepBy1 monkeyP newline
 
 parseInput :: String -> State
-parseInput = runParser' $ do
+parseInput = runParser $ do
   monkeys <- monkeysP
 
   pure $ Map.fromList $ (\m -> (num m, m)) <$> monkeys

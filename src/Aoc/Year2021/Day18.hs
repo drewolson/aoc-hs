@@ -4,7 +4,7 @@ module Aoc.Year2021.Day18
   )
 where
 
-import Aoc.Core.Parser (Parser, runParser')
+import Aoc.Core.Parser (Parser, runParser)
 import Control.Applicative ((<|>))
 import Control.Monad (guard)
 import Data.List (foldl1')
@@ -39,7 +39,7 @@ parseAllSnailFish :: Parser [SnailFish]
 parseAllSnailFish = sepEndBy1 parseSnailFish newline
 
 parseInput :: String -> [SnailFish]
-parseInput = runParser' parseAllSnailFish
+parseInput = runParser parseAllSnailFish
 
 explode :: SnailFish -> Maybe SnailFish
 explode = fmap fst . go 0

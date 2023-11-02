@@ -4,7 +4,7 @@ module Aoc.Year2022.Day15
   )
 where
 
-import Aoc.Core.Parser (Parser, runParser')
+import Aoc.Core.Parser (Parser, runParser)
 import Data.List (find, genericLength)
 import Data.Set qualified as Set
 import Text.Megaparsec (sepEndBy1)
@@ -16,7 +16,7 @@ type Coord = (Integer, Integer)
 type Pair = (Coord, Coord)
 
 parseInput :: String -> [Pair]
-parseInput = runParser' $ sepEndBy1 pairP newline
+parseInput = runParser $ sepEndBy1 pairP newline
   where
     signedP :: Parser Integer
     signedP = signed (pure ()) decimal

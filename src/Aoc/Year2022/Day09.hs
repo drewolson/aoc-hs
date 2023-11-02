@@ -4,7 +4,7 @@ module Aoc.Year2022.Day09
   )
 where
 
-import Aoc.Core.Parser (Parser, runParser')
+import Aoc.Core.Parser (Parser, runParser)
 import Control.Monad ((<=<))
 import Data.List (foldl', scanl')
 import Data.Set (Set)
@@ -16,7 +16,7 @@ import Text.Megaparsec.Char.Lexer (decimal)
 type Coord = (Int, Int)
 
 parseInput :: String -> [(Int, Coord)]
-parseInput = runParser' $ sepEndBy1 cmdP newline
+parseInput = runParser $ sepEndBy1 cmdP newline
   where
     dirP :: Parser Coord
     dirP =

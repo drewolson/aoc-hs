@@ -54,11 +54,10 @@ foldPaper paper fold = Set.map (foldCoord fold) paper
       | p < n = p
       | otherwise = n - (p - n)
 
-part1 :: String -> Either String Int
-part1 input = do
-  (coords, folds) <- runParser parseInstructions input
-
-  pure $ length $ foldl' foldPaper coords $ take 1 folds
+part1 :: String -> Int
+part1 input =
+  let (coords, folds) = runParser parseInstructions input
+   in length $ foldl' foldPaper coords $ take 1 folds
 
 showGrid :: Paper -> String
 showGrid paper =
@@ -77,7 +76,5 @@ showGrid paper =
 
 part2 :: String -> String
 part2 input =
-  case runParser parseInstructions input of
-    Left e -> e
-    Right (coords, folds) ->
-      showGrid $ foldl' foldPaper coords folds
+  let (coords, folds) = runParser parseInstructions input
+   in showGrid $ foldl' foldPaper coords folds

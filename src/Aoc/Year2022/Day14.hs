@@ -4,7 +4,7 @@ module Aoc.Year2022.Day14
   )
 where
 
-import Aoc.Core.Parser (Parser, runParser')
+import Aoc.Core.Parser (Parser, runParser)
 import Data.List (find)
 import Data.Set (Set)
 import Data.Set qualified as Set
@@ -17,7 +17,7 @@ type Coord = (Int, Int)
 type Grid = Set Coord
 
 parseInput :: String -> [(Coord, Coord)]
-parseInput = runParser' $ mconcat <$> sepEndBy1 coordsP newline
+parseInput = runParser $ mconcat <$> sepEndBy1 coordsP newline
   where
     coordsP :: Parser [(Coord, Coord)]
     coordsP = do

@@ -38,7 +38,7 @@ spec = do
     it "day 13 part 1 works" $ do
       let result = Day13.part1 input
 
-      result `shouldBe` Right 17
+      result `shouldBe` 17
 
   describe "part2" $ do
     it "day 13 part 2 works" $ do
