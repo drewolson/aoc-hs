@@ -4,13 +4,7 @@ module Aoc.Runner.Args
   )
 where
 
-import Options.Applicative
-  ( Mod,
-    OptionFields,
-    Parser,
-    ParserInfo,
-    (<**>),
-  )
+import Options.Applicative (Parser, ParserInfo, (<**>))
 import Options.Applicative qualified as OA
 
 data Args = Args
@@ -19,32 +13,31 @@ data Args = Args
     part :: Int
   }
 
-autoOpt :: (Read a) => Mod OptionFields a -> Parser a
-autoOpt = OA.option OA.auto
-
 argsP :: Parser Args
 argsP =
-  Args
-    <$> autoOpt
-      ( OA.long "year"
+  let yearOpt =
+        OA.long "year"
           <> OA.short 'y'
           <> OA.metavar "YEAR"
           <> OA.value 2022
           <> OA.showDefault
           <> OA.help "Year to run"
-      )
-    <*> autoOpt
-      ( OA.long "day"
+
+      dayOpt =
+        OA.long "day"
           <> OA.short 'd'
           <> OA.metavar "DAY"
           <> OA.help "Day to run (1 - 25)"
-      )
-    <*> autoOpt
-      ( OA.long "part"
+
+      partOpt =
+        OA.long "part"
           <> OA.short 'p'
           <> OA.metavar "PART"
           <> OA.help "Part to run (1 or 2)"
-      )
+   in Args
+        <$> OA.option OA.auto yearOpt
+        <*> OA.option OA.auto dayOpt
+        <*> OA.option OA.auto partOpt
 
 opts :: ParserInfo Args
 opts =
