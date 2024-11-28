@@ -1,6 +1,6 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.35.2.
+-- This file has been generated from package.yaml by hpack version 0.37.0.
 --
 -- see: https://github.com/sol/hpack
 
@@ -70,8 +70,6 @@ library
   hs-source-dirs:
       src
   ghc-options: -Werror -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
-  build-tool-depends:
-      ormolu:ormolu
   build-depends:
       QuickCheck
     , base >=4.7 && <5
@@ -95,8 +93,6 @@ executable aoc
   hs-source-dirs:
       app
   ghc-options: -Werror -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
-  build-tool-depends:
-      ormolu:ormolu
   build-depends:
       QuickCheck
     , aoc
@@ -163,8 +159,6 @@ test-suite aoc-test
   default-extensions:
       QuasiQuotes
   ghc-options: -Werror -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
-  build-tool-depends:
-      ormolu:ormolu
   build-depends:
       QuickCheck
     , aoc
