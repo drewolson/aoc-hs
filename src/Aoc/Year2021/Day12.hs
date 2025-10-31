@@ -5,7 +5,6 @@ module Aoc.Year2021.Day12
 where
 
 import Data.Char (toLower)
-import Data.Foldable (Foldable (foldl'))
 import Data.List.Split (splitOn)
 import Data.Map (Map, (!))
 import Data.Map qualified as Map

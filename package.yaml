@@ -12,6 +12,7 @@ ghc-options:
 - -Werror
 - -Wall
 - -Wcompat
+- -Wno-x-partial
 - -Wincomplete-record-updates
 - -Wincomplete-uni-patterns
 - -Wredundant-constraints

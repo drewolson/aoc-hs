@@ -6,7 +6,7 @@ where
 
 import Aoc.Core.Parser (Parser, runParser)
 import Control.Monad ((<=<))
-import Data.List (foldl', scanl')
+import Data.List (scanl')
 import Data.Set (Set)
 import Data.Set qualified as Set
 import Text.Megaparsec (choice, sepEndBy1)

@@ -6,7 +6,6 @@ where
 
 import Aoc.Core.Parser (Parser, runParser)
 import Data.Bifunctor (first, second)
-import Data.Foldable (Foldable (foldl'))
 import Data.List (intercalate)
 import Data.Set (Set)
 import Data.Set qualified as Set

@@ -9,7 +9,6 @@ where
 
 import Aoc.Core.Parser (Parser, runParser, signedIntP)
 import Control.Applicative ((<|>))
-import Data.Foldable (Foldable (foldl'))
 import Text.Megaparsec (sepEndBy1)
 import Text.Megaparsec.Char (char, newline, space, string)
 

@@ -5,7 +5,6 @@ module Aoc.Year2021.Day10
 where
 
 import Data.Either (lefts, rights)
-import Data.Foldable (foldl')
 import Data.List (sort)
 
 isOpen :: Char -> Bool

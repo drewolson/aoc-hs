@@ -5,7 +5,6 @@ module Aoc.Year2021.Day11
 where
 
 import Control.Monad (guard)
-import Data.Foldable (foldl')
 import Data.Map.Strict (Map)
 import Data.Map.Strict qualified as Map
 import Data.Set (Set)

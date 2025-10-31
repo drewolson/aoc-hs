@@ -7,7 +7,7 @@ where
 import Aoc.Core.Parser (Parser, dropLineP, runParser)
 import Data.IntMap.Strict (IntMap, (!))
 import Data.IntMap.Strict qualified as IntMap
-import Data.List (foldl', transpose)
+import Data.List (transpose)
 import Data.Maybe (catMaybes)
 import Text.Megaparsec (anySingle, choice, sepBy1, sepEndBy1)
 import Text.Megaparsec.Char (char, newline, string)
