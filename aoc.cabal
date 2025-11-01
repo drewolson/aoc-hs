@@ -86,7 +86,7 @@ library
     , raw-strings-qq
     , search-algorithms
     , split
-  default-language: GHC2021
+  default-language: GHC2024
 
 executable aoc
   main-is: Main.hs
@@ -110,7 +110,7 @@ executable aoc
     , raw-strings-qq
     , search-algorithms
     , split
-  default-language: GHC2021
+  default-language: GHC2024
 
 test-suite aoc-test
   type: exitcode-stdio-1.0
@@ -176,4 +176,4 @@ test-suite aoc-test
     , raw-strings-qq
     , search-algorithms
     , split
-  default-language: GHC2021
+  default-language: GHC2024

@@ -17,7 +17,7 @@ ghc-options:
 - -Wincomplete-uni-patterns
 - -Wredundant-constraints
 
-language: GHC2021
+language: GHC2024
 
 dependencies:
 - base >= 4.7 && < 5
