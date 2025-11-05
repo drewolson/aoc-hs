@@ -19,7 +19,7 @@ argsP =
         OA.long "year"
           <> OA.short 'y'
           <> OA.metavar "YEAR"
-          <> OA.value 2024
+          <> OA.value 2025
           <> OA.showDefault
           <> OA.help "Year to run"
 
