@@ -7,6 +7,7 @@ import Aoc.Runner.Args (Args (..))
 import Aoc.Runner.Args qualified as Args
 import Aoc.Runner.Year2021 qualified as Year2021
 import Aoc.Runner.Year2022 qualified as Year2022
+import Aoc.Runner.Year2024 qualified as Year2024
 import Text.Printf qualified as Printf
 
 readInput :: Args -> IO String
@@ -18,6 +19,7 @@ runSolution input args =
   case args of
     Args {year = 2021} -> Year2021.run input args
     Args {year = 2022} -> Year2022.run input args
+    Args {year = 2024} -> Year2024.run input args
     _ -> fail "unknown year"
 
 main :: IO ()
